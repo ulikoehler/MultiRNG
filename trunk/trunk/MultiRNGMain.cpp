@@ -43,20 +43,17 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(MultiRNGFrame)
-const long MultiRNGFrame::ID_STATICTEXT1 = wxNewId();
-const long MultiRNGFrame::ID_STATICTEXT2 = wxNewId();
-const long MultiRNGFrame::ID_CHOICE1 = wxNewId();
-const long MultiRNGFrame::ID_CHOICE2 = wxNewId();
-const long MultiRNGFrame::ID_STATICTEXT3 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL1 = wxNewId();
-const long MultiRNGFrame::ID_STATICTEXT4 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL2 = wxNewId();
-const long MultiRNGFrame::ID_BUTTON1 = wxNewId();
-const long MultiRNGFrame::ID_STATICTEXT5 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL3 = wxNewId();
-const long MultiRNGFrame::idMenuQuit = wxNewId();
-const long MultiRNGFrame::idMenuAbout = wxNewId();
-const long MultiRNGFrame::ID_STATUSBAR1 = wxNewId();
+const long MultiRNGFrame::ID_LIBLABEL = wxNewId();
+const long MultiRNGFrame::ID_ALGOLABEL = wxNewId();
+const long MultiRNGFrame::ID_LIBCHOICE = wxNewId();
+const long MultiRNGFrame::ID_ALGOCHOICE = wxNewId();
+const long MultiRNGFrame::ID_AMOUNTLABEL = wxNewId();
+const long MultiRNGFrame::ID_AMOUNTFIELD = wxNewId();
+const long MultiRNGFrame::ID_FILELABEL = wxNewId();
+const long MultiRNGFrame::ID_FILEFIELD = wxNewId();
+const long MultiRNGFrame::ID_OKBUTTON = wxNewId();
+const long MultiRNGFrame::ID_SEEDLABEL = wxNewId();
+const long MultiRNGFrame::ID_SEEDFIELD = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(MultiRNGFrame,wxFrame)
@@ -67,49 +64,25 @@ END_EVENT_TABLE()
 MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(MultiRNGFrame)
-    wxMenuItem* MenuItem2;
-    wxMenuItem* MenuItem1;
-    wxMenu* Menu1;
-    wxMenuBar* MenuBar1;
-    wxMenu* Menu2;
-
     Create(parent, id, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
     SetClientSize(wxSize(373,164));
-    libraryLabel = new wxStaticText(this, ID_STATICTEXT1, _("Library:"), wxPoint(8,16), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
-    algorithmLabel = new wxStaticText(this, ID_STATICTEXT2, _("Algorithm:"), wxPoint(184,16), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
-    libraryChoice = new wxChoice(this, ID_CHOICE1, wxPoint(56,16), wxSize(120,21), 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
+    libraryLabel = new wxStaticText(this, ID_LIBLABEL, _("Library:"), wxPoint(8,16), wxDefaultSize, 0, _T("ID_LIBLABEL"));
+    algorithmLabel = new wxStaticText(this, ID_ALGOLABEL, _("Algorithm:"), wxPoint(184,16), wxDefaultSize, 0, _T("ID_ALGOLABEL"));
+    libraryChoice = new wxChoice(this, ID_LIBCHOICE, wxPoint(56,16), wxSize(120,21), 0, 0, 0, wxDefaultValidator, _T("ID_LIBCHOICE"));
     libraryChoice->Append(_("boost/random"));
     libraryChoice->SetSelection( libraryChoice->Append(_("MersenneTwister.h")) );
     libraryChoice->Append(_("GMP"));
-    algorithmChoice = new wxChoice(this, ID_CHOICE2, wxPoint(240,16), wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE2"));
+    algorithmChoice = new wxChoice(this, ID_ALGOCHOICE, wxPoint(240,16), wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_ALGOCHOICE"));
     algorithmChoice->SetSelection( algorithmChoice->Append(_("MT 19937")) );
-    amountLabel = new wxStaticText(this, ID_STATICTEXT3, _("Amount:"), wxPoint(8,48), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
-    amountField = new wxTextCtrl(this, ID_TEXTCTRL1, _("100"), wxPoint(56,48), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
-    fileLabel = new wxStaticText(this, ID_STATICTEXT4, _("File:"), wxPoint(184,48), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-    fileField = new wxTextCtrl(this, ID_TEXTCTRL2, _("random.txt"), wxPoint(216,48), wxSize(144,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
-    okButton = new wxButton(this, ID_BUTTON1, _("OK"), wxPoint(144,128), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-    seedLabel = new wxStaticText(this, ID_STATICTEXT5, _("Seed:"), wxPoint(8,80), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
-    seedField = new wxTextCtrl(this, ID_TEXTCTRL3, _("1234567890"), wxPoint(48,80), wxSize(312,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
-    MenuBar1 = new wxMenuBar();
-    Menu1 = new wxMenu();
-    MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
-    Menu1->Append(MenuItem1);
-    MenuBar1->Append(Menu1, _("&File"));
-    Menu2 = new wxMenu();
-    MenuItem2 = new wxMenuItem(Menu2, idMenuAbout, _("About\tF1"), _("Show info about this application"), wxITEM_NORMAL);
-    Menu2->Append(MenuItem2);
-    MenuBar1->Append(Menu2, _("Help"));
-    SetMenuBar(MenuBar1);
-    StatusBar1 = new wxStatusBar(this, ID_STATUSBAR1, 0, _T("ID_STATUSBAR1"));
-    int __wxStatusBarWidths_1[1] = { -1 };
-    int __wxStatusBarStyles_1[1] = { wxSB_NORMAL };
-    StatusBar1->SetFieldsCount(1,__wxStatusBarWidths_1);
-    StatusBar1->SetStatusStyles(1,__wxStatusBarStyles_1);
-    SetStatusBar(StatusBar1);
+    amountLabel = new wxStaticText(this, ID_AMOUNTLABEL, _("Amount:"), wxPoint(8,48), wxDefaultSize, 0, _T("ID_AMOUNTLABEL"));
+    amountField = new wxTextCtrl(this, ID_AMOUNTFIELD, _("100"), wxPoint(56,48), wxDefaultSize, 0, wxDefaultValidator, _T("ID_AMOUNTFIELD"));
+    fileLabel = new wxStaticText(this, ID_FILELABEL, _("File:"), wxPoint(184,48), wxDefaultSize, 0, _T("ID_FILELABEL"));
+    fileField = new wxTextCtrl(this, ID_FILEFIELD, _("random.txt"), wxPoint(216,48), wxSize(144,21), 0, wxDefaultValidator, _T("ID_FILEFIELD"));
+    okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(120,112), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
+    seedLabel = new wxStaticText(this, ID_SEEDLABEL, _("Seed:"), wxPoint(8,80), wxDefaultSize, 0, _T("ID_SEEDLABEL"));
+    seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(48,80), wxSize(312,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
 
-    Connect(ID_CHOICE1,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnLibraryChoiceSelect);
-    Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnQuit);
-    Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnAbout);
+    Connect(ID_LIBCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnLibraryChoiceSelect);
     //*)
 }
 
@@ -132,15 +105,35 @@ void MultiRNGFrame::OnAbout(wxCommandEvent& event)
 
 void MultiRNGFrame::OnLibraryChoiceSelect(wxCommandEvent& event)
 {
-    static const wxString boost[] = {wxT("MT19939"), wxT("Linear congruential"), wxT("Additive combine"), wxT("Inverse congruential"), wxT("Shuffle output"), wxT("Lagged fibonacci")};
-    switch(libraryChoice->GetCurrentSelection)
+    switch(libraryChoice->GetCurrentSelection())
     {
         case 0: ///boost/random
             {
-                algorithmChoice->Set
+                algorithmChoice->Clear();
+                algorithmChoice->Append(_("MT 19937"));
+                algorithmChoice->Append(_("Linear Congruential"));
+                algorithmChoice->Append(_("Additive Combine"));
+                algorithmChoice->Append(_("Inverse Congruential"));
+                algorithmChoice->Append(_("Shuffle output"));
+                algorithmChoice->Append(_("Lagged fibonacci"));
+                algorithmChoice->SetSelection(0);
+                break;
             }
         case 1: ///MersenneTwister.h
+            {
+                algorithmChoice->Clear();
+                algorithmChoice->Append(_("MT 19937"));
+                algorithmChoice->SetSelection(0);
+                break;
+            }
         case 2: ///GMP
+            {
+                algorithmChoice->Clear();
+                algorithmChoice->Append(_("MT 19937"));
+                algorithmChoice->Append(_("Linear Congruential"));
+                algorithmChoice->SetSelection(0);
+                break;
+            }
         default: break;
     }
 }

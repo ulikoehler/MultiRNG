@@ -3,15 +3,15 @@
 	<object class="wxFrame" name="MultiRNGFrame">
 		<title>MultiRNG</title>
 		<size>373,164</size>
-		<object class="wxStaticText" name="ID_STATICTEXT1" variable="libraryLabel" member="yes">
+		<object class="wxStaticText" name="ID_LIBLABEL" variable="libraryLabel" member="yes">
 			<label>Library:</label>
 			<pos>8,16</pos>
 		</object>
-		<object class="wxStaticText" name="ID_STATICTEXT2" variable="algorithmLabel" member="yes">
+		<object class="wxStaticText" name="ID_ALGOLABEL" variable="algorithmLabel" member="yes">
 			<label>Algorithm:</label>
 			<pos>184,16</pos>
 		</object>
-		<object class="wxChoice" name="ID_CHOICE1" variable="libraryChoice" member="yes">
+		<object class="wxChoice" name="ID_LIBCHOICE" variable="libraryChoice" member="yes">
 			<content>
 				<item>boost/random</item>
 				<item>MersenneTwister.h</item>
@@ -22,67 +22,43 @@
 			<size>120,21</size>
 			<handler function="OnLibraryChoiceSelect" entry="EVT_CHOICE" />
 		</object>
-		<object class="wxChoice" name="ID_CHOICE2" variable="algorithmChoice" member="yes">
+		<object class="wxChoice" name="ID_ALGOCHOICE" variable="algorithmChoice" member="yes">
 			<content>
 				<item>MT 19937</item>
 			</content>
 			<selection>0</selection>
 			<pos>240,16</pos>
 		</object>
-		<object class="wxStaticText" name="ID_STATICTEXT3" variable="amountLabel" member="yes">
+		<object class="wxStaticText" name="ID_AMOUNTLABEL" variable="amountLabel" member="yes">
 			<label>Amount:</label>
 			<pos>8,48</pos>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="amountField" member="yes">
+		<object class="wxTextCtrl" name="ID_AMOUNTFIELD" variable="amountField" member="yes">
 			<value>100</value>
 			<pos>56,48</pos>
 		</object>
-		<object class="wxStaticText" name="ID_STATICTEXT4" variable="fileLabel" member="yes">
+		<object class="wxStaticText" name="ID_FILELABEL" variable="fileLabel" member="yes">
 			<label>File:</label>
 			<pos>184,48</pos>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="fileField" member="yes">
+		<object class="wxTextCtrl" name="ID_FILEFIELD" variable="fileField" member="yes">
 			<value>random.txt</value>
 			<pos>216,48</pos>
 			<size>144,21</size>
 		</object>
-		<object class="wxButton" name="ID_BUTTON1" variable="okButton" member="yes">
+		<object class="wxButton" name="ID_OKBUTTON" variable="okButton" member="yes">
 			<label>OK</label>
-			<pos>144,128</pos>
+			<pos>120,112</pos>
+			<size>136,23</size>
 		</object>
-		<object class="wxStaticText" name="ID_STATICTEXT5" variable="seedLabel" member="yes">
+		<object class="wxStaticText" name="ID_SEEDLABEL" variable="seedLabel" member="yes">
 			<label>Seed:</label>
 			<pos>8,80</pos>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="seedField" member="yes">
+		<object class="wxTextCtrl" name="ID_SEEDFIELD" variable="seedField" member="yes">
 			<value>1234567890</value>
 			<pos>48,80</pos>
 			<size>312,21</size>
-		</object>
-		<object class="wxMenuBar" variable="MenuBar1" member="no">
-			<object class="wxMenu" variable="Menu1" member="no">
-				<label>&amp;File</label>
-				<object class="wxMenuItem" name="idMenuQuit" variable="MenuItem1" member="no">
-					<label>Quit</label>
-					<accel>Alt-F4</accel>
-					<help>Quit the application</help>
-					<handler function="OnQuit" entry="EVT_MENU" />
-				</object>
-			</object>
-			<object class="wxMenu" variable="Menu2" member="no">
-				<label>Help</label>
-				<object class="wxMenuItem" name="idMenuAbout" variable="MenuItem2" member="no">
-					<label>About</label>
-					<accel>F1</accel>
-					<help>Show info about this application</help>
-					<handler function="OnAbout" entry="EVT_MENU" />
-				</object>
-			</object>
-		</object>
-		<object class="wxStatusBar" name="ID_STATUSBAR1" variable="StatusBar1" member="yes">
-			<fields>1</fields>
-			<widths>-1</widths>
-			<styles>wxSB_NORMAL</styles>
 		</object>
 	</object>
 </wxsmith>
