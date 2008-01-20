@@ -12,12 +12,10 @@
 
 //(*Headers(MultiRNGFrame)
 #include <wx/stattext.h>
-#include <wx/menu.h>
 #include <wx/textctrl.h>
 #include <wx/choice.h>
 #include <wx/button.h>
 #include <wx/frame.h>
-#include <wx/statusbr.h>
 //*)
 
 class MultiRNGFrame: public wxFrame
@@ -36,20 +34,17 @@ class MultiRNGFrame: public wxFrame
         //*)
 
         //(*Identifiers(MultiRNGFrame)
-        static const long ID_STATICTEXT1;
-        static const long ID_STATICTEXT2;
-        static const long ID_CHOICE1;
-        static const long ID_CHOICE2;
-        static const long ID_STATICTEXT3;
-        static const long ID_TEXTCTRL1;
-        static const long ID_STATICTEXT4;
-        static const long ID_TEXTCTRL2;
-        static const long ID_BUTTON1;
-        static const long ID_STATICTEXT5;
-        static const long ID_TEXTCTRL3;
-        static const long idMenuQuit;
-        static const long idMenuAbout;
-        static const long ID_STATUSBAR1;
+        static const long ID_LIBLABEL;
+        static const long ID_ALGOLABEL;
+        static const long ID_LIBCHOICE;
+        static const long ID_ALGOCHOICE;
+        static const long ID_AMOUNTLABEL;
+        static const long ID_AMOUNTFIELD;
+        static const long ID_FILELABEL;
+        static const long ID_FILEFIELD;
+        static const long ID_OKBUTTON;
+        static const long ID_SEEDLABEL;
+        static const long ID_SEEDFIELD;
         //*)
 
         //(*Declarations(MultiRNGFrame)
@@ -58,7 +53,6 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* fileField;
         wxChoice* algorithmChoice;
         wxStaticText* amountLabel;
-        wxStatusBar* StatusBar1;
         wxStaticText* fileLabel;
         wxStaticText* algorithmLabel;
         wxStaticText* libraryLabel;
