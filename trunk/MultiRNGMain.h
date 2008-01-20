@@ -19,6 +19,11 @@
 #include <wx/frame.h>
 #include <wx/gauge.h>
 //*)
+///Custom header includes
+#include <boost/lexical_cast.hpp>
+#include <MErsenneTwister.h>
+
+using namespace boost;
 
 class MultiRNGFrame: public wxFrame
 {
@@ -36,6 +41,8 @@ class MultiRNGFrame: public wxFrame
         //*)
 
         //(*Identifiers(MultiRNGFrame)
+        static const long ID_BOOSTSPECBOX;
+        static const long ID_LIMITSBOX;
         static const long ID_UPLIMITFIELD;
         static const long ID_LIBLABEL;
         static const long ID_ALGOLABEL;
@@ -48,11 +55,9 @@ class MultiRNGFrame: public wxFrame
         static const long ID_OKBUTTON;
         static const long ID_SEEDLABEL;
         static const long ID_SEEDFIELD;
-        static const long ID_LIMITSBOX;
         static const long ID_LOLIMITLABEL;
         static const long ID_TEXTCTRL1;
         static const long ID_STATICTEXT1;
-        static const long ID_BOOSTSPECBOX;
         static const long ID_DISTLABEL;
         static const long ID_DISTCHOICE;
         static const long ID_PROGRESSGAUGE;
@@ -70,6 +75,7 @@ class MultiRNGFrame: public wxFrame
         wxChoice* algorithmChoice;
         wxStaticText* amountLabel;
         wxGauge* progressGauge;
+        wxChoice* distributionChoice;
         wxTextCtrl* upperLimitField;
         wxStaticText* fileLabel;
         wxStaticText* algorithmLabel;
@@ -78,8 +84,9 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* seedField;
         wxTextCtrl* amountField;
         wxStaticText* distributionLabel;
-        wxChoice* distrubutionChoice;
         //*)
+        ///Custom functions
+        void GenRandMTH();
 
         DECLARE_EVENT_TABLE()
 };

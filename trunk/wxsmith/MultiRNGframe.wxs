@@ -3,6 +3,18 @@
 	<object class="wxFrame" name="MultiRNGFrame">
 		<title>MultiRNG</title>
 		<size>373,250</size>
+		<object class="wxStaticBox" name="ID_BOOSTSPECBOX" variable="boostSpecificBox" member="yes">
+			<label>Advanced options</label>
+			<pos>160,104</pos>
+			<size>192,80</size>
+			<fg>wxSYS_COLOUR_MENUTEXT</fg>
+		</object>
+		<object class="wxStaticBox" name="ID_LIMITSBOX" variable="limitsBox" member="yes">
+			<label>Limits</label>
+			<pos>16,104</pos>
+			<size>128,80</size>
+			<fg>wxSYS_COLOUR_MENUTEXT</fg>
+		</object>
 		<object class="wxTextCtrl" name="ID_UPLIMITFIELD" variable="lowerLimitField" member="yes">
 			<value>1000</value>
 			<pos>64,128</pos>
@@ -65,12 +77,6 @@
 			<pos>56,80</pos>
 			<size>312,21</size>
 		</object>
-		<object class="wxStaticBox" name="ID_LIMITSBOX" variable="limitsBox" member="yes">
-			<label>Limits</label>
-			<pos>16,104</pos>
-			<size>128,80</size>
-			<fg>wxSYS_COLOUR_MENUTEXT</fg>
-		</object>
 		<object class="wxStaticText" name="ID_LOLIMITLABEL" variable="lowerLimitLabel" member="yes">
 			<label>Lower:</label>
 			<pos>24,128</pos>
@@ -84,17 +90,11 @@
 			<label>Upper:</label>
 			<pos>24,152</pos>
 		</object>
-		<object class="wxStaticBox" name="ID_BOOSTSPECBOX" variable="boostSpecificBox" member="yes">
-			<label>Boost specific</label>
-			<pos>160,104</pos>
-			<size>192,80</size>
-			<fg>wxSYS_COLOUR_MENUTEXT</fg>
-		</object>
 		<object class="wxStaticText" name="ID_DISTLABEL" variable="distributionLabel" member="yes">
 			<label>Distribution:</label>
 			<pos>168,136</pos>
 		</object>
-		<object class="wxChoice" name="ID_DISTCHOICE" variable="distrubutionChoice" member="yes">
+		<object class="wxChoice" name="ID_DISTCHOICE" variable="distributionChoice" member="yes">
 			<content>
 				<item>Uniform Small Integer</item>
 				<item>Uniform Integer</item>
