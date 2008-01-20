@@ -44,6 +44,8 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(MultiRNGFrame)
+const long MultiRNGFrame::ID_BOOSTSPECBOX = wxNewId();
+const long MultiRNGFrame::ID_LIMITSBOX = wxNewId();
 const long MultiRNGFrame::ID_UPLIMITFIELD = wxNewId();
 const long MultiRNGFrame::ID_LIBLABEL = wxNewId();
 const long MultiRNGFrame::ID_ALGOLABEL = wxNewId();
@@ -56,11 +58,9 @@ const long MultiRNGFrame::ID_FILEFIELD = wxNewId();
 const long MultiRNGFrame::ID_OKBUTTON = wxNewId();
 const long MultiRNGFrame::ID_SEEDLABEL = wxNewId();
 const long MultiRNGFrame::ID_SEEDFIELD = wxNewId();
-const long MultiRNGFrame::ID_LIMITSBOX = wxNewId();
 const long MultiRNGFrame::ID_LOLIMITLABEL = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL1 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT1 = wxNewId();
-const long MultiRNGFrame::ID_BOOSTSPECBOX = wxNewId();
 const long MultiRNGFrame::ID_DISTLABEL = wxNewId();
 const long MultiRNGFrame::ID_DISTCHOICE = wxNewId();
 const long MultiRNGFrame::ID_PROGRESSGAUGE = wxNewId();
@@ -76,6 +76,10 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     //(*Initialize(MultiRNGFrame)
     Create(parent, id, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
     SetClientSize(wxSize(373,250));
+    boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Advanced options"), wxPoint(160,104), wxSize(192,80), 0, _T("ID_BOOSTSPECBOX"));
+    boostSpecificBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
+    limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,80), 0, _T("ID_LIMITSBOX"));
+    limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     lowerLimitField = new wxTextCtrl(this, ID_UPLIMITFIELD, _("1000"), wxPoint(64,128), wxSize(72,21), 0, wxDefaultValidator, _T("ID_UPLIMITFIELD"));
     libraryLabel = new wxStaticText(this, ID_LIBLABEL, _("Library:"), wxPoint(8,16), wxDefaultSize, 0, _T("ID_LIBLABEL"));
     algorithmLabel = new wxStaticText(this, ID_ALGOLABEL, _("Algorithm:"), wxPoint(184,16), wxDefaultSize, 0, _T("ID_ALGOLABEL"));
@@ -92,27 +96,23 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(112,216), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
     seedLabel = new wxStaticText(this, ID_SEEDLABEL, _("Seed:"), wxPoint(8,80), wxDefaultSize, 0, _T("ID_SEEDLABEL"));
     seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(56,80), wxSize(312,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
-    limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,80), 0, _T("ID_LIMITSBOX"));
-    limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     lowerLimitLabel = new wxStaticText(this, ID_LOLIMITLABEL, _("Lower:"), wxPoint(24,128), wxDefaultSize, 0, _T("ID_LOLIMITLABEL"));
     upperLimitField = new wxTextCtrl(this, ID_TEXTCTRL1, _("1000"), wxPoint(64,152), wxSize(72,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     upperLimitLabel = new wxStaticText(this, ID_STATICTEXT1, _("Upper:"), wxPoint(24,152), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
-    boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Boost specific"), wxPoint(160,104), wxSize(192,80), 0, _T("ID_BOOSTSPECBOX"));
-    boostSpecificBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     distributionLabel = new wxStaticText(this, ID_DISTLABEL, _("Distribution:"), wxPoint(168,136), wxDefaultSize, 0, _T("ID_DISTLABEL"));
-    distrubutionChoice = new wxChoice(this, ID_DISTCHOICE, wxPoint(232,136), wxSize(112,21), 0, 0, 0, wxDefaultValidator, _T("ID_DISTCHOICE"));
-    distrubutionChoice->Append(_("Uniform Small Integer"));
-    distrubutionChoice->SetSelection( distrubutionChoice->Append(_("Uniform Integer")) );
-    distrubutionChoice->Append(_("Uniform 01"));
-    distrubutionChoice->Append(_("Uniform Real"));
-    distrubutionChoice->Append(_("Triangle"));
-    distrubutionChoice->Append(_("Bernoulli"));
-    distrubutionChoice->Append(_("Cauchy"));
-    distrubutionChoice->Append(_("Exponential"));
-    distrubutionChoice->Append(_("Geometric"));
-    distrubutionChoice->Append(_("Normal"));
-    distrubutionChoice->Append(_("Lognormal"));
-    distrubutionChoice->Append(_("Uniform on Sphere"));
+    distributionChoice = new wxChoice(this, ID_DISTCHOICE, wxPoint(232,136), wxSize(112,21), 0, 0, 0, wxDefaultValidator, _T("ID_DISTCHOICE"));
+    distributionChoice->Append(_("Uniform Small Integer"));
+    distributionChoice->SetSelection( distributionChoice->Append(_("Uniform Integer")) );
+    distributionChoice->Append(_("Uniform 01"));
+    distributionChoice->Append(_("Uniform Real"));
+    distributionChoice->Append(_("Triangle"));
+    distributionChoice->Append(_("Bernoulli"));
+    distributionChoice->Append(_("Cauchy"));
+    distributionChoice->Append(_("Exponential"));
+    distributionChoice->Append(_("Geometric"));
+    distributionChoice->Append(_("Normal"));
+    distributionChoice->Append(_("Lognormal"));
+    distributionChoice->Append(_("Uniform on Sphere"));
     progressGauge = new wxGauge(this, ID_PROGRESSGAUGE, 100, wxPoint(16,192), wxSize(344,20), 0, wxDefaultValidator, _T("ID_PROGRESSGAUGE"));
     progressGauge->SetShadowWidth(5);
     progressGauge->SetBezelFace(5);
@@ -144,6 +144,7 @@ void MultiRNGFrame::OnLibraryChoiceSelect(wxCommandEvent& event)
     {
         case 0: ///boost/random
             {
+                ///Set Algorithm choices
                 algorithmChoice->Clear();
                 algorithmChoice->Append(_("MT 19937"));
                 algorithmChoice->Append(_("Linear Congruential"));
@@ -152,23 +153,67 @@ void MultiRNGFrame::OnLibraryChoiceSelect(wxCommandEvent& event)
                 algorithmChoice->Append(_("Shuffle output"));
                 algorithmChoice->Append(_("Lagged fibonacci"));
                 algorithmChoice->SetSelection(0);
+                ///Set Distribution choices
+                distributionChoice->Enable(true);
+                distributionChoice->Clear();
+                distributionChoice->Append(wxT("Uniform Small Integer"));
+                distributionChoice->Append(wxT("Uniform Integer"));
+                distributionChoice->Append(wxT("Uniform 01"));
+                distributionChoice->Append(wxT("Uniform Real"));
+                distributionChoice->Append(wxT("Triangle"));
+                distributionChoice->Append(wxT("Bernoulli"));
+                distributionChoice->Append(wxT("Cauchy"));
+                distributionChoice->Append(wxT("Exponential"));
+                distributionChoice->Append(wxT("Geometric"));
+                distributionChoice->Append(wxT("Normal"));
+                distributionChoice->Append(wxT("Lognormal"));
+                distributionChoice->Append(wxT("Uniform on Sphere"));
+                distributionChoice->SetSelection(0);
                 break;
             }
         case 1: ///MersenneTwister.h
             {
+                ///Set Algorithm choices
                 algorithmChoice->Clear();
                 algorithmChoice->Append(_("MT 19937"));
                 algorithmChoice->SetSelection(0);
+                ///Set Distribution choices
+                distributionChoice->Enable(true);
+                distributionChoice->Clear();
+                distributionChoice->Append(wxT("32-Bit Real in [0,1]"));
+                distributionChoice->Append(wxT("32-Bit Real in [0,upper]"));
+                distributionChoice->Append(wxT("32-Bit Real in [0,1)"));
+                distributionChoice->Append(wxT("32-Bit Real in [0,upper)"));
+                distributionChoice->Append(wxT("32-Bit Real in (0,1)"));
+                distributionChoice->Append(wxT("32-Bit Real in (0,upper)"));
+                distributionChoice->Append(wxT("Integer in [0,2^32-1]"));
+                distributionChoice->Append(wxT("Integer in [0,upper] for upper < 2^32"));
+                distributionChoice->Append(wxT("53-bit real number in [0,1)"));
+                distributionChoice->Append(wxT("Nonuniform: Lower=mean, Upper=variance"));
+                distributionChoice->SetSelection(0);
                 break;
             }
         case 2: ///GMP
             {
+                ///Set Algorithm options
                 algorithmChoice->Clear();
                 algorithmChoice->Append(_("MT 19937"));
                 algorithmChoice->Append(_("Linear Congruential"));
                 algorithmChoice->SetSelection(0);
+                ///Disable distribution choice
+                distributionChoice->Enable(false);
                 break;
             }
         default: break;
     }
+}
+
+void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
+{
+    unsigned long lolimit = lexical_cast<unsigned long>(lowerLimitField->GetValue().mb_str());
+    unsigned long uplimit = lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str());
+    unsigned long seed = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
+
+    MTRand mr(seed);
+
 }
