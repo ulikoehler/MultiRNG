@@ -38,11 +38,13 @@ class MultiRNGFrame: public wxFrame
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
         void OnLibraryChoiceSelect(wxCommandEvent& event);
+        void OnDistributionChoiceSelect(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(MultiRNGFrame)
-        static const long ID_BOOSTSPECBOX;
         static const long ID_LIMITSBOX;
+        static const long ID_TEXTCTRL2;
+        static const long ID_BOOSTSPECBOX;
         static const long ID_UPLIMITFIELD;
         static const long ID_LIBLABEL;
         static const long ID_ALGOLABEL;
@@ -55,26 +57,25 @@ class MultiRNGFrame: public wxFrame
         static const long ID_OKBUTTON;
         static const long ID_SEEDLABEL;
         static const long ID_SEEDFIELD;
-        static const long ID_LOLIMITLABEL;
         static const long ID_TEXTCTRL1;
-        static const long ID_STATICTEXT1;
         static const long ID_DISTLABEL;
         static const long ID_DISTCHOICE;
         static const long ID_PROGRESSGAUGE;
+        static const long ID_TEXTCTRL3;
         //*)
 
         //(*Declarations(MultiRNGFrame)
         wxStaticBox* limitsBox;
         wxChoice* libraryChoice;
+        wxTextCtrl* lowerLimitLabel;
         wxStaticText* seedLabel;
-        wxStaticText* lowerLimitLabel;
         wxTextCtrl* fileField;
         wxTextCtrl* lowerLimitField;
-        wxStaticText* upperLimitLabel;
         wxStaticBox* boostSpecificBox;
         wxChoice* algorithmChoice;
         wxStaticText* amountLabel;
         wxGauge* progressGauge;
+        wxTextCtrl* upperLimitLabel;
         wxChoice* distributionChoice;
         wxTextCtrl* upperLimitField;
         wxStaticText* fileLabel;

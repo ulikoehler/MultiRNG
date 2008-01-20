@@ -3,16 +3,23 @@
 	<object class="wxFrame" name="MultiRNGFrame">
 		<title>MultiRNG</title>
 		<size>373,250</size>
-		<object class="wxStaticBox" name="ID_BOOSTSPECBOX" variable="boostSpecificBox" member="yes">
-			<label>Advanced options</label>
-			<pos>160,104</pos>
-			<size>192,80</size>
-			<fg>wxSYS_COLOUR_MENUTEXT</fg>
-		</object>
 		<object class="wxStaticBox" name="ID_LIMITSBOX" variable="limitsBox" member="yes">
 			<label>Limits</label>
 			<pos>16,104</pos>
 			<size>128,80</size>
+			<fg>wxSYS_COLOUR_MENUTEXT</fg>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="lowerLimitLabel" member="yes">
+			<value>Lower:</value>
+			<pos>24,128</pos>
+			<size>40,21</size>
+			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
+			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
+		</object>
+		<object class="wxStaticBox" name="ID_BOOSTSPECBOX" variable="boostSpecificBox" member="yes">
+			<label>Advanced options</label>
+			<pos>160,104</pos>
+			<size>192,80</size>
 			<fg>wxSYS_COLOUR_MENUTEXT</fg>
 		</object>
 		<object class="wxTextCtrl" name="ID_UPLIMITFIELD" variable="lowerLimitField" member="yes">
@@ -34,7 +41,7 @@
 				<item>MersenneTwister.h</item>
 				<item>GMP</item>
 			</content>
-			<selection>1</selection>
+			<selection>0</selection>
 			<pos>56,16</pos>
 			<size>120,21</size>
 			<handler function="OnLibraryChoiceSelect" entry="EVT_CHOICE" />
@@ -77,18 +84,10 @@
 			<pos>56,80</pos>
 			<size>312,21</size>
 		</object>
-		<object class="wxStaticText" name="ID_LOLIMITLABEL" variable="lowerLimitLabel" member="yes">
-			<label>Lower:</label>
-			<pos>24,128</pos>
-		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="upperLimitField" member="yes">
 			<value>1000</value>
 			<pos>64,152</pos>
 			<size>72,21</size>
-		</object>
-		<object class="wxStaticText" name="ID_STATICTEXT1" variable="upperLimitLabel" member="yes">
-			<label>Upper:</label>
-			<pos>24,152</pos>
 		</object>
 		<object class="wxStaticText" name="ID_DISTLABEL" variable="distributionLabel" member="yes">
 			<label>Distribution:</label>
@@ -112,12 +111,20 @@
 			<selection>1</selection>
 			<pos>232,136</pos>
 			<size>112,21</size>
+			<handler function="OnDistributionChoiceSelect" entry="EVT_CHOICE" />
 		</object>
 		<object class="wxGauge" name="ID_PROGRESSGAUGE" variable="progressGauge" member="yes">
 			<shadow>5</shadow>
 			<bezel>5</bezel>
 			<pos>16,192</pos>
 			<size>344,20</size>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="upperLimitLabel" member="yes">
+			<value>Upper:</value>
+			<pos>24,152</pos>
+			<size>40,21</size>
+			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
+			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
 		</object>
 	</object>
 </wxsmith>
