@@ -13,9 +13,11 @@
 //(*Headers(MultiRNGFrame)
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
+#include <wx/statbox.h>
 #include <wx/choice.h>
 #include <wx/button.h>
 #include <wx/frame.h>
+#include <wx/gauge.h>
 //*)
 
 class MultiRNGFrame: public wxFrame
@@ -34,6 +36,7 @@ class MultiRNGFrame: public wxFrame
         //*)
 
         //(*Identifiers(MultiRNGFrame)
+        static const long ID_UPLIMITFIELD;
         static const long ID_LIBLABEL;
         static const long ID_ALGOLABEL;
         static const long ID_LIBCHOICE;
@@ -45,20 +48,37 @@ class MultiRNGFrame: public wxFrame
         static const long ID_OKBUTTON;
         static const long ID_SEEDLABEL;
         static const long ID_SEEDFIELD;
+        static const long ID_LIMITSBOX;
+        static const long ID_LOLIMITLABEL;
+        static const long ID_TEXTCTRL1;
+        static const long ID_STATICTEXT1;
+        static const long ID_BOOSTSPECBOX;
+        static const long ID_DISTLABEL;
+        static const long ID_DISTCHOICE;
+        static const long ID_PROGRESSGAUGE;
         //*)
 
         //(*Declarations(MultiRNGFrame)
+        wxStaticBox* limitsBox;
         wxChoice* libraryChoice;
         wxStaticText* seedLabel;
+        wxStaticText* lowerLimitLabel;
         wxTextCtrl* fileField;
+        wxTextCtrl* lowerLimitField;
+        wxStaticText* upperLimitLabel;
+        wxStaticBox* boostSpecificBox;
         wxChoice* algorithmChoice;
         wxStaticText* amountLabel;
+        wxGauge* progressGauge;
+        wxTextCtrl* upperLimitField;
         wxStaticText* fileLabel;
         wxStaticText* algorithmLabel;
         wxStaticText* libraryLabel;
         wxButton* okButton;
         wxTextCtrl* seedField;
         wxTextCtrl* amountField;
+        wxStaticText* distributionLabel;
+        wxChoice* distrubutionChoice;
         //*)
 
         DECLARE_EVENT_TABLE()
