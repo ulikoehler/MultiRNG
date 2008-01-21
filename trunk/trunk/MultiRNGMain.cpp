@@ -120,6 +120,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     upperLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
 
     Connect(ID_LIBCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnLibraryChoiceSelect);
+    Connect(ID_OKBUTTON,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&MultiRNGFrame::OnOkButtonClick);
     Connect(ID_DISTCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnDistributionChoiceSelect);
     //*)
 }
@@ -223,7 +224,9 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
     MTRand mtr(seed);
 
     ///Open fstream
-    f.open(lexical_cast<char*>(filenameField->GetValue().mb_str()));
+    //ff
+    f.open(lexical_cast<string>(filenameField->GetValue().mb_str()).c_str(), fstream::out);
+    cerr << "fopen fin" << endl;;
 
     unsigned long i = 0;
 
@@ -234,79 +237,79 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
                             {
                                 for(;i < amount;i++)
                                     {
-                                    f << mtr.rand();
+                                    f << mtr.rand() << endl;
                                     }
                                 break;
                             }
-                        case 2: ///32-Bit Real in [0,n]
+                        case 1: ///32-Bit Real in [0,n]
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.rand(lexical_cast<double>(upperLimitField->GetValue().mb_str()));
+                                        f << mtr.rand(lexical_cast<double>(upperLimitField->GetValue().mb_str())) << endl;
                                     }
                                 break;
                             }
-                        case 3: ///32-Bit Real in [0,1)
+                        case 2: ///32-Bit Real in [0,1)
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.randExc();
+                                        f << mtr.randExc() << endl;
                                     }
                                 break;
                             }
-                        case 4: ///32-Bit Real in [0,n)
+                        case 3: ///32-Bit Real in [0,n)
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.randExc(lexical_cast<double>(upperLimitField->GetValue().mb_str()));
+                                        f << mtr.randExc(lexical_cast<double>(upperLimitField->GetValue().mb_str())) << endl;
                                     }
                                 break;
                             }
-                        case 5: ///32-Bit Real in (0,1)
+                        case 4: ///32-Bit Real in (0,1)
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.randDblExc();
+                                        f << mtr.randDblExc() << endl;
                                     }
                                 break;
                             }
-                        case 6: ///32-Bit Real in (0,n)
+                        case 5: ///32-Bit Real in (0,n)
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.randDblExc(lexical_cast<double>(upperLimitField->GetValue().mb_str()));
+                                        f << mtr.randDblExc(lexical_cast<double>(upperLimitField->GetValue().mb_str())) << endl;
                                     }
                                 break;
                             }
-                        case 7: ///Integer in [0,2^32-1]
+                        case 6: ///Integer in [0,2^32-1]
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.randInt();
+                                        f << mtr.randInt() << endl;
                                     }
                                 break;
                             }
-                        case 8: ///Integer in [0,n] for n < 2^32
+                        case 7: ///Integer in [0,n] for n < 2^32
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.randInt(lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str()));
+                                        f << mtr.randInt(lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str())) << endl;
                                     }
                                 break;
                             }
-                        case 9: ///53-bit real number in [0,1)
+                        case 8: ///53-bit real number in [0,1)
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.rand53();
+                                        f << mtr.rand53() << endl;
                                     }
                                 break;
                             }
-                        case 10: ///Nonuniform
+                        case 9: ///Nonuniform
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.randNorm(lexical_cast<double>(lowerLimitField->GetValue().mb_str()), lexical_cast<double>(upperLimitField->GetValue().mb_str()));
+                                        f << mtr.randNorm(lexical_cast<double>(lowerLimitField->GetValue().mb_str()), lexical_cast<double>(upperLimitField->GetValue().mb_str())) << endl;
                                     }
                                 break;
                             }
@@ -334,59 +337,59 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
                                 upperLimitField->Enable(false);
                                 break;
                             }
-                        case 2: ///32-Bit Real in [0,n]
+                        case 1: ///32-Bit Real in [0,n]
                             {
                                 lowerLimitField->Enable(false);
                                 upperLimitField->Enable(true);
                                 upperLimitLabel->SetValue(wxT("n"));
                                 break;
                             }
-                        case 3: ///32-Bit Real in [0,1)
+                        case 2: ///32-Bit Real in [0,1)
                             {
                                 lowerLimitField->Enable(false);
                                 upperLimitField->Enable(false);
                                 break;
                             }
-                        case 4: ///32-Bit Real in [0,n)
+                        case 3: ///32-Bit Real in [0,n)
                             {
                                 lowerLimitField->Enable(false);
                                 upperLimitField->Enable(true);
                                 upperLimitLabel->SetValue(wxT("n:"));
                                 break;
                             }
-                        case 5: ///32-Bit Real in (0,1)
+                        case 4: ///32-Bit Real in (0,1)
                             {
                                 lowerLimitField->Enable(false);
                                 upperLimitField->Enable(false);
                                 break;
                             }
-                        case 6: ///32-Bit Real in (0,n)
+                        case 5: ///32-Bit Real in (0,n)
                             {
                                 lowerLimitField->Enable(false);
                                 upperLimitField->Enable(true);
                                 upperLimitLabel->SetValue(wxT("n:"));
                                 break;
                             }
-                        case 7: ///Integer in [0,2^32-1]
+                        case 6: ///Integer in [0,2^32-1]
                             {
                                 lowerLimitField->Enable(false);
                                 upperLimitField->Enable(false);
                                 break;
                             }
-                        case 8: ///Integer in [0,n] for n < 2^32
+                        case 7: ///Integer in [0,n] for n < 2^32
                             {
                                 lowerLimitField->Enable(false);
                                 upperLimitField->Enable(true);
                                 upperLimitLabel->SetValue(wxT("n:"));
                                 break;
                             }
-                        case 9: ///53-bit real number in [0,1)
+                        case 8: ///53-bit real number in [0,1)
                             {
                                 lowerLimitField->Enable(false);
                                 upperLimitField->Enable(false);
                                 break;
                             }
-                        case 10: ///Nonuniform
+                        case 9: ///Nonuniform
                             {
                                 lowerLimitField->Enable(true);
                                 upperLimitField->Enable(true);
@@ -403,4 +406,26 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
 
             }
     }
+}
+
+void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
+{
+    switch(libraryChoice->GetCurrentSelection())
+    {
+        case 0: ///Boost/random
+            {
+                break;
+            }
+        case 1: ///MersenneTwister.h
+            {
+                GenRandMTH();
+                break;
+            }
+        case 2: ///GMP
+            {
+                break;
+            }
+        default: break;
+    }
+
 }
