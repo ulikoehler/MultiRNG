@@ -41,6 +41,7 @@ class MultiRNGFrame: public wxFrame
         void OnAbout(wxCommandEvent& event);
         void OnLibraryChoiceSelect(wxCommandEvent& event);
         void OnDistributionChoiceSelect(wxCommandEvent& event);
+        void OnOkButtonClick(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(MultiRNGFrame)
