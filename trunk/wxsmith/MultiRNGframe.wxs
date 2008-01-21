@@ -65,7 +65,7 @@
 			<label>File:</label>
 			<pos>184,48</pos>
 		</object>
-		<object class="wxTextCtrl" name="ID_FILEFIELD" variable="fileField" member="yes">
+		<object class="wxTextCtrl" name="ID_FILEFIELD" variable="filenameField" member="yes">
 			<value>random.txt</value>
 			<pos>216,48</pos>
 			<size>152,21</size>
