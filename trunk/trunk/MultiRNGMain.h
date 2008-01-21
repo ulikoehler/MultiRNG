@@ -21,8 +21,10 @@
 //*)
 ///Custom header includes
 #include <boost/lexical_cast.hpp>
-#include <MErsenneTwister.h>
+#include <MersenneTwister.h>
+#include <fstream>
 
+using namespace std;
 using namespace boost;
 
 class MultiRNGFrame: public wxFrame
@@ -69,7 +71,6 @@ class MultiRNGFrame: public wxFrame
         wxChoice* libraryChoice;
         wxTextCtrl* lowerLimitLabel;
         wxStaticText* seedLabel;
-        wxTextCtrl* fileField;
         wxTextCtrl* lowerLimitField;
         wxStaticBox* boostSpecificBox;
         wxChoice* algorithmChoice;
@@ -77,6 +78,7 @@ class MultiRNGFrame: public wxFrame
         wxGauge* progressGauge;
         wxTextCtrl* upperLimitLabel;
         wxChoice* distributionChoice;
+        wxTextCtrl* filenameField;
         wxTextCtrl* upperLimitField;
         wxStaticText* fileLabel;
         wxStaticText* algorithmLabel;
@@ -88,6 +90,9 @@ class MultiRNGFrame: public wxFrame
         //*)
         ///Custom functions
         void GenRandMTH();
+
+        ///Custom variables
+        fstream f;
 
         DECLARE_EVENT_TABLE()
 };

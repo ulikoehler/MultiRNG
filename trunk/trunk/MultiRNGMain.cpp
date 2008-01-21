@@ -94,7 +94,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     amountLabel = new wxStaticText(this, ID_AMOUNTLABEL, _("Amount:"), wxPoint(8,48), wxDefaultSize, 0, _T("ID_AMOUNTLABEL"));
     amountField = new wxTextCtrl(this, ID_AMOUNTFIELD, _("100"), wxPoint(56,48), wxDefaultSize, 0, wxDefaultValidator, _T("ID_AMOUNTFIELD"));
     fileLabel = new wxStaticText(this, ID_FILELABEL, _("File:"), wxPoint(184,48), wxDefaultSize, 0, _T("ID_FILELABEL"));
-    fileField = new wxTextCtrl(this, ID_FILEFIELD, _("random.txt"), wxPoint(216,48), wxSize(152,21), 0, wxDefaultValidator, _T("ID_FILEFIELD"));
+    filenameField = new wxTextCtrl(this, ID_FILEFIELD, _("random.txt"), wxPoint(216,48), wxSize(152,21), 0, wxDefaultValidator, _T("ID_FILEFIELD"));
     okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(112,216), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
     seedLabel = new wxStaticText(this, ID_SEEDLABEL, _("Seed:"), wxPoint(8,80), wxDefaultSize, 0, _T("ID_SEEDLABEL"));
     seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(56,80), wxSize(312,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
@@ -216,11 +216,103 @@ void MultiRNGFrame::OnLibraryChoiceSelect(wxCommandEvent& event)
 
 void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
 {
-    unsigned long lolimit = lexical_cast<unsigned long>(lowerLimitField->GetValue().mb_str());
-    unsigned long uplimit = lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str());
+    unsigned long amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
     unsigned long seed = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
 
-    MTRand mr(seed);
+
+    MTRand mtr(seed);
+
+    ///Open fstream
+    f.open(lexical_cast<char*>(filenameField->GetValue().mb_str()));
+
+    unsigned long i = 0;
+
+    ///Get random number and
+    switch(distributionChoice->GetCurrentSelection())
+                    {
+                        case 0: ///32-Bit Real in [0,1]
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                    f << mtr.rand();
+                                    }
+                                break;
+                            }
+                        case 2: ///32-Bit Real in [0,n]
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.rand(lexical_cast<double>(upperLimitField->GetValue().mb_str()));
+                                    }
+                                break;
+                            }
+                        case 3: ///32-Bit Real in [0,1)
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randExc();
+                                    }
+                                break;
+                            }
+                        case 4: ///32-Bit Real in [0,n)
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randExc(lexical_cast<double>(upperLimitField->GetValue().mb_str()));
+                                    }
+                                break;
+                            }
+                        case 5: ///32-Bit Real in (0,1)
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randDblExc();
+                                    }
+                                break;
+                            }
+                        case 6: ///32-Bit Real in (0,n)
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randDblExc(lexical_cast<double>(upperLimitField->GetValue().mb_str()));
+                                    }
+                                break;
+                            }
+                        case 7: ///Integer in [0,2^32-1]
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randInt();
+                                    }
+                                break;
+                            }
+                        case 8: ///Integer in [0,n] for n < 2^32
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randInt(lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str()));
+                                    }
+                                break;
+                            }
+                        case 9: ///53-bit real number in [0,1)
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.rand53();
+                                    }
+                                break;
+                            }
+                        case 10: ///Nonuniform
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randNorm(lexical_cast<double>(lowerLimitField->GetValue().mb_str()), lexical_cast<double>(upperLimitField->GetValue().mb_str()));
+                                    }
+                                break;
+                            }
+                        default: break;
+                    }
+        f.close();
 
 }
 
