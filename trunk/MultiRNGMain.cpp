@@ -235,7 +235,7 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
     unsigned long i = 0;
     ///Init progressGauge
     int steps = floor(amount / 1000);
-    progressGauge->SetMaximumValue(steps);
+    progressGauge->SetRange(steps);
 
     ///Get random number and
     switch(distributionChoice->GetCurrentSelection())
@@ -449,17 +449,17 @@ void MultiRNGFrame::GenRandBoost()
 void MultiRNGFrame::GenRandGMP()
 {
     ///GMP Init
-    gmp_randstate_t randstate
+    gmp_randstate_t randstate;
     mpz_t integer;
     mpz_t n;
-    mpt_t seed
+    mpz_t seed;
     mpz_init(integer);
     mpz_init(seed);
     ///Get some required variables from GUI
     unsigned long amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
+    unsigned long bits = lexical_cast<unsigned long>(bitsField->GetValue().mb_str());
     mpz_set_str(seed, lexical_cast<string>(seedField->GetValue().mb_str()).c_str(), 10);
-    unsigned long bits = lexical_cast<unsigned long>(bitsField->GetValue().mb_str()));
-    mpz_set_str(n, lexical_cast<string>(upperField->GetValue().mb_str()).c_str(), 10);
+    mpz_set_str(n, lexical_cast<string>(upperLimitField->GetValue().mb_str()).c_str(), 10);
 
     ///Open fstream
     f.open(lexical_cast<string>(filenameField->GetValue().mb_str()).c_str(), fstream::out);
@@ -467,20 +467,20 @@ void MultiRNGFrame::GenRandGMP()
     unsigned long i = 0;
     ///Init progressGauge
     int steps = floor(amount / 1000);
-    progressGauge->SetMaximumValue(steps);
+    progressGauge->SetRange(steps);
 
-    switch(algorithmChoice->GetCurrentSelection());
+    switch(algorithmChoice->GetCurrentSelection())
         {
             case 0: ///MT 19937
-                {gmp_randinit_mt(randstate);}
+                {gmp_randinit_mt(randstate);break;}
             case 1: ///Linear Congruential
-                {gmp_randinit_lc2exp_size(randstate, bits);}
+                {gmp_randinit_lc_2exp_size(randstate, bits);break;}
             default: break;
         }
-    gmp_randseed(seed);
+    gmp_randseed(randstate, seed);
     for(;i < amount;i++)
         {
-            gmp_urandomm(integer, randstate, n);
+            mpz_urandomm(integer, randstate, n);
             f << mpz_get_str(NULL, 10, integer);
         }
 }
