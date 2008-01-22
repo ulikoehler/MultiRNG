@@ -92,7 +92,7 @@
 		</object>
 		<object class="wxStaticText" name="ID_DISTLABEL" variable="distributionLabel" member="yes">
 			<label>Distribution:</label>
-			<pos>168,136</pos>
+			<pos>168,128</pos>
 		</object>
 		<object class="wxChoice" name="ID_DISTCHOICE" variable="distributionChoice" member="yes">
 			<content>
@@ -110,7 +110,7 @@
 				<item>Uniform on Sphere</item>
 			</content>
 			<selection>1</selection>
-			<pos>232,136</pos>
+			<pos>232,120</pos>
 			<size>112,21</size>
 			<handler function="OnDistributionChoiceSelect" entry="EVT_CHOICE" />
 		</object>
@@ -126,6 +126,18 @@
 			<size>40,21</size>
 			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
 			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT1" variable="bitsLabel" member="yes">
+			<label>Bits:</label>
+			<pos>200,152</pos>
+			<size>24,13</size>
+			<tooltip>Bits to use in GMP Linear Congruential algorithm</tooltip>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL4" variable="bitsField" member="yes">
+			<value>1024</value>
+			<maxlength>20</maxlength>
+			<pos>232,144</pos>
+			<size>112,21</size>
 		</object>
 	</object>
 </wxsmith>
