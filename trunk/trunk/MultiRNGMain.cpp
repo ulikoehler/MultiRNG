@@ -75,7 +75,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(MultiRNGFrame)
     Create(parent, id, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
-    SetClientSize(wxSize(373,250));
+    SetClientSize(wxSize(373,248));
     limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,80), 0, _T("ID_LIMITSBOX"));
     limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     lowerLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL2, _("Lower:"), wxPoint(24,128), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
@@ -86,8 +86,8 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     libraryLabel = new wxStaticText(this, ID_LIBLABEL, _("Library:"), wxPoint(8,16), wxDefaultSize, 0, _T("ID_LIBLABEL"));
     algorithmLabel = new wxStaticText(this, ID_ALGOLABEL, _("Algorithm:"), wxPoint(184,16), wxDefaultSize, 0, _T("ID_ALGOLABEL"));
     libraryChoice = new wxChoice(this, ID_LIBCHOICE, wxPoint(56,16), wxSize(120,21), 0, 0, 0, wxDefaultValidator, _T("ID_LIBCHOICE"));
-    libraryChoice->SetSelection( libraryChoice->Append(_("boost/random")) );
-    libraryChoice->Append(_("MersenneTwister.h"));
+    libraryChoice->Append(_("boost/random"));
+    libraryChoice->SetSelection( libraryChoice->Append(_("MersenneTwister.h")) );
     libraryChoice->Append(_("GMP"));
     algorithmChoice = new wxChoice(this, ID_ALGOCHOICE, wxPoint(240,16), wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_ALGOCHOICE"));
     algorithmChoice->SetSelection( algorithmChoice->Append(_("MT 19937")) );
@@ -113,7 +113,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     distributionChoice->Append(_("Normal"));
     distributionChoice->Append(_("Lognormal"));
     distributionChoice->Append(_("Uniform on Sphere"));
-    progressGauge = new wxGauge(this, ID_PROGRESSGAUGE, 100, wxPoint(16,192), wxSize(344,20), 0, wxDefaultValidator, _T("ID_PROGRESSGAUGE"));
+    progressGauge = new wxGauge(this, ID_PROGRESSGAUGE, 100, wxPoint(8,192), wxSize(360,20), 0, wxDefaultValidator, _T("ID_PROGRESSGAUGE"));
     progressGauge->SetShadowWidth(5);
     progressGauge->SetBezelFace(5);
     upperLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL3, _("Upper:"), wxPoint(24,152), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL3"));
@@ -224,11 +224,11 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
     MTRand mtr(seed);
 
     ///Open fstream
-    //ff
     f.open(lexical_cast<string>(filenameField->GetValue().mb_str()).c_str(), fstream::out);
-    cerr << "fopen fin" << endl;;
 
     unsigned long i = 0;
+    int steps = floor(amount / 1000);
+    progressGauge->SetMaximumValue(steps);
 
     ///Get random number and
     switch(distributionChoice->GetCurrentSelection())
@@ -237,7 +237,7 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
                             {
                                 for(;i < amount;i++)
                                     {
-                                    f << mtr.rand() << endl;
+                                        f << mtr.rand() << endl;
                                     }
                                 break;
                             }
@@ -321,6 +321,12 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
 
 void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Function to disable/enable Lower/Upper limits field and set labels
 {
+    ///Disable all fields
+    lowerLimitField->Enable(false);
+    upperLimitField->Enable(false);
+    lowerLimitLabel->Enable(false);
+    upperLimitLabel->Enable(false);
+
     switch(libraryChoice->GetCurrentSelection())
     {
         case 0: ///Boost/random
@@ -331,68 +337,48 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
             {
                 switch(distributionChoice->GetCurrentSelection())
                     {
-                        case 0: ///32-Bit Real in [0,1]
-                            {
-                                lowerLimitField->Enable(false);
-                                upperLimitField->Enable(false);
-                                break;
-                            }
+                        //case 0: ///32-Bit Real in [0,1]
                         case 1: ///32-Bit Real in [0,n]
                             {
-                                lowerLimitField->Enable(false);
                                 upperLimitField->Enable(true);
+                                upperLimitLabel->Enable(true);
                                 upperLimitLabel->SetValue(wxT("n"));
                                 break;
                             }
-                        case 2: ///32-Bit Real in [0,1)
-                            {
-                                lowerLimitField->Enable(false);
-                                upperLimitField->Enable(false);
-                                break;
-                            }
+                        //case 2: ///32-Bit Real in [0,1)
                         case 3: ///32-Bit Real in [0,n)
                             {
                                 lowerLimitField->Enable(false);
                                 upperLimitField->Enable(true);
+                                upperLimitLabel->Enable(true);
                                 upperLimitLabel->SetValue(wxT("n:"));
                                 break;
                             }
-                        case 4: ///32-Bit Real in (0,1)
-                            {
-                                lowerLimitField->Enable(false);
-                                upperLimitField->Enable(false);
-                                break;
-                            }
+                        //case 4: ///32-Bit Real in (0,1)
                         case 5: ///32-Bit Real in (0,n)
                             {
                                 lowerLimitField->Enable(false);
                                 upperLimitField->Enable(true);
+                                upperLimitLabel->Enable(true);
                                 upperLimitLabel->SetValue(wxT("n:"));
                                 break;
                             }
-                        case 6: ///Integer in [0,2^32-1]
-                            {
-                                lowerLimitField->Enable(false);
-                                upperLimitField->Enable(false);
-                                break;
-                            }
+                        //case 6: ///Integer in [0,2^32-1]
                         case 7: ///Integer in [0,n] for n < 2^32
                             {
                                 lowerLimitField->Enable(false);
                                 upperLimitField->Enable(true);
+                                upperLimitLabel->Enable(true);
                                 upperLimitLabel->SetValue(wxT("n:"));
                                 break;
                             }
-                        case 8: ///53-bit real number in [0,1)
-                            {
-                                lowerLimitField->Enable(false);
-                                upperLimitField->Enable(false);
-                                break;
-                            }
+                        //case 8: ///53-bit real number in [0,1)
                         case 9: ///Nonuniform
                             {
                                 lowerLimitField->Enable(true);
                                 upperLimitField->Enable(true);
+                                lowerLimitLabel->Enable(true);
+                                upperLimitLabel->Enable(true);
                                 upperLimitLabel->SetValue(wxT("Mean:"));
                                 upperLimitLabel->SetValue(wxT("Var:"));
                                 break;
@@ -403,7 +389,8 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
             }
         case 2: ///GMP
             {
-
+                upperLimitField->Enable(true);
+                upperLimitLabel->Enable(true);
             }
     }
 }
@@ -414,6 +401,7 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
     {
         case 0: ///Boost/random
             {
+                GenRandBoost();
                 break;
             }
         case 1: ///MersenneTwister.h
@@ -423,9 +411,47 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
             }
         case 2: ///GMP
             {
+                GenRandGMP();
                 break;
             }
         default: break;
     }
 
+}
+
+void MultiRNGFrame::GenRandBoost()
+{
+    unsigned long amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
+    unsigned long seed = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
+
+
+    ///Open fstream
+    f.open(lexical_cast<string>(filenameField->GetValue().mb_str()).c_str(), fstream::out);
+    switch(algorithmChoice->GetCurrentSelection())
+        {
+            case 0: ///MT 19937
+                {
+
+                }
+        }
+}
+
+void MultiRNGFrame::GenRandGMP()
+{
+    ///GMP Init
+    gmp_randstate_t randstate
+    mpz_t integer;
+    mpf_t floatint;
+    unsigned long amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
+    unsigned long seed = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
+
+    ///Open fstream
+    f.open(lexical_cast<string>(filenameField->GetValue().mb_str()).c_str(), fstream::out);
+    switch(algorithmChoice->GetCurrentSelection());
+        {
+            case 0: ///MT 19937
+                {
+
+                }
+        }
 }
