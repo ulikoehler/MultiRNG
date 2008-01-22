@@ -23,7 +23,7 @@
 			<fg>wxSYS_COLOUR_MENUTEXT</fg>
 		</object>
 		<object class="wxTextCtrl" name="ID_UPLIMITFIELD" variable="lowerLimitField" member="yes">
-			<value>1000</value>
+			<value>500</value>
 			<pos>64,128</pos>
 			<size>72,21</size>
 		</object>

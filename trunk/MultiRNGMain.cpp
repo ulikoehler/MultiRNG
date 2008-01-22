@@ -84,7 +84,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     lowerLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Advanced options"), wxPoint(160,104), wxSize(192,80), 0, _T("ID_BOOSTSPECBOX"));
     boostSpecificBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
-    lowerLimitField = new wxTextCtrl(this, ID_UPLIMITFIELD, _("1000"), wxPoint(64,128), wxSize(72,21), 0, wxDefaultValidator, _T("ID_UPLIMITFIELD"));
+    lowerLimitField = new wxTextCtrl(this, ID_UPLIMITFIELD, _("500"), wxPoint(64,128), wxSize(72,21), 0, wxDefaultValidator, _T("ID_UPLIMITFIELD"));
     libraryLabel = new wxStaticText(this, ID_LIBLABEL, _("Library:"), wxPoint(8,16), wxDefaultSize, 0, _T("ID_LIBLABEL"));
     algorithmLabel = new wxStaticText(this, ID_ALGOLABEL, _("Algorithm:"), wxPoint(184,16), wxDefaultSize, 0, _T("ID_ALGOLABEL"));
     libraryChoice = new wxChoice(this, ID_LIBCHOICE, wxPoint(56,16), wxSize(120,21), 0, 0, 0, wxDefaultValidator, _T("ID_LIBCHOICE"));
@@ -234,7 +234,7 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
 
     unsigned long i = 0;
     ///Init progressGauge
-    int steps = floor(amount / 1000);
+    int steps = (int)floor(amount / 1000);
     progressGauge->SetRange(steps);
 
     ///Get random number and
@@ -430,8 +430,8 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
 
 void MultiRNGFrame::GenRandBoost()
 {
-    unsigned long amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
-    unsigned long seed = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
+    //unsigned long amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
+    //unsigned long seed = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
 
 
     ///Open fstream
@@ -450,11 +450,14 @@ void MultiRNGFrame::GenRandGMP()
 {
     ///GMP Init
     gmp_randstate_t randstate;
+
     mpz_t integer;
     mpz_t n;
     mpz_t seed;
+
     mpz_init(integer);
     mpz_init(seed);
+    mpz_init(n);
     ///Get some required variables from GUI
     unsigned long amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
     unsigned long bits = lexical_cast<unsigned long>(bitsField->GetValue().mb_str());
@@ -466,9 +469,8 @@ void MultiRNGFrame::GenRandGMP()
 
     unsigned long i = 0;
     ///Init progressGauge
-    int steps = floor(amount / 1000);
+    int steps = (int)floor(amount / 1000);
     progressGauge->SetRange(steps);
-
     switch(algorithmChoice->GetCurrentSelection())
         {
             case 0: ///MT 19937
@@ -481,6 +483,6 @@ void MultiRNGFrame::GenRandGMP()
     for(;i < amount;i++)
         {
             mpz_urandomm(integer, randstate, n);
-            f << mpz_get_str(NULL, 10, integer);
+            f << mpz_get_str(NULL, 10, integer) << endl;
         }
 }
