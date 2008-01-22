@@ -23,11 +23,10 @@
 #include <boost/lexical_cast.hpp>
 #include <MersenneTwister.h>
 #include <fstream>
-#include <gmp>
+#include <gmp.h>
 
 using namespace std;
 using namespace boost;
-using namespace boost::random
 
 class MultiRNGFrame: public wxFrame
 {
@@ -98,6 +97,7 @@ class MultiRNGFrame: public wxFrame
         ///Custom functions
         void GenRandMTH();
         void GenRandBoost();
+        void GenRandGMP();
 
         ///Custom variables
         fstream f;
