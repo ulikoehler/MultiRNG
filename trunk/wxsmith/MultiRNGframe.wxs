@@ -2,7 +2,7 @@
 <wxsmith>
 	<object class="wxFrame" name="MultiRNGFrame">
 		<title>MultiRNG</title>
-		<size>373,250</size>
+		<size>373,248</size>
 		<object class="wxStaticBox" name="ID_LIMITSBOX" variable="limitsBox" member="yes">
 			<label>Limits</label>
 			<pos>16,104</pos>
@@ -41,7 +41,7 @@
 				<item>MersenneTwister.h</item>
 				<item>GMP</item>
 			</content>
-			<selection>0</selection>
+			<selection>1</selection>
 			<pos>56,16</pos>
 			<size>120,21</size>
 			<handler function="OnLibraryChoiceSelect" entry="EVT_CHOICE" />
@@ -74,6 +74,7 @@
 			<label>OK</label>
 			<pos>112,216</pos>
 			<size>136,23</size>
+			<handler function="OnOkButtonClick" entry="EVT_BUTTON" />
 		</object>
 		<object class="wxStaticText" name="ID_SEEDLABEL" variable="seedLabel" member="yes">
 			<label>Seed:</label>
@@ -116,8 +117,8 @@
 		<object class="wxGauge" name="ID_PROGRESSGAUGE" variable="progressGauge" member="yes">
 			<shadow>5</shadow>
 			<bezel>5</bezel>
-			<pos>16,192</pos>
-			<size>344,20</size>
+			<pos>8,192</pos>
+			<size>360,20</size>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="upperLimitLabel" member="yes">
 			<value>Upper:</value>
