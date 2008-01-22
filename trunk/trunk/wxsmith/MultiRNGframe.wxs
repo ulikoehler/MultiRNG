@@ -134,7 +134,7 @@
 			<tooltip>Bits to use in GMP Linear Congruential algorithm</tooltip>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL4" variable="bitsField" member="yes">
-			<value>1024</value>
+			<value>64</value>
 			<maxlength>20</maxlength>
 			<pos>232,144</pos>
 			<size>112,21</size>

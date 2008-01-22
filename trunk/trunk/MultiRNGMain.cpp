@@ -122,7 +122,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     upperLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     bitsLabel = new wxStaticText(this, ID_STATICTEXT1, _("Bits:"), wxPoint(200,152), wxSize(24,13), 0, _T("ID_STATICTEXT1"));
     bitsLabel->SetToolTip(_("Bits to use in GMP Linear Congruential algorithm"));
-    bitsField = new wxTextCtrl(this, ID_TEXTCTRL4, _("1024"), wxPoint(232,144), wxSize(112,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
+    bitsField = new wxTextCtrl(this, ID_TEXTCTRL4, _("64"), wxPoint(232,144), wxSize(112,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
     bitsField->SetMaxLength(20);
 
     Connect(ID_LIBCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnLibraryChoiceSelect);
@@ -397,7 +397,6 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
             }
         case 2: ///GMP
             {
-                upperLimitField->Enable(true);
                 upperLimitLabel->Enable(true);
                 bitsField->Enable(true);
             }
@@ -485,4 +484,5 @@ void MultiRNGFrame::GenRandGMP()
             mpz_urandomm(integer, randstate, n);
             f << mpz_get_str(NULL, 10, integer) << endl;
         }
+    f.close();
 }
