@@ -23,6 +23,7 @@
 				</ResourceCompiler>
 				<Linker>
 					<Add library="libwxmsw28ud.a" />
+					<Add library="gmp" />
 					<Add directory="C:\wxPack-2.8\lib\gcc_dll" />
 				</Linker>
 			</Target>

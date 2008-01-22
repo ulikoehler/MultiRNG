@@ -27,6 +27,7 @@
 
 using namespace std;
 using namespace boost;
+using namespace boost::random
 
 class MultiRNGFrame: public wxFrame
 {
@@ -66,6 +67,8 @@ class MultiRNGFrame: public wxFrame
         static const long ID_DISTCHOICE;
         static const long ID_PROGRESSGAUGE;
         static const long ID_TEXTCTRL3;
+        static const long ID_STATICTEXT1;
+        static const long ID_TEXTCTRL4;
         //*)
 
         //(*Declarations(MultiRNGFrame)
@@ -76,12 +79,14 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* lowerLimitField;
         wxStaticBox* boostSpecificBox;
         wxChoice* algorithmChoice;
+        wxTextCtrl* bitsField;
         wxStaticText* amountLabel;
         wxGauge* progressGauge;
         wxTextCtrl* upperLimitLabel;
         wxChoice* distributionChoice;
         wxTextCtrl* filenameField;
         wxTextCtrl* upperLimitField;
+        wxStaticText* bitsLabel;
         wxStaticText* fileLabel;
         wxStaticText* algorithmLabel;
         wxStaticText* libraryLabel;
