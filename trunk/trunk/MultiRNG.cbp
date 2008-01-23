@@ -25,7 +25,10 @@
 				<Linker>
 					<Add library="libwxmsw28ud.a" />
 					<Add library="gmp" />
+					<Add library="pthread" />
+					<Add library="boost_thread-gcc42-mt" />
 					<Add directory="C:\wxPack-2.8\lib\gcc_dll" />
+					<Add directory="C:\boost\stage\lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">

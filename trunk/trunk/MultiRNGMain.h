@@ -25,6 +25,7 @@
 #include <fstream>
 #include <gmp.h>
 #include <boost/thread.hpp>
+#include <boost/function.hpp>
 
 using namespace std;
 using namespace boost;
