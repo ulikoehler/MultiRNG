@@ -409,17 +409,20 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
     {
         case 0: ///Boost/random
             {
-                GenRandBoost();
+                boost::thread boostThread(&MultiRNGFrame::GenRandBoost);
+                boostThread.join();
                 break;
             }
         case 1: ///MersenneTwister.h
             {
-                GenRandMTH();
+                boost::thread mthThread(&MultiRNGFrame::GenRandMTH);
+                mthThread.join();
                 break;
             }
         case 2: ///GMP
             {
-                GenRandGMP();
+                boost::thread gmpThread(&MultiRNGFrame::GenRandGMP);
+                gmpThread.join();
                 break;
             }
         default: break;
@@ -485,4 +488,9 @@ void MultiRNGFrame::GenRandGMP()
             f << mpz_get_str(NULL, 10, integer) << endl;
         }
     f.close();
+    ///Clear all GMP variables
+    mpz_clear(integer);
+    mpz_clear(seed);
+    mpz_clear(n);
+    gmp_randclear(randstate);
 }

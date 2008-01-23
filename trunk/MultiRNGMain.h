@@ -24,6 +24,7 @@
 #include <MersenneTwister.h>
 #include <fstream>
 #include <gmp.h>
+#include <boost/thread.hpp>
 
 using namespace std;
 using namespace boost;
