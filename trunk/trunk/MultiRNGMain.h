@@ -26,7 +26,7 @@
 #include <gmp.h>
 #include <boost/thread.hpp>
 #include <boost/function.hpp>
-#include <boost/bind.hpp>
+#include <boost/shared_ptr.hpp>
 
 using namespace std;
 using namespace boost;
@@ -37,6 +37,8 @@ class MultiRNGFrame: public wxFrame
 
         MultiRNGFrame(wxWindow* parent,wxWindowID id = -1);
         virtual ~MultiRNGFrame();
+
+    private:
 
         //(*Handlers(MultiRNGFrame)
         void OnQuit(wxCommandEvent& event);
@@ -95,12 +97,13 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* amountField;
         wxStaticText* distributionLabel;
         //*)
+        public:
         ///Custom functions
+        void GenRandMTH();
         void GenRandBoost();
         void GenRandGMP();
 
         ///Custom variables
-        //None for now
 
         DECLARE_EVENT_TABLE()
 };

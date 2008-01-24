@@ -221,6 +221,111 @@ void MultiRNGFrame::OnLibraryChoiceSelect(wxCommandEvent& event)
     }
 }
 
+void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
+{
+    unsigned long amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
+    unsigned long seed = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
+
+
+    MTRand mtr(seed);
+
+    ///Open fstream
+    fstream f(lexical_cast<string>(filenameField->GetValue().mb_str()).c_str(), fstream::out);
+
+    unsigned long i = 0;
+    ///Init progressGauge
+    int steps = (int)floor(amount / 1000);
+    progressGauge->SetRange(steps);
+
+    ///Get random number and
+    switch(distributionChoice->GetCurrentSelection())
+                    {
+                        case 0: ///32-Bit Real in [0,1]
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.rand() << endl;
+                                    }
+                                break;
+                            }
+                        case 1: ///32-Bit Real in [0,n]
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.rand(lexical_cast<double>(upperLimitField->GetValue().mb_str())) << endl;
+                                    }
+                                break;
+                            }
+                        case 2: ///32-Bit Real in [0,1)
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randExc() << endl;
+                                    }
+                                break;
+                            }
+                        case 3: ///32-Bit Real in [0,n)
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randExc(lexical_cast<double>(upperLimitField->GetValue().mb_str())) << endl;
+                                    }
+                                break;
+                            }
+                        case 4: ///32-Bit Real in (0,1)
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randDblExc() << endl;
+                                    }
+                                break;
+                            }
+                        case 5: ///32-Bit Real in (0,n)
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randDblExc(lexical_cast<double>(upperLimitField->GetValue().mb_str())) << endl;
+                                    }
+                                break;
+                            }
+                        case 6: ///Integer in [0,2^32-1]
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randInt() << endl;
+                                    }
+                                break;
+                            }
+                        case 7: ///Integer in [0,n] for n < 2^32
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randInt(lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str())) << endl;
+                                    }
+                                break;
+                            }
+                        case 8: ///53-bit real number in [0,1)
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.rand53() << endl;
+                                    }
+                                break;
+                            }
+                        case 9: ///Nonuniform
+                            {
+                                for(;i < amount;i++)
+                                    {
+                                        f << mtr.randNorm(lexical_cast<double>(lowerLimitField->GetValue().mb_str()), lexical_cast<double>(upperLimitField->GetValue().mb_str())) << endl;
+                                    }
+                                break;
+                            }
+                        default: break;
+                    }
+        f.close();
+
+}
+
 void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Function to disable/enable Lower/Upper limits field and set labels
 {
     ///Disable all fields
@@ -310,8 +415,8 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
             }
         case 1: ///MersenneTwister.h
             {
-                //GenRandMTH(
-                //boost::thread mthThread(&f);
+                //boost::function<void(void)> genrandmth = MultiRNGFrame::GenRandMTH;
+                //boost::thread boostThread(&genrandmth);
                 //mthThread.join();
                 break;
             }
@@ -333,7 +438,7 @@ void MultiRNGFrame::GenRandBoost()
 
 
     ///Open fstream
-    //f.open(lexical_cast<string>(filenameField->GetValue().mb_str()).c_str(), fstream::out);
+    fstream f(lexical_cast<string>(filenameField->GetValue().mb_str()).c_str(), fstream::out);
 
     switch(algorithmChoice->GetCurrentSelection())
         {
@@ -363,7 +468,7 @@ void MultiRNGFrame::GenRandGMP()
     mpz_set_str(n, lexical_cast<string>(upperLimitField->GetValue().mb_str()).c_str(), 10);
 
     ///Open fstream
-    //f.open(lexical_cast<string>(filenameField->GetValue().mb_str()).c_str(), fstream::out);
+    fstream f(lexical_cast<string>(filenameField->GetValue().mb_str()).c_str(), fstream::out);
 
     unsigned long i = 0;
     ///Init progressGauge
@@ -381,9 +486,9 @@ void MultiRNGFrame::GenRandGMP()
     for(;i < amount;i++)
         {
             mpz_urandomm(integer, randstate, n);
-            //f << mpz_get_str(NULL, 10, integer) << endl;
+            f << mpz_get_str(NULL, 10, integer) << endl;
         }
-    //f.close();
+    f.close();
     ///Clear all GMP variables
     mpz_clear(integer);
     mpz_clear(seed);
