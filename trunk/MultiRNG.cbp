@@ -26,7 +26,7 @@
 					<Add library="libwxmsw28ud.a" />
 					<Add library="gmp" />
 					<Add library="pthread" />
-					<Add library="boost_thread-mgw34-mt-1_34_1" />
+					<Add library="boost_thread-gcc42-mt" />
 					<Add directory="C:\wxPack-2.8\lib\gcc_dll" />
 					<Add directory="C:\boost\stage\lib" />
 				</Linker>
