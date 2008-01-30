@@ -27,6 +27,7 @@
 #include <boost/thread.hpp>
 #include <boost/function.hpp>
 #include <boost/shared_ptr.hpp>
+#include "MultiRNGApp.h"
 
 using namespace std;
 using namespace boost;

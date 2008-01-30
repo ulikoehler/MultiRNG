@@ -25,11 +25,16 @@ bool MultiRNGApp::OnInit()
     wxInitAllImageHandlers();
     if ( wxsOK )
     {
-    	MultiRNGFrame* Frame = new MultiRNGFrame(0);
+    	Frame = new MultiRNGFrame(0);
     	Frame->Show();
     	SetTopWindow(Frame);
     }
     //*)
     return wxsOK;
 
+}
+
+void StartMTH()
+{
+    Frame->GenRandMTH();
 }
