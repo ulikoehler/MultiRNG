@@ -415,9 +415,8 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
             }
         case 1: ///MersenneTwister.h
             {
-                //boost::function<void(void)> genrandmth = MultiRNGFrame::GenRandMTH;
-                //boost::thread boostThread(&genrandmth);
-                //mthThread.join();
+                boost::thread mtht(&StartMTH);
+                mtht.join();
                 break;
             }
         case 2: ///GMP
