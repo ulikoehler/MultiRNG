@@ -18,6 +18,4 @@ class MultiRNGApp : public wxApp
         virtual bool OnInit();
 };
 
-void StartMTH();
-
 #endif // MULTIRNGAPP_H
