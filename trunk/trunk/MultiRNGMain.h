@@ -26,7 +26,7 @@
 #include <gmp.h>
 #include <boost/thread.hpp>
 #include <boost/function.hpp>
-#include <boost/shared_ptr.hpp>
+#include <boost/bind.hpp>
 #include "MultiRNGApp.h"
 
 using namespace std;
@@ -103,7 +103,7 @@ class MultiRNGFrame: public wxFrame
         void GenRandMTH();
         void GenRandBoost();
         void GenRandGMP();
-
+        void ttest();
         ///Custom variables
 
         DECLARE_EVENT_TABLE()

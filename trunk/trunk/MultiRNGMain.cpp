@@ -237,6 +237,10 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
     int steps = (int)floor(amount / 1000);
     progressGauge->SetRange(steps);
 
+    unsigned long ulLong = lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str());
+    double uldouble = lexical_cast<double>(upperLimitField->GetValue().mb_str());
+    double llDouble = lexical_cast<double>(lowerLimitField->GetValue().mb_str());
+
     ///Get random number and
     switch(distributionChoice->GetCurrentSelection())
                     {
@@ -252,7 +256,7 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.rand(lexical_cast<double>(upperLimitField->GetValue().mb_str())) << endl;
+                                        f << mtr.rand(ulDouble << endl;
                                     }
                                 break;
                             }
@@ -268,7 +272,7 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.randExc(lexical_cast<double>(upperLimitField->GetValue().mb_str())) << endl;
+                                        f << mtr.randExc(ulDouble << endl;
                                     }
                                 break;
                             }
@@ -284,7 +288,7 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.randDblExc(lexical_cast<double>(upperLimitField->GetValue().mb_str())) << endl;
+                                        f << mtr.randDblExc(ulDouble << endl;
                                     }
                                 break;
                             }
@@ -300,7 +304,7 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.randInt(lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str())) << endl;
+                                        f << mtr.randInt(ulLong) << endl;
                                     }
                                 break;
                             }
@@ -316,7 +320,7 @@ void MultiRNGFrame::GenRandMTH() ///Generate PRN using mersenneTwister.h
                             {
                                 for(;i < amount;i++)
                                     {
-                                        f << mtr.randNorm(lexical_cast<double>(lowerLimitField->GetValue().mb_str()), lexical_cast<double>(upperLimitField->GetValue().mb_str())) << endl;
+                                        f << mtr.randNorm(llDouble, ulDouble << endl;
                                     }
                                 break;
                             }
@@ -415,8 +419,9 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
             }
         case 1: ///MersenneTwister.h
             {
-                boost::thread mtht(&StartMTH);
-                mtht.join();
+                boost::function<void(void)> mthFunction = boost::bind(boost::mem_fn(&MultiRNGFrame::ttest), this);
+                boost::thread mthTread(mthFunction);
+                mthTread.join();
                 break;
             }
         case 2: ///GMP
@@ -494,3 +499,16 @@ void MultiRNGFrame::GenRandGMP()
     mpz_clear(n);
     gmp_randclear(randstate);
 }
+
+void MultiRNGFrame::ttest()
+{
+    unsigned long amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
+    unsigned long seed = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
+    for(int i = 0;i<5;i++)
+        {
+            cout << "i=" << i << endl;
+        }
+    cout << "a=" << amount << endl;
+    cout << "s=" << seed << endl;
+}
+
