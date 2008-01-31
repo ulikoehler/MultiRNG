@@ -34,4 +34,3 @@ bool MultiRNGApp::OnInit()
     return wxsOK;
 
 }
-

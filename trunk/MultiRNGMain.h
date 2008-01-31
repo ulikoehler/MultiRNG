@@ -28,6 +28,7 @@
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
 #include "MultiRNGApp.h"
+#include "MTGenerator.h"
 
 using namespace std;
 using namespace boost;
@@ -100,10 +101,8 @@ class MultiRNGFrame: public wxFrame
         //*)
         public:
         ///Custom functions
-        void GenRandMTH();
         void GenRandBoost();
         void GenRandGMP();
-        void ttest();
         ///Custom variables
 
         DECLARE_EVENT_TABLE()

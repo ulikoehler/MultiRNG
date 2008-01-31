@@ -69,6 +69,7 @@
 		<ResourceCompiler>
 			<Add directory="C:\wxPack-2.8\include" />
 		</ResourceCompiler>
+		<Unit filename="MTGenerator.h" />
 		<Unit filename="MultiRNGApp.cpp" />
 		<Unit filename="MultiRNGApp.h" />
 		<Unit filename="MultiRNGMain.cpp" />
