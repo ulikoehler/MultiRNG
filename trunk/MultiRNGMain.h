@@ -28,7 +28,7 @@
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
 #include "MultiRNGApp.h"
-#include "MTGenerator.h"
+#include "Generators.h"
 
 using namespace std;
 using namespace boost;
