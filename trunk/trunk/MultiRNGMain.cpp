@@ -62,7 +62,6 @@ const long MultiRNGFrame::ID_SEEDFIELD = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL1 = wxNewId();
 const long MultiRNGFrame::ID_DISTLABEL = wxNewId();
 const long MultiRNGFrame::ID_DISTCHOICE = wxNewId();
-const long MultiRNGFrame::ID_PROGRESSGAUGE = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL3 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT1 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL4 = wxNewId();
@@ -77,7 +76,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(MultiRNGFrame)
     Create(parent, id, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
-    SetClientSize(wxSize(373,248));
+    SetClientSize(wxSize(373,222));
     limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,80), 0, _T("ID_LIMITSBOX"));
     limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     lowerLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL2, _("Lower:"), wxPoint(24,128), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
@@ -97,7 +96,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     amountField = new wxTextCtrl(this, ID_AMOUNTFIELD, _("100"), wxPoint(56,48), wxDefaultSize, 0, wxDefaultValidator, _T("ID_AMOUNTFIELD"));
     fileLabel = new wxStaticText(this, ID_FILELABEL, _("File:"), wxPoint(184,48), wxDefaultSize, 0, _T("ID_FILELABEL"));
     filenameField = new wxTextCtrl(this, ID_FILEFIELD, _("random.txt"), wxPoint(216,48), wxSize(152,21), 0, wxDefaultValidator, _T("ID_FILEFIELD"));
-    okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(112,216), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
+    okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(112,192), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
     seedLabel = new wxStaticText(this, ID_SEEDLABEL, _("Seed:"), wxPoint(8,80), wxDefaultSize, 0, _T("ID_SEEDLABEL"));
     seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(56,80), wxSize(312,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
     upperLimitField = new wxTextCtrl(this, ID_TEXTCTRL1, _("1000"), wxPoint(64,152), wxSize(72,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
@@ -115,9 +114,6 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     distributionChoice->Append(_("Normal"));
     distributionChoice->Append(_("Lognormal"));
     distributionChoice->Append(_("Uniform on Sphere"));
-    progressGauge = new wxGauge(this, ID_PROGRESSGAUGE, 100, wxPoint(8,192), wxSize(360,20), 0, wxDefaultValidator, _T("ID_PROGRESSGAUGE"));
-    progressGauge->SetShadowWidth(5);
-    progressGauge->SetBezelFace(5);
     upperLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL3, _("Upper:"), wxPoint(24,152), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL3"));
     upperLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     bitsLabel = new wxStaticText(this, ID_STATICTEXT1, _("Bits:"), wxPoint(200,152), wxSize(24,13), 0, _T("ID_STATICTEXT1"));
@@ -317,11 +313,11 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
                 ulLong = lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str());
                 ulDouble = lexical_cast<double>(upperLimitField->GetValue().mb_str());
                 llDouble = lexical_cast<double>(lowerLimitField->GetValue().mb_str());
-                selection = distributionChoice->GetCurrentSelection();
+                distributionSelection = distributionChoice->GetCurrentSelection();
+                algorithmSelection = algorithmChoice->GetCurrentSelection();
                 filename = lexical_cast<string>(filenameField->GetValue().mb_str());
 
                 boost::thread mthTread(&GenRandMTH);
-                mthTread.join();
                 break;
             }
         case 2: ///GMP
@@ -353,50 +349,5 @@ void MultiRNGFrame::GenRandBoost()
         }
 }
 
-void MultiRNGFrame::GenRandGMP()
-{
-    ///GMP Init
-    gmp_randstate_t randstate;
 
-    mpz_t integer;
-    mpz_t n;
-    mpz_t seed;
-
-    mpz_init(integer);
-    mpz_init(seed);
-    mpz_init(n);
-    ///Get some required variables from GUI
-    unsigned long amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
-    unsigned long bits = lexical_cast<unsigned long>(bitsField->GetValue().mb_str());
-    mpz_set_str(seed, lexical_cast<string>(seedField->GetValue().mb_str()).c_str(), 10);
-    mpz_set_str(n, lexical_cast<string>(upperLimitField->GetValue().mb_str()).c_str(), 10);
-
-    ///Open fstream
-    fstream f(lexical_cast<string>(filenameField->GetValue().mb_str()).c_str(), fstream::out);
-
-    unsigned long i = 0;
-    ///Init progressGauge
-    int steps = (int)floor(amount / 1000);
-    progressGauge->SetRange(steps);
-    switch(algorithmChoice->GetCurrentSelection())
-        {
-            case 0: ///MT 19937
-                {gmp_randinit_mt(randstate);break;}
-            case 1: ///Linear Congruential
-                {gmp_randinit_lc_2exp_size(randstate, bits);break;}
-            default: break;
-        }
-    gmp_randseed(randstate, seed);
-    for(;i < amount;i++)
-        {
-            mpz_urandomm(integer, randstate, n);
-            f << mpz_get_str(NULL, 10, integer) << endl;
-        }
-    f.close();
-    ///Clear all GMP variables
-    mpz_clear(integer);
-    mpz_clear(seed);
-    mpz_clear(n);
-    gmp_randclear(randstate);
-}
 

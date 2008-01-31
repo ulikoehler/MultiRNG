@@ -1,5 +1,11 @@
 #include <fstream>
+#include <gmp.h>
+#include <boost/lexical_cast.hpp>
+#include <iostream>
 using namespace std;
+using namespace boost;
+
+#define PROGRINTERV 100 ///Progress Gauge Interval
 
 typedef unsigned long ulong;
 
@@ -9,7 +15,9 @@ static string filename;
 static ulong ulLong;
 static double ulDouble;
 static double llDouble;
-static int selection;
+static int distributionSelection;
+static int algorithmSelection;
+static ulong bits;
 
 static void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
 {
@@ -18,15 +26,11 @@ static void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.
     ///Open fstream
     fstream f(filename.c_str(), fstream::out);
 
-    ///Init progressGauge
-    //int steps = (int)floor(amount / 1000);
-    //progressGauge->SetRange(steps);
-
     unsigned long i = 0;
 
 
     ///Get random number and
-    switch(selection)
+    switch(distributionSelection)
                     {
                         case 0: ///32-Bit Real in [0,1]
                             {
@@ -113,3 +117,49 @@ static void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.
         f.close();
 
 }
+
+//static void GenRandGMP()
+//{
+//    ///GMP Init
+//    gmp_randstate_t randstate;
+//
+//    mpz_t integer;
+//    mpz_t n;
+//    mpz_t seed;
+//
+//    mpz_init(integer);
+//    mpz_init(seed);
+//    mpz_init(n);
+//    ///Get some required variables from GUI
+//    mpz_set_str(seed, lexical_cast<string>(seed).c_str(), 10);
+//    mpz_set_str(n, lexical_cast<string>(ulDouble).c_str(), 10);
+//
+//    ///Open fstream
+//    fstream f(filename.c_str(), fstream::out);
+//
+//    unsigned long i = 0;
+//    ///Init progressGauge
+//    int steps = (int)floor(amount / 1000);
+//    progressGauge->SetRange(steps);
+//
+//    switch(algorithmSelection)
+//        {
+//            case 0: ///MT 19937
+//                {gmp_randinit_mt(randstate);break;}
+//            case 1: ///Linear Congruential
+//                {gmp_randinit_lc_2exp_size(randstate, bits);break;}
+//            default: break;
+//        }
+//    gmp_randseed(randstate, seed);
+//    for(;i < amount;i++)
+//        {
+//            mpz_urandomm(integer, randstate, n);
+//            f << mpz_get_str(NULL, 10, integer) << endl;
+//        }
+//    f.close();
+//    ///Clear all GMP variables
+//    mpz_clear(integer);
+//    mpz_clear(seed);
+//    mpz_clear(n);
+//    gmp_randclear(randstate);
+//}
