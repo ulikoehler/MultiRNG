@@ -17,13 +17,10 @@
 #include <wx/choice.h>
 #include <wx/button.h>
 #include <wx/frame.h>
-#include <wx/gauge.h>
 //*)
 ///Custom header includes
 #include <boost/lexical_cast.hpp>
 #include <MersenneTwister.h>
-#include <fstream>
-#include <gmp.h>
 #include <boost/thread.hpp>
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
@@ -69,7 +66,6 @@ class MultiRNGFrame: public wxFrame
         static const long ID_TEXTCTRL1;
         static const long ID_DISTLABEL;
         static const long ID_DISTCHOICE;
-        static const long ID_PROGRESSGAUGE;
         static const long ID_TEXTCTRL3;
         static const long ID_STATICTEXT1;
         static const long ID_TEXTCTRL4;
@@ -85,7 +81,6 @@ class MultiRNGFrame: public wxFrame
         wxChoice* algorithmChoice;
         wxTextCtrl* bitsField;
         wxStaticText* amountLabel;
-        wxGauge* progressGauge;
         wxTextCtrl* upperLimitLabel;
         wxChoice* distributionChoice;
         wxTextCtrl* filenameField;
