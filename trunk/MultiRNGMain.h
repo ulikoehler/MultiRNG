@@ -96,8 +96,6 @@ class MultiRNGFrame: public wxFrame
         //*)
         public:
         ///Custom functions
-        void GenRandBoost();
-        void GenRandGMP();
         ///Custom variables
 
         DECLARE_EVENT_TABLE()

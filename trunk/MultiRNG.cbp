@@ -27,6 +27,7 @@
 					<Add library="gmp" />
 					<Add library="pthread" />
 					<Add library="boost_thread-mgw34-mt-1_34_1" />
+					<Add library="gmpxx" />
 					<Add directory="C:\wxPack-2.8\lib\gcc_dll" />
 					<Add directory="C:\boost\stage\lib" />
 				</Linker>
@@ -69,7 +70,7 @@
 		<ResourceCompiler>
 			<Add directory="C:\wxPack-2.8\include" />
 		</ResourceCompiler>
-		<Unit filename="MTGenerator.h" />
+		<Unit filename="Generators.h" />
 		<Unit filename="MultiRNGApp.cpp" />
 		<Unit filename="MultiRNGApp.h" />
 		<Unit filename="MultiRNGMain.cpp" />

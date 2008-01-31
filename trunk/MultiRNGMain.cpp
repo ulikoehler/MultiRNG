@@ -297,6 +297,15 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
 
 void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
 {
+    ///Init static variables
+    amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
+    seed = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
+    ulLong = lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str());
+    ulDouble = lexical_cast<double>(upperLimitField->GetValue().mb_str());
+    llDouble = lexical_cast<double>(lowerLimitField->GetValue().mb_str());
+    distributionSelection = distributionChoice->GetCurrentSelection();
+    algorithmSelection = algorithmChoice->GetCurrentSelection();
+    filename = lexical_cast<string>(filenameField->GetValue().mb_str());
     switch(libraryChoice->GetCurrentSelection())
     {
         case 0: ///Boost/random
@@ -307,46 +316,17 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
             }
         case 1: ///MersenneTwister.h
             {
-                ///Init static variables
-                amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
-                seed = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
-                ulLong = lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str());
-                ulDouble = lexical_cast<double>(upperLimitField->GetValue().mb_str());
-                llDouble = lexical_cast<double>(lowerLimitField->GetValue().mb_str());
-                distributionSelection = distributionChoice->GetCurrentSelection();
-                algorithmSelection = algorithmChoice->GetCurrentSelection();
-                filename = lexical_cast<string>(filenameField->GetValue().mb_str());
-
                 boost::thread mthTread(&GenRandMTH);
                 break;
             }
         case 2: ///GMP
             {
-                //boost::thread gmpThread(&MultiRNGFrame::GenRandGMP);
-                //gmpThread.join();
+                boost::thread mthTread(&GenRandGMP);
                 break;
             }
         default: break;
     }
 
-}
-
-void MultiRNGFrame::GenRandBoost()
-{
-    //unsigned long amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
-    //unsigned long seed = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
-
-
-    ///Open fstream
-    fstream f(lexical_cast<string>(filenameField->GetValue().mb_str()).c_str(), fstream::out);
-
-    switch(algorithmChoice->GetCurrentSelection())
-        {
-            case 0: ///MT 19937
-                {
-
-                }
-        }
 }
 
 
