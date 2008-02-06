@@ -16,6 +16,8 @@
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
+///Custom include
+#include "Generators.h"
 
 //helper functions
 enum wxbuildinfoformat {
@@ -100,6 +102,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     seedLabel = new wxStaticText(this, ID_SEEDLABEL, _("Seed:"), wxPoint(8,80), wxDefaultSize, 0, _T("ID_SEEDLABEL"));
     seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(56,80), wxSize(312,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
     upperLimitField = new wxTextCtrl(this, ID_TEXTCTRL1, _("1000"), wxPoint(64,152), wxSize(72,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+    upperLimitField->Disable();
     distributionLabel = new wxStaticText(this, ID_DISTLABEL, _("Distribution:"), wxPoint(168,128), wxDefaultSize, 0, _T("ID_DISTLABEL"));
     distributionChoice = new wxChoice(this, ID_DISTCHOICE, wxPoint(232,120), wxSize(112,21), 0, 0, 0, wxDefaultValidator, _T("ID_DISTCHOICE"));
     distributionChoice->Append(_("Uniform Small Integer"));
@@ -297,15 +300,15 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
 
 void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
 {
-    ///Init static variables
-    amount = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
-    seed = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
-    ulLong = lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str());
-    ulDouble = lexical_cast<double>(upperLimitField->GetValue().mb_str());
-    llDouble = lexical_cast<double>(lowerLimitField->GetValue().mb_str());
-    distributionSelection = distributionChoice->GetCurrentSelection();
-    algorithmSelection = algorithmChoice->GetCurrentSelection();
-    filename = lexical_cast<string>(filenameField->GetValue().mb_str());
+    ///Init s                                                            tatic variables
+    amountParam = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
+    seedParam = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
+    ulLongParam = lexical_cast<unsigned long>(upperLimitField->GetValue().mb_str());
+    ulDoubleParam = lexical_cast<double>(upperLimitField->GetValue().mb_str());
+    llDoubleParam = lexical_cast<double>(lowerLimitField->GetValue().mb_str());
+    distributionSelectionParam = distributionChoice->GetCurrentSelection();
+    algorithmSelectionParam = algorithmChoice->GetCurrentSelection();
+    filenameParam = lexical_cast<string>(filenameField->GetValue().mb_str());
     switch(libraryChoice->GetCurrentSelection())
     {
         case 0: ///Boost/random
