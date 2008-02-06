@@ -26,7 +26,7 @@ bool MultiRNGApp::OnInit()
     wxInitAllImageHandlers();
     if ( wxsOK )
     {
-    	Frame = new MultiRNGFrame(0);
+    	MultiRNGFrame* Frame = new MultiRNGFrame(0);
     	Frame->Show();
     	SetTopWindow(Frame);
     }

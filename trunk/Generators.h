@@ -1,32 +1,48 @@
+#ifndef GENERATORS_H
+#define GENERATORS_H
 #include <fstream>
 #include <gmp.h>
 #include <gmpxx.h>
 #include <boost/lexical_cast.hpp>
 #include <boost/random.hpp>
+#include <boost/random/additive_combine.hpp>
+#include <boost/random/linear_congruential.hpp>
+#include <boost/random/inversive_congruential.hpp>
+#include <boost/random/shuffle_output.hpp>
+#include <boost/random/lagged_fibonacci.hpp>
 #include <iostream>
 using namespace std;
 using namespace boost;
+using namespace boost::random;
 
 ///Typedefs
 typedef unsigned long ulong;
 
-///Static variables
-static ulong amount;
-static ulong seed;
-static string filename;
-static ulong ulLong;
-static double ulDouble;
-static double llDouble;
-static int distributionSelection;
-static int algorithmSelection;
-static ulong bits;
+///Static variables,
+static ulong amountParam;
+static ulong seedParam;
+static string filenameParam;
+static ulong ulLongParam;
+static double ulDoubleParam;
+static double llDoubleParam;
+static int distributionSelectionParam;
+static int algorithmSelectionParam;
+static ulong bitsParam;
 
-///Templates
-template<class boostAlgorithm>
-template<class boostDistribution>
-
-static void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
+void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
 {
+    ///Cache parameters
+    ulong amount = amountParam;
+    ulong seed = seedParam;
+    string filename = filenameParam;
+    ulong ulLong =  ulLongParam;
+    double ulDouble ulDoubleParam;
+    double llDouble llDoubleParam;
+    int distributionSelection distributionSelectionParam;
+    int algorithmSelection algorithmSelectionParam;
+    ulong bits bitsParam;
+
+    ///Initialize RNG state variable
     MTRand mtr(seed);
 
     ///Open fstream
@@ -124,8 +140,19 @@ static void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.
 
 }
 
-static void GenRandGMP()
+void GenRandGMP()
 {
+    ///Cache parameters
+    ulong amount = amountParam;
+    ulong seed = seedParam;
+    string filename = filenameParam;
+    ulong ulLong =  ulLongParam;
+    double ulDouble ulDoubleParam;
+    double llDouble llDoubleParam;
+    int distributionSelection distributionSelectionParam;
+    int algorithmSelection algorithmSelectionParam;
+    ulong bits bitsParam;
+
     ///GMP Init
     gmp_randstate_t randstate;
 
@@ -167,10 +194,11 @@ static void GenRandGMP()
     gmp_randclear(randstate);
 }
 
-void MultiRNGFrame::GenRandBoost()
+template<class Engine>
+void GenRandBoost()
 {
-    boostAlgorithm algorithm;
-    boostDistribution distribution;
+    Engine engine;
+    //boostDistribution *distribution;
     ///Open fstream
     fstream f(filename.c_str(), fstream::out);
 
@@ -179,38 +207,38 @@ void MultiRNGFrame::GenRandBoost()
         {
             case 0: ///MT 19937
                 {
-                    mt19937 mersenne(seed);
-                    algorithm = &mersenne;
+                    //mt19937 mersenne(seed);
+                    //algorithm = &mersenne;
                     break;
                 }
             case 1: ///Linear congruential
                 {
-                    linear_congruential linCongr(seed);
-                    algorithm = &linCongr;
+//                    linear_congruential linCongr(seed);
+//                    algorithm = &linCongr;
                     break;
                 }
             case 2: ///Additive combine
                 {
-                    additive_combine addComb(seed);
-                    algorithm = &addComb;
+//                    additive_combine addComb(seed);
+//                    algorithm = &addComb;
                     break;
                 }
             case 3: ///Inverse congruential
                 {
-                    inverse_congruential invCongr(seed);
-                    algorithm = &invCongr;
+//                    inverse_congruential invCongr(seed);
+//                    algorithm = &invCongr;
                     break;
                 }
             case 4: ///Shuffle output
                 {
-                    shuffle_output shOut(seed);
-                    algorithm = &invCongr;
+//                    shuffle_output shOut(seed);
+//                    algorithm = &shOut;
                     break;
                 }
-            case 5:
+            case 5: ///Lagged Fibonacci
                 {
-                    lagged_fibonacci lagFib(seed);
-                    algorithm = &lagFib;
+//                    lagged_fibonacci lagFib(seed);
+//                    algorithm = &lagFib;
                     break;
                 }
             default: break;
@@ -266,6 +294,8 @@ void MultiRNGFrame::GenRandBoost()
                 {
 
                 }
-            default: break:
+            default: {break;}
         }
 }
+
+#endif
