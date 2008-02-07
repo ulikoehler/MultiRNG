@@ -199,6 +199,8 @@ void GenRandBoost()
 
     ///Open fstream
     fstream f(filename.c_str(), fstream::out);
+    //Initialize counter
+    ulong i;
 
     ///Switch distribution
     switch(algorithmSelection)
@@ -251,51 +253,69 @@ void GenRandBoost()
                 }
             case 1: ///Uniform integer
                 {
-
+                    uniform_int<double> uniInt(llDouble, ulDouble);
+                    distribution = &uniInt;
                 }
             case 2: ///Uniform 01
                 {
-
+                    //uniform_01<double, double> uni01(llDouble, ulDouble);
+                    //distribution = &uni01;
                 }
             case 3: ///Uniform real
                 {
+                    uniform_real<double> uniReal(llDouble, ulDouble);
+                    distribution = &uniReal;
 
                 }
             case 4: ///Triangle
                 {
-
+                    triangle_distribution<double> triangle(llDouble, ulDouble);
+                    distribution = &triangle;
                 }
             case 5: ///Bernoulli
                 {
-
+                    bernoulli_distribution<double> bernoulli(llDouble, ulDouble);
+                    distribution = &bernoulli;
                 }
             case 6: ///Cauchy
                 {
-
+                    cauchy_distribution<double> cauchy(llDouble, ulDouble);
+                    distribution = &cauchy;
                 }
             case 7: ///Exponential
                 {
-
+                    exponential_distribution<double> exponential(llDouble, ulDouble);
+                    distribution = &exponential;
                 }
             case 8: ///Geometric
                 {
-
+                    geometric_distribution<double> geometric(llDouble, ulDouble);
+                    distribution = &geometric;
                 }
             case 9: ///Normal
                 {
-
+                    normal_distribution<double> normal(llDouble, ulDouble);
+                    distribution = &normal;
                 }
             case 10: ///Lognormal
                 {
-
+                    lognormal_distribution<double> lognormal(llDouble, ulDouble);
+                    distribution = &lognormal;
                 }
             case 11: ///Uniform on Sphere
                 {
-
+                    uniform_on_sphere<double> uniSphere(llDouble, ulDouble);
+                    distribution = &uniSphere;
                 }
             default: {break;}
         }
+        ///Variate Generator
+        variate_generator<boostEngine, boostDistribution> generator(algorithm, distribution);
         ///TODO: Main loop
+        for(;i < amount;i++)
+        {
+            f << generator() << endl;
+        }
 }
 
 #endif
