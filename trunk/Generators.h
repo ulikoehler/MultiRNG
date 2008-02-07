@@ -182,7 +182,7 @@ void GenRandGMP()
     for(;i < amount;i++)
         {
             mpz_urandomm(integer, randstate, n);
-            f << integer << endl;
+            f << mpz_get_str(NULL, 10, integer)  << endl;
         }
     f.close();
     ///Clear all GMP variables
@@ -225,89 +225,89 @@ void GenRandBoost()
                 }
             case 1: ///Linear congruential
                 {
-//                    linear_congruential linCongr(seed);
-//                    algorithm = &linCongr;
+                    minstd_rand0 linCongr(ulSeed);
+                    algorithm = &linCongr;
                     break;
                 }
             case 2: ///Additive combine
                 {
-//                    additive_combine addComb(seed);
-//                    algorithm = &addComb;
+                    ecuyer1988 addComb(ulSeed);
+                    algorithm = &addComb;
                     break;
                 }
             case 3: ///Inverse congruential
                 {
-//                    inverse_congruential invCongr(seed);
-//                    algorithm = &invCongr;
+                    hellekalek1995 invCongr(ulSeed);
+                    algorithm = &invCongr;
                     break;
                 }
             case 4: ///Shuffle output
                 {
-//                    shuffle_output shOut(seed);
-//                    algorithm = &shOut;
+                    kreutzer1986 shOut(ulSeed);
+                    algorithm = &shOut;
                     break;
                 }
-            case 5: ///Lagged Fibonacci
-                {
-//                    lagged_fibonacci lagFib(seed);
+//            case 5: ///Lagged Fibonacci
+//                {
+//                    lagged_fibonacci lagFib(ulSeed);
 //                    algorithm = &lagFib;
-                    break;
-                }
+//                    break;
+//                }
             default: break;
         }
-//    ///Switch distribution
-//    switch(distributionSelection)
-//        {
-//            case 0: ///Uniform small int
-//                {
-//
-//                }
-//            case 1: ///Uniform small int
-//                {
-//
-//                }
-//            case 2: ///Uniform small int
-//                {
-//
-//                }
-//            case 3: ///Uniform small int
-//                {
-//
-//                }
-//            case 4: ///Uniform small int
-//                {
-//
-//                }
-//            case 5: ///Uniform small int
-//                {
-//
-//                }
-//            case 6: ///Uniform small int
-//                {
-//
-//                }
-//            case 7: ///Uniform small int
-//                {
-//
-//                }
-//            case 8: ///Uniform small int
-//                {
-//
-//                }
-//            case 9: ///Uniform small int
-//                {
-//
-//                }
-//            case 10: ///Uniform small int
-//                {
-//
-//                }
-//            case 11: ///Uniform small int
-//                {
-//
-//                }
-//            default: {break;}
-//        }
+    ///Switch distribution
+    switch(distributionSelection)
+        {
+            case 0: ///Uniform small int
+                {
+
+                }
+            case 1: ///Uniform small int
+                {
+
+                }
+            case 2: ///Uniform small int
+                {
+
+                }
+            case 3: ///Uniform small int
+                {
+
+                }
+            case 4: ///Uniform small int
+                {
+
+                }
+            case 5: ///Uniform small int
+                {
+
+                }
+            case 6: ///Uniform small int
+                {
+
+                }
+            case 7: ///Uniform small int
+                {
+
+                }
+            case 8: ///Uniform small int
+                {
+
+                }
+            case 9: ///Uniform small int
+                {
+
+                }
+            case 10: ///Uniform small int
+                {
+
+                }
+            case 11: ///Uniform small int
+                {
+
+                }
+            default: {break;}
+        }
         ///TODO: Main loop
 }
 
