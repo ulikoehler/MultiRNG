@@ -36,11 +36,9 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
     ulong seed = seedParam;
     string filename = filenameParam;
     ulong ulLong =  ulLongParam;
-    double ulDouble ulDoubleParam;
-    double llDouble llDoubleParam;
-    int distributionSelection distributionSelectionParam;
-    int algorithmSelection algorithmSelectionParam;
-    ulong bits bitsParam;
+    double ulDouble = ulDoubleParam;
+    double llDouble = llDoubleParam;
+    int distributionSelection = distributionSelectionParam;
 
     ///Initialize RNG state variable
     MTRand mtr(seed);
@@ -144,14 +142,14 @@ void GenRandGMP()
 {
     ///Cache parameters
     ulong amount = amountParam;
-    ulong seed = seedParam;
+    ulong ulSeed = seedParam;
     string filename = filenameParam;
     ulong ulLong =  ulLongParam;
-    double ulDouble ulDoubleParam;
-    double llDouble llDoubleParam;
-    int distributionSelection distributionSelectionParam;
-    int algorithmSelection algorithmSelectionParam;
-    ulong bits bitsParam;
+    double ulDouble = ulDoubleParam;
+    double llDouble = llDoubleParam;
+    int distributionSelection = distributionSelectionParam;
+    int algorithmSelection = algorithmSelectionParam;
+    ulong bits = bitsParam;
 
     ///GMP Init
     gmp_randstate_t randstate;
@@ -164,7 +162,7 @@ void GenRandGMP()
     mpz_init(seed);
     mpz_init(n);
     ///Get some required variables from GUI
-    mpz_set_str(seed, lexical_cast<string>(seed).c_str(), 10);
+    mpz_set_str(seed, lexical_cast<string>(ulSeed).c_str(), 10);
     mpz_set_str(n, lexical_cast<string>(ulDouble).c_str(), 10);
 
     ///Open fstream
@@ -194,11 +192,25 @@ void GenRandGMP()
     gmp_randclear(randstate);
 }
 
-template<class Engine>
+template<class boostEngine, class boostDistribution>
 void GenRandBoost()
 {
-    Engine engine;
-    //boostDistribution *distribution;
+    ///Cache parameters
+    ulong amount = amountParam;
+    ulong ulSeed = seedParam;
+    string filename = filenameParam;
+    ulong ulLong =  ulLongParam;
+    double ulDouble = ulDoubleParam;
+    double llDouble = llDoubleParam;
+    int distributionSelection = distributionSelectionParam;
+    int algorithmSelection = algorithmSelectionParam;
+    ulong bits = bitsParam;
+
+    ///Initialize template pointers
+    boostEngine *algorithm;
+    boostDistribution *distribution;
+
+
     ///Open fstream
     fstream f(filename.c_str(), fstream::out);
 
@@ -207,8 +219,8 @@ void GenRandBoost()
         {
             case 0: ///MT 19937
                 {
-                    //mt19937 mersenne(seed);
-                    //algorithm = &mersenne;
+                    mt19937 mersenne(ulSeed);
+                    algorithm = &mersenne;
                     break;
                 }
             case 1: ///Linear congruential
@@ -243,59 +255,60 @@ void GenRandBoost()
                 }
             default: break;
         }
-    ///Switch distribution
-    switch(distributionSelection)
-        {
-            case 0: ///Uniform small int
-                {
-
-                }
-            case 1: ///Uniform small int
-                {
-
-                }
-            case 2: ///Uniform small int
-                {
-
-                }
-            case 3: ///Uniform small int
-                {
-
-                }
-            case 4: ///Uniform small int
-                {
-
-                }
-            case 5: ///Uniform small int
-                {
-
-                }
-            case 6: ///Uniform small int
-                {
-
-                }
-            case 7: ///Uniform small int
-                {
-
-                }
-            case 8: ///Uniform small int
-                {
-
-                }
-            case 9: ///Uniform small int
-                {
-
-                }
-            case 10: ///Uniform small int
-                {
-
-                }
-            case 11: ///Uniform small int
-                {
-
-                }
-            default: {break;}
-        }
+//    ///Switch distribution
+//    switch(distributionSelection)
+//        {
+//            case 0: ///Uniform small int
+//                {
+//
+//                }
+//            case 1: ///Uniform small int
+//                {
+//
+//                }
+//            case 2: ///Uniform small int
+//                {
+//
+//                }
+//            case 3: ///Uniform small int
+//                {
+//
+//                }
+//            case 4: ///Uniform small int
+//                {
+//
+//                }
+//            case 5: ///Uniform small int
+//                {
+//
+//                }
+//            case 6: ///Uniform small int
+//                {
+//
+//                }
+//            case 7: ///Uniform small int
+//                {
+//
+//                }
+//            case 8: ///Uniform small int
+//                {
+//
+//                }
+//            case 9: ///Uniform small int
+//                {
+//
+//                }
+//            case 10: ///Uniform small int
+//                {
+//
+//                }
+//            case 11: ///Uniform small int
+//                {
+//
+//                }
+//            default: {break;}
+//        }
+        ///TODO: Main loop
 }
 
 #endif
