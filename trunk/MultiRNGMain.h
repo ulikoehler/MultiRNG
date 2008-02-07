@@ -19,11 +19,6 @@
 #include <wx/frame.h>
 //*)
 ///Custom header includes
-#include <boost/lexical_cast.hpp>
-#include <MersenneTwister.h>
-#include <boost/thread.hpp>
-#include <boost/function.hpp>
-#include <boost/bind.hpp>
 #include "MultiRNGApp.h"
 
 using namespace std;
