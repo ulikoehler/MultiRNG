@@ -28,14 +28,10 @@
 #include <fstream>
 #include <gmp.h>
 #include <boost/lexical_cast.hpp>
-#include <boost/random.hpp>
-#include <boost/random/additive_combine.hpp>
-#include <boost/random/linear_congruential.hpp>
-#include <boost/random/inversive_congruential.hpp>
-#include <boost/random/shuffle_output.hpp>
-#include <boost/random/lagged_fibonacci.hpp>
 #include <iostream>
 #include <MersenneTwister.h>
+//Boost headers
+#include <boost/random.hpp>
 #include <boost/thread.hpp>
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
