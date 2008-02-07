@@ -9,73 +9,71 @@
 		<Build>
 			<Target title="Debug">
 				<Option platforms="Windows;" />
-				<Option output="bin/Debug/MultiRNG" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+				<Option output="bin\Debug\MultiRNG" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
+					<Add option="-g" />
 					<Add option="-mthreads" />
 					<Add option="-D__GNUWIN32__" />
 					<Add option="-D__WXMSW__" />
-					<Add option="-g" />
 					<Add option="-D__WXDEBUG__" />
-					<Add directory="C:/wxPack-2.8/lib/gcc_dll/mswud" />
-					<Add directory="C:/boost" />
-					<Add directory="C:/wxPack-2.8/include" />
-					<Add directory="C:/wxPack-2.8/contrib/include" />
+					<Add directory="C:\wxPack-2.8\lib\gcc_dll\mswud" />
+					<Add directory="C:\boost" />
+					<Add directory="C:\wxPack-2.8\include" />
+					<Add directory="C:\wxPack-2.8\contrib\include" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="C:/wxPack-2.8/lib/gcc_dll/mswud" />
+					<Add directory="C:\wxPack-2.8\lib\gcc_dll\mswud" />
 				</ResourceCompiler>
 				<Linker>
 					<Add library="libwxmsw28ud.a" />
 					<Add library="gmp" />
 					<Add library="pthread" />
 					<Add library="boost_thread-mgw34-mt-1_34_1" />
-					<Add library="gmpxx" />
-					<Add directory="C:/wxPack-2.8/lib/gcc_dll" />
-					<Add directory="C:/boost/stage/lib" />
-					<Add directory="C:/wxPack-2.8/include" />
-					<Add directory="C:/wxPack-2.8/contrib/include" />
+					<Add directory="C:\wxPack-2.8\lib\gcc_dll" />
+					<Add directory="C:\boost\stage\lib" />
+					<Add directory="C:\wxPack-2.8\include" />
+					<Add directory="C:\wxPack-2.8\contrib\include" />
 				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option platforms="Windows;" />
-				<Option output="bin/Release/MultiRNG" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
+				<Option output="bin\Release\MultiRNG" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
-					<Add option="-mthreads" />
-					<Add option="-D__GNUWIN32__" />
-					<Add option="-D__WXMSW__" />
 					<Add option="-march=pentium-m" />
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-O3" />
+					<Add option="-mthreads" />
 					<Add option="-ffunction-sections" />
+					<Add option="-D__GNUWIN32__" />
+					<Add option="-D__WXMSW__" />
 					<Add option="-DRELEASE" />
-					<Add directory="C:/wxPack-2.8/lib/gcc_dll/mswu" />
+					<Add directory="C:\wxPack-2.8\lib\gcc_dll\mswu" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="C:/wxPack-2.8/lib/gcc_dll/mswu" />
+					<Add directory="C:\wxPack-2.8\lib\gcc_dll\mswu" />
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
 					<Add library="libwxmsw28u.a" />
 					<Add library="gmp" />
-					<Add library="gmpxx" />
 					<Add library="boost_thread-mgw34-mt-1_34_1" />
 					<Add library="pthread" />
-					<Add directory="C:/wxPack-2.8/lib/gcc_dll" />
+					<Add directory="C:\wxPack-2.8\lib\gcc_dll" />
 				</Linker>
 			</Target>
 			<Target title="Debug Linux">
 				<Option platforms="Unix;" />
-				<Option output="bin/Debug/MultiRNG" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Debug/" />
+				<Option output="bin\Debug\MultiRNG" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
@@ -95,8 +93,8 @@
 			</Target>
 			<Target title="Release Linux">
 				<Option platforms="Unix;" />
-				<Option output="bin/Release/MultiRNG" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj/Release/" />
+				<Option output="bin\Release\MultiRNG" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
@@ -126,7 +124,7 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<ResourceCompiler>
-			<Add directory="C:/wxPack-2.8/include" />
+			<Add directory="C:\wxPack-2.8\include" />
 		</ResourceCompiler>
 		<Unit filename="Generators.h" />
 		<Unit filename="MultiRNGApp.cpp" />
@@ -143,15 +141,11 @@
 			<Option compile="1" />
 			<Option weight="0" />
 		</Unit>
-		<Unit filename="wxsmith/MultiRNGframe.wxs" />
+		<Unit filename="wxsmith\MultiRNGframe.wxs" />
 		<Extensions>
 			<code_completion />
 			<envvars />
-			<debugger>
-				<remote_debugging target="Debug">
-					<options conn_type="0" serial_port="" serial_baud="115200" ip_address="" ip_port="" additional_cmds="" additional_cmds_before="" skip_ld_path="0" />
-				</remote_debugging>
-			</debugger>
+			<debugger />
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="MultiRNGApp.cpp" main="MultiRNGFrame" init_handlers="necessary" language="CPP" />
 				<resources>
