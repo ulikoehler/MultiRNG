@@ -1,16 +1,6 @@
 #ifndef GENERATORS_H
 #define GENERATORS_H
-#include <fstream>
-#include <gmp.h>
-#include <gmpxx.h>
-#include <boost/lexical_cast.hpp>
-#include <boost/random.hpp>
-#include <boost/random/additive_combine.hpp>
-#include <boost/random/linear_congruential.hpp>
-#include <boost/random/inversive_congruential.hpp>
-#include <boost/random/shuffle_output.hpp>
-#include <boost/random/lagged_fibonacci.hpp>
-#include <iostream>
+#include "wx_pch.h"
 using namespace std;
 using namespace boost;
 using namespace boost::random;
@@ -144,10 +134,7 @@ void GenRandGMP()
     ulong amount = amountParam;
     ulong ulSeed = seedParam;
     string filename = filenameParam;
-    ulong ulLong =  ulLongParam;
     double ulDouble = ulDoubleParam;
-    double llDouble = llDoubleParam;
-    int distributionSelection = distributionSelectionParam;
     int algorithmSelection = algorithmSelectionParam;
     ulong bits = bitsParam;
 
@@ -199,7 +186,6 @@ void GenRandBoost()
     ulong amount = amountParam;
     ulong ulSeed = seedParam;
     string filename = filenameParam;
-    ulong ulLong =  ulLongParam;
     double ulDouble = ulDoubleParam;
     double llDouble = llDoubleParam;
     int distributionSelection = distributionSelectionParam;
@@ -260,49 +246,50 @@ void GenRandBoost()
         {
             case 0: ///Uniform small int
                 {
-
+                    uniform_smallint<double> smallInt(llDouble, ulDouble);
+                    distribution = &smallInt;
                 }
-            case 1: ///Uniform small int
+            case 1: ///Uniform integer
                 {
 
                 }
-            case 2: ///Uniform small int
+            case 2: ///Uniform 01
                 {
 
                 }
-            case 3: ///Uniform small int
+            case 3: ///Uniform real
                 {
 
                 }
-            case 4: ///Uniform small int
+            case 4: ///Triangle
                 {
 
                 }
-            case 5: ///Uniform small int
+            case 5: ///Bernoulli
                 {
 
                 }
-            case 6: ///Uniform small int
+            case 6: ///Cauchy
                 {
 
                 }
-            case 7: ///Uniform small int
+            case 7: ///Exponential
                 {
 
                 }
-            case 8: ///Uniform small int
+            case 8: ///Geometric
                 {
 
                 }
-            case 9: ///Uniform small int
+            case 9: ///Normal
                 {
 
                 }
-            case 10: ///Uniform small int
+            case 10: ///Lognormal
                 {
 
                 }
-            case 11: ///Uniform small int
+            case 11: ///Uniform on Sphere
                 {
 
                 }
