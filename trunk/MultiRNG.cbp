@@ -53,10 +53,14 @@
 					<Add option="-O3" />
 					<Add option="-mthreads" />
 					<Add option="-ffunction-sections" />
+					<Add option="-fomit-frame-pointer" />
 					<Add option="-D__GNUWIN32__" />
 					<Add option="-D__WXMSW__" />
 					<Add option="-DRELEASE" />
 					<Add directory="C:\wxPack-2.8\lib\gcc_dll\mswu" />
+					<Add directory="C:\boost" />
+					<Add directory="C:\wxPack-2.8\include" />
+					<Add directory="C:\wxPack-2.8\contrib\include" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="C:\wxPack-2.8\lib\gcc_dll\mswu" />
@@ -68,6 +72,9 @@
 					<Add library="boost_thread-mgw34-mt-1_34_1" />
 					<Add library="pthread" />
 					<Add directory="C:\wxPack-2.8\lib\gcc_dll" />
+					<Add directory="C:\boost\stage\lib" />
+					<Add directory="C:\wxPack-2.8\include" />
+					<Add directory="C:\wxPack-2.8\contrib\include" />
 				</Linker>
 			</Target>
 			<Target title="Debug Linux">
