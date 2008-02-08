@@ -179,25 +179,75 @@ void GenRandGMP()
     gmp_randclear(randstate);
 }
 
-void GenRandBoost()
+
+template<class Algorithm>
+void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algorithm
 {
     ///Cache parameters
     ulong amount = amountParam;
-    ulong ulSeed = seedParam;
-    string filename = filenameParam;
+    int distributionSelection = distributionSelectionParam;
     double ulDouble = ulDoubleParam;
     double llDouble = llDoubleParam;
-    int distributionSelection = distributionSelectionParam;
-    int algorithmSelection = algorithmSelectionParam;
-    ulong bits = bitsParam;
-
-    ///Initialize pointer for variated generator
-    variate_generator *vg;
+    string filename = filenameParam;
 
     ///Open fstream
     fstream f(filename.c_str(), fstream::out);
-    //Initialize counter
-    ulong i;
+
+    ///Initialize counter
+
+    ///Switch distribution
+    switch(distributionSelection)
+        {
+            case 0: ///Uniform small int
+                    uniform_smallint<double> smallInt(llDouble, ulDouble);
+                    variate_generator<Algorithm&, uniform_smallint<double> > generator(*algorithm, smallInt);
+                    for(ulong i;i < amount;i++)
+                    {
+                        f << generator() << endl;
+                    }
+                    break;
+            case 1: ///Uniform integer
+                    //uniform_int<double, double> uniInt(llDouble, ulDouble);
+            case 2: ///Uniform 01
+                    //uniform_01<double, double> uni01(llDouble, ulDouble);
+                    //distribution = &uni01;
+            case 3: ///Uniform real
+                    //uniform_real<double> uniReal(llDouble, ulDouble);
+                    //distribution = &uniReal;
+            case 4: ///Triangle
+                    //triangle_distribution<double> triangle(llDouble, ulDouble);
+                    //distribution = &triangle;
+            case 5: ///Bernoulli
+                    //bernoulli_distribution<double> bernoulli(llDouble, ulDouble);
+                    //distribution = &bernoulli;
+            case 6: ///Cauchy
+                    //cauchy_distribution<double> cauchy(llDouble, ulDouble);
+                    //distribution = &cauchy;
+            case 7: ///Exponential
+                    //exponential_distribution<double> exponential(llDouble, ulDouble);
+                    //distribution = &exponential;
+            case 8: ///Geometric
+                    //geometric_distribution<double> geometric(llDouble, ulDouble);
+                    //distribution = &geometric;
+            case 9: ///Normal
+                    //normal_distribution<double> normal(llDouble, ulDouble);
+                    //distribution = &normal;
+            case 10: ///Lognormal
+                    //lognormal_distribution<double> lognormal(llDouble, ulDouble);
+                    //distribution = &lognormal;
+            case 11: ///Uniform on Sphere
+                    //uniform_on_sphere<double> uniSphere(llDouble, ulDouble);
+                    //distribution = &uniSphere;
+                    break;
+            default: break;
+        }
+}
+
+void GenRandBoost()
+{
+    ///Cache required parameters
+    ulong ulSeed = seedParam;
+    int algorithmSelection = algorithmSelectionParam;
 
     ///Switch distribution
     switch(algorithmSelection)
@@ -205,31 +255,30 @@ void GenRandBoost()
             case 0: ///MT 19937
                 {
                     mt19937 mersenne(ulSeed);
-                    algorithm = &mersenne;
+                    ProcessBoostAlgorithm<mt19937>(&mersenne);
                     break;
                 }
             case 1: ///Linear congruential
                 {
                     minstd_rand0 linCongr(ulSeed);
-                    algorithm = &linCongr;
+                    //algorithm = &linCongr;
                     break;
                 }
             case 2: ///Additive combine
                 {
-                    ecuyer1988 addComb(ulSeed);
-                    algorithm = &addComb;
+                    //ecuyer1988 addComb(ulSeed);
+                    //algorithm = &addComb;
                     break;
                 }
             case 3: ///Inverse congruential
                 {
                     hellekalek1995 invCongr(ulSeed);
-                    algorithm = &invCongr;
+                    //algorithm = &invCongr;
                     break;
                 }
             case 4: ///Shuffle output
                 {
                     kreutzer1986 shOut(ulSeed);
-                    algorithm = &shOut;
                     break;
                 }
 //            case 5: ///Lagged Fibonacci
@@ -239,85 +288,6 @@ void GenRandBoost()
 //                    break;
 //                }
             default: break;
-        }
-            default: {break;}
-        }
-        ///Variate Generator
-        variate_generator<boostEngine, boostDistribution> generator(algorithm, distribution);
-        ///TODO: Main loop
-        for(;i < amount;i++)
-        {
-            f << generator() << endl;
-        }
-}
-
-template<class Algorithm>
-void GetVariatedGenerator(int distribution, double ulDouble, double llDouble, Algorithm *algorithm) ///Boost Function
-{
-    ///Switch distribution
-    switch(distribution)
-        {
-            case 0: ///Uniform small int
-                {
-                    uniform_smallint<double> smallInt(llDouble, ulDouble);
-                    return variate_generator<Algorithm, uniform_smallint> vg(
-                }
-            case 1: ///Uniform integer
-                {
-                    uniform_int<double> uniInt(llDouble, ulDouble);
-                    distribution = &uniInt;
-                }
-            case 2: ///Uniform 01
-                {
-                    //uniform_01<double, double> uni01(llDouble, ulDouble);
-                    //distribution = &uni01;
-                }
-            case 3: ///Uniform real
-                {
-                    uniform_real<double> uniReal(llDouble, ulDouble);
-                    distribution = &uniReal;
-
-                }
-            case 4: ///Triangle
-                {
-                    triangle_distribution<double> triangle(llDouble, ulDouble);
-                    distribution = &triangle;
-                }
-            case 5: ///Bernoulli
-                {
-                    bernoulli_distribution<double> bernoulli(llDouble, ulDouble);
-                    distribution = &bernoulli;
-                }
-            case 6: ///Cauchy
-                {
-                    cauchy_distribution<double> cauchy(llDouble, ulDouble);
-                    distribution = &cauchy;
-                }
-            case 7: ///Exponential
-                {
-                    exponential_distribution<double> exponential(llDouble, ulDouble);
-                    distribution = &exponential;
-                }
-            case 8: ///Geometric
-                {
-                    geometric_distribution<double> geometric(llDouble, ulDouble);
-                    distribution = &geometric;
-                }
-            case 9: ///Normal
-                {
-                    normal_distribution<double> normal(llDouble, ulDouble);
-                    distribution = &normal;
-                }
-            case 10: ///Lognormal
-                {
-                    lognormal_distribution<double> lognormal(llDouble, ulDouble);
-                    distribution = &lognormal;
-                }
-            case 11: ///Uniform on Sphere
-                {
-                    uniform_on_sphere<double> uniSphere(llDouble, ulDouble);
-                    distribution = &uniSphere;
-                }
         }
 }
 

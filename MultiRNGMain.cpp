@@ -313,8 +313,7 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
     {
         case 0: ///Boost/random
             {
-                //boost::thread boostThread(&MultiRNGFrame::GenRandBoost);
-                //boostThread.join();
+                boost::thread boostThread(&GenRandBoost);
                 break;
             }
         case 1: ///MersenneTwister.h
