@@ -234,7 +234,10 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
     {
         case 0: ///Boost/random
             {
-
+                upperLimitField->Enable(true);
+                upperLimitLabel->Enable(true);
+                lowerLimitField->Enable(true);
+                lowerLimitLabel->Enable(true);
             }
         case 1: ///MersenneTwister.h
             {
@@ -303,8 +306,8 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
     ///Init s                                                            tatic variables
     amountParam = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
     seedParam = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
-    ulParam = lexical_cast<char*>(upperLimitField->GetValue().mb_str());
-    llParam = lexical_cast<char*>(lowerLimitField->GetValue().mb_str());
+    ulParam = lexical_cast<string>(upperLimitField->GetValue().mb_str());
+    llParam = lexical_cast<string>(lowerLimitField->GetValue().mb_str());
     distributionSelectionParam = distributionChoice->GetCurrentSelection();
     algorithmSelectionParam = algorithmChoice->GetCurrentSelection();
     filenameParam = lexical_cast<string>(filenameField->GetValue().mb_str());
