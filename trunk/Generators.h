@@ -179,7 +179,6 @@ void GenRandGMP()
     gmp_randclear(randstate);
 }
 
-template<class boostEngine, class boostDistribution>
 void GenRandBoost()
 {
     ///Cache parameters
@@ -192,10 +191,8 @@ void GenRandBoost()
     int algorithmSelection = algorithmSelectionParam;
     ulong bits = bitsParam;
 
-    ///Initialize template pointers
-    boostEngine *algorithm;
-    boostDistribution *distribution;
-
+    ///Initialize pointer for variated generator
+    variate_generator *vg;
 
     ///Open fstream
     fstream f(filename.c_str(), fstream::out);
@@ -243,13 +240,27 @@ void GenRandBoost()
 //                }
             default: break;
         }
+            default: {break;}
+        }
+        ///Variate Generator
+        variate_generator<boostEngine, boostDistribution> generator(algorithm, distribution);
+        ///TODO: Main loop
+        for(;i < amount;i++)
+        {
+            f << generator() << endl;
+        }
+}
+
+template<class Algorithm>
+void GetVariatedGenerator(int distribution, double ulDouble, double llDouble, Algorithm *algorithm) ///Boost Function
+{
     ///Switch distribution
-    switch(distributionSelection)
+    switch(distribution)
         {
             case 0: ///Uniform small int
                 {
                     uniform_smallint<double> smallInt(llDouble, ulDouble);
-                    distribution = &smallInt;
+                    return variate_generator<Algorithm, uniform_smallint> vg(
                 }
             case 1: ///Uniform integer
                 {
@@ -307,14 +318,6 @@ void GenRandBoost()
                     uniform_on_sphere<double> uniSphere(llDouble, ulDouble);
                     distribution = &uniSphere;
                 }
-            default: {break;}
-        }
-        ///Variate Generator
-        variate_generator<boostEngine, boostDistribution> generator(algorithm, distribution);
-        ///TODO: Main loop
-        for(;i < amount;i++)
-        {
-            f << generator() << endl;
         }
 }
 
