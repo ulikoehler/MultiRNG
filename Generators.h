@@ -12,9 +12,8 @@ typedef unsigned long ulong;
 static ulong amountParam;
 static ulong seedParam;
 static string filenameParam;
-static ulong ulLongParam;
-static double ulDoubleParam;
-static double llDoubleParam;
+static char* ulParam;
+static char* llParam;
 static int distributionSelectionParam;
 static int algorithmSelectionParam;
 static ulong bitsParam;
@@ -25,9 +24,9 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
     ulong amount = amountParam;
     ulong seed = seedParam;
     string filename = filenameParam;
-    ulong ulLong =  ulLongParam;
-    double ulDouble = ulDoubleParam;
-    double llDouble = llDoubleParam;
+    ulong ulLong = lexical_cast<long>(ulParam);
+    double ulDouble = lexical_cast<double>(ulParam);
+    double llDouble = lexical_cast<double>(llParam);
     int distributionSelection = distributionSelectionParam;
 
     ///Initialize RNG state variable
@@ -134,7 +133,7 @@ void GenRandGMP()
     ulong amount = amountParam;
     ulong ulSeed = seedParam;
     string filename = filenameParam;
-    double ulDouble = ulDoubleParam;
+    double ulDouble = lexical_cast<double>(ulParam);
     int algorithmSelection = algorithmSelectionParam;
     ulong bits = bitsParam;
 
@@ -186,8 +185,10 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
     ///Cache parameters
     ulong amount = amountParam;
     int distributionSelection = distributionSelectionParam;
-    double ulDouble = ulDoubleParam;
-    double llDouble = llDoubleParam;
+    //double ulDouble = lexical_cast<double>(ulParam);
+    //double llDouble = lexical_cast<double>(llParam);
+    int ulInt = lexical_cast<int>(ulParam);
+    int llInt = lexical_cast<int>(llParam);
     string filename = filenameParam;
 
     ///Open fstream
@@ -199,13 +200,15 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
     switch(distributionSelection)
         {
             case 0: ///Uniform small int
-                    uniform_smallint<double> smallInt(llDouble, ulDouble);
-                    variate_generator<Algorithm&, uniform_smallint<double> > generator(*algorithm, smallInt);
+                {
+                    uniform_smallint<int> smallInt(llInt, ulInt);
+                    variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
                     for(ulong i;i < amount;i++)
                     {
                         f << generator() << endl;
                     }
                     break;
+                }
             case 1: ///Uniform integer
                     //uniform_int<double, double> uniInt(llDouble, ulDouble);
             case 2: ///Uniform 01
@@ -254,7 +257,7 @@ void GenRandBoost()
         {
             case 0: ///MT 19937
                 {
-                    mt19937 mersenne(ulSeed);
+                    mt19937 mersenne(lexical_cast<unsigned int>(ulSeed));
                     ProcessBoostAlgorithm<mt19937>(&mersenne);
                     break;
                 }
