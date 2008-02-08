@@ -12,8 +12,8 @@ typedef unsigned long ulong;
 static ulong amountParam;
 static ulong seedParam;
 static string filenameParam;
-static char* ulParam;
-static char* llParam;
+static string ulParam;
+static string llParam;
 static int distributionSelectionParam;
 static int algorithmSelectionParam;
 static ulong bitsParam;
@@ -183,7 +183,7 @@ template<class Algorithm>
 void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algorithm
 {
     ///Cache parameters
-    ulong amount = amountParam;
+    unsigned long amount = amountParam;
     int distributionSelection = distributionSelectionParam;
     //double ulDouble = lexical_cast<double>(ulParam);
     //double llDouble = lexical_cast<double>(llParam);
@@ -203,10 +203,10 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                 {
                     uniform_smallint<int> smallInt(llInt, ulInt);
                     variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
-                    for(ulong i;i < amount;i++)
-                    {
-                        f << generator() << endl;
-                    }
+                    for(unsigned long i = 0;i < amount;i++)
+                        {
+                            f << generator() << endl;
+                        }
                     break;
                 }
             case 1: ///Uniform integer
