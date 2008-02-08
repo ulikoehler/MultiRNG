@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="MultiRNGFrame">
+		<title>MultiRNG</title>
+		<size>373,222</size>
+		<object class="wxStaticBox" name="ID_LIMITSBOX" variable="limitsBox" member="yes">
+			<label>Limits</label>
+			<pos>16,104</pos>
+			<size>128,80</size>
+			<fg>wxSYS_COLOUR_MENUTEXT</fg>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="lowerLimitLabel" member="yes">
+			<value>Lower:</value>
+			<pos>24,128</pos>
+			<size>40,21</size>
+			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
+			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
+		</object>
+		<object class="wxStaticBox" name="ID_BOOSTSPECBOX" variable="boostSpecificBox" member="yes">
+			<label>Advanced options</label>
+			<pos>160,104</pos>
+			<size>192,80</size>
+			<fg>wxSYS_COLOUR_MENUTEXT</fg>
+		</object>
+		<object class="wxTextCtrl" name="ID_UPLIMITFIELD" variable="lowerLimitField" member="yes">
+			<value>500</value>
+			<pos>64,128</pos>
+			<size>72,21</size>
+		</object>
+		<object class="wxStaticText" name="ID_LIBLABEL" variable="libraryLabel" member="yes">
+			<label>Library:</label>
+			<pos>8,16</pos>
+		</object>
+		<object class="wxStaticText" name="ID_ALGOLABEL" variable="algorithmLabel" member="yes">
+			<label>Algorithm:</label>
+			<pos>184,16</pos>
+		</object>
+		<object class="wxChoice" name="ID_LIBCHOICE" variable="libraryChoice" member="yes">
+			<content>
+				<item>boost/random</item>
+				<item>MersenneTwister.h</item>
+				<item>GMP</item>
+			</content>
+			<selection>1</selection>
+			<pos>56,16</pos>
+			<size>120,21</size>
+			<handler function="OnLibraryChoiceSelect" entry="EVT_CHOICE" />
+		</object>
+		<object class="wxChoice" name="ID_ALGOCHOICE" variable="algorithmChoice" member="yes">
+			<content>
+				<item>MT 19937</item>
+			</content>
+			<selection>0</selection>
+			<pos>240,16</pos>
+		</object>
+		<object class="wxStaticText" name="ID_AMOUNTLABEL" variable="amountLabel" member="yes">
+			<label>Amount:</label>
+			<pos>8,48</pos>
+		</object>
+		<object class="wxTextCtrl" name="ID_AMOUNTFIELD" variable="amountField" member="yes">
+			<value>100</value>
+			<pos>56,48</pos>
+		</object>
+		<object class="wxStaticText" name="ID_FILELABEL" variable="fileLabel" member="yes">
+			<label>File:</label>
+			<pos>184,48</pos>
+		</object>
+		<object class="wxTextCtrl" name="ID_FILEFIELD" variable="filenameField" member="yes">
+			<value>random.txt</value>
+			<pos>216,48</pos>
+			<size>152,21</size>
+		</object>
+		<object class="wxButton" name="ID_OKBUTTON" variable="okButton" member="yes">
+			<label>OK</label>
+			<pos>112,192</pos>
+			<size>136,23</size>
+			<handler function="OnOkButtonClick" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxStaticText" name="ID_SEEDLABEL" variable="seedLabel" member="yes">
+			<label>Seed:</label>
+			<pos>8,80</pos>
+		</object>
+		<object class="wxTextCtrl" name="ID_SEEDFIELD" variable="seedField" member="yes">
+			<value>1234567890</value>
+			<pos>56,80</pos>
+			<size>312,21</size>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="upperLimitField" member="yes">
+			<value>1000</value>
+			<pos>64,152</pos>
+			<size>72,21</size>
+			<enabled>0</enabled>
+		</object>
+		<object class="wxStaticText" name="ID_DISTLABEL" variable="distributionLabel" member="yes">
+			<label>Distribution:</label>
+			<pos>168,128</pos>
+		</object>
+		<object class="wxChoice" name="ID_DISTCHOICE" variable="distributionChoice" member="yes">
+			<content>
+				<item>Uniform Small Integer</item>
+				<item>Uniform Integer</item>
+				<item>Uniform 01</item>
+				<item>Uniform Real</item>
+				<item>Triangle</item>
+				<item>Bernoulli</item>
+				<item>Cauchy</item>
+				<item>Exponential</item>
+				<item>Geometric</item>
+				<item>Normal</item>
+				<item>Lognormal</item>
+				<item>Uniform on Sphere</item>
+			</content>
+			<selection>1</selection>
+			<pos>232,120</pos>
+			<size>112,21</size>
+			<handler function="OnDistributionChoiceSelect" entry="EVT_CHOICE" />
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="upperLimitLabel" member="yes">
+			<value>Upper:</value>
+			<pos>24,152</pos>
+			<size>40,21</size>
+			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
+			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT1" variable="bitsLabel" member="yes">
+			<label>Bits:</label>
+			<pos>200,152</pos>
+			<size>24,13</size>
+			<tooltip>Bits to use in GMP Linear Congruential algorithm</tooltip>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL4" variable="bitsField" member="yes">
+			<value>64</value>
+			<maxlength>20</maxlength>
+			<pos>232,144</pos>
+			<size>112,21</size>
+		</object>
+	</object>
+</wxsmith>
