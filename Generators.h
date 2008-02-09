@@ -185,8 +185,8 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
     ///Cache parameters
     unsigned long amount = amountParam;
     int distributionSelection = distributionSelectionParam;
-    //double ulDouble = lexical_cast<double>(ulParam);
-    //double llDouble = lexical_cast<double>(llParam);
+    double ulDouble = lexical_cast<double>(ulParam);
+    double llDouble = lexical_cast<double>(llParam);
     int ulInt = lexical_cast<int>(ulParam);
     int llInt = lexical_cast<int>(llParam);
     string filename = filenameParam;
@@ -210,38 +210,115 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                     break;
                 }
             case 1: ///Uniform integer
-                    //uniform_int<double, double> uniInt(llDouble, ulDouble);
-            case 2: ///Uniform 01
-                    //uniform_01<double, double> uni01(llDouble, ulDouble);
-                    //distribution = &uni01;
-            case 3: ///Uniform real
-                    //uniform_real<double> uniReal(llDouble, ulDouble);
-                    //distribution = &uniReal;
-            case 4: ///Triangle
-                    //triangle_distribution<double> triangle(llDouble, ulDouble);
-                    //distribution = &triangle;
-            case 5: ///Bernoulli
-                    //bernoulli_distribution<double> bernoulli(llDouble, ulDouble);
-                    //distribution = &bernoulli;
-            case 6: ///Cauchy
-                    //cauchy_distribution<double> cauchy(llDouble, ulDouble);
-                    //distribution = &cauchy;
-            case 7: ///Exponential
-                    //exponential_distribution<double> exponential(llDouble, ulDouble);
-                    //distribution = &exponential;
-            case 8: ///Geometric
-                    //geometric_distribution<double> geometric(llDouble, ulDouble);
-                    //distribution = &geometric;
-            case 9: ///Normal
-                    //normal_distribution<double> normal(llDouble, ulDouble);
-                    //distribution = &normal;
-            case 10: ///Lognormal
-                    //lognormal_distribution<double> lognormal(llDouble, ulDouble);
-                    //distribution = &lognormal;
-            case 11: ///Uniform on Sphere
-                    //uniform_on_sphere<double> uniSphere(llDouble, ulDouble);
-                    //distribution = &uniSphere;
+                {
+                    uniform_int<int> uniInt(llInt, ulInt);
+                    variate_generator<Algorithm&, uniform_int<int> > generator(*algorithm, uniInt);
+                    for(unsigned long i = 0;i < amount;i++)
+                        {
+                            f << generator() << endl;
+                        }
                     break;
+                }
+            case 2: ///Uniform 01
+                {
+//                    uniform_01<Algorithm, int> uni01(llInt, ulInt);
+//                    variate_generator<Algorithm&, uniform_01<Algorithm, int> > generator(*algorithm, uni01);
+//                    for(unsigned long i = 0;i < amount;i++)
+//                        {
+//                            f << generator() << endl;
+//                        }
+//                    break;
+                }
+            case 3: ///Uniform real
+                {
+                    uniform_real<double> uniReal(llDouble, ulDouble);
+                    variate_generator<Algorithm&, uniform_real<double> > generator(*algorithm, uniReal);
+                    for(unsigned long i = 0;i < amount;i++)
+                        {
+                            f << generator() << endl;
+                        }
+                    break;
+                }
+            case 4: ///Triangle
+                {
+                    triangle_distribution<int> smallInt(llInt, ulInt);
+                    variate_generator<Algorithm&, triangle_distribution<int> > generator(*algorithm, smallInt);
+                    for(unsigned long i = 0;i < amount;i++)
+                        {
+                            f << generator() << endl;
+                        }
+                    break;
+                }
+            case 5: ///Bernoulli
+                {
+                    uniform_smallint<int> smallInt(llInt, ulInt);
+                    variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
+                    for(unsigned long i = 0;i < amount;i++)
+                        {
+                            f << generator() << endl;
+                        }
+                    break;
+                }
+            case 6: ///Cauchy
+                {
+                    uniform_smallint<int> smallInt(llInt, ulInt);
+                    variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
+                    for(unsigned long i = 0;i < amount;i++)
+                        {
+                            f << generator() << endl;
+                        }
+                    break;
+                }
+            case 7: ///Exponential
+                {
+                    uniform_smallint<int> smallInt(llInt, ulInt);
+                    variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
+                    for(unsigned long i = 0;i < amount;i++)
+                        {
+                            f << generator() << endl;
+                        }
+                    break;
+                }
+            case 8: ///Geometric
+                {
+                    uniform_smallint<int> smallInt(llInt, ulInt);
+                    variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
+                    for(unsigned long i = 0;i < amount;i++)
+                        {
+                            f << generator() << endl;
+                        }
+                    break;
+                }
+            case 9: ///Normal
+                {
+                    uniform_smallint<int> smallInt(llInt, ulInt);
+                    variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
+                    for(unsigned long i = 0;i < amount;i++)
+                        {
+                            f << generator() << endl;
+                        }
+                    break;
+                }
+            case 10: ///Lognormal
+                {
+                    uniform_smallint<int> smallInt(llInt, ulInt);
+                    variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
+                    for(unsigned long i = 0;i < amount;i++)
+                        {
+                            f << generator() << endl;
+                        }
+                    break;
+                }
+            case 11: ///Uniform on Sphere
+                {
+                    uniform_smallint<int> smallInt(llInt, ulInt);
+                    variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
+                    for(unsigned long i = 0;i < amount;i++)
+                        {
+                            f << generator() << endl;
+                        }
+                    break;
+                }
             default: break;
         }
 }
