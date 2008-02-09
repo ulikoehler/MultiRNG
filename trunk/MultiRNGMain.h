@@ -40,6 +40,7 @@ class MultiRNGFrame: public wxFrame
         void OnLibraryChoiceSelect(wxCommandEvent& event);
         void OnDistributionChoiceSelect(wxCommandEvent& event);
         void OnOkButtonClick(wxCommandEvent& event);
+        void OnBoostAlgoParametersCheckboxClick(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(MultiRNGFrame)
@@ -84,36 +85,36 @@ class MultiRNGFrame: public wxFrame
         //*)
 
         //(*Declarations(MultiRNGFrame)
-        wxTextCtrl* boost6thAlgoLabel;
         wxStaticBox* limitsBox;
         wxChoice* libraryChoice;
+        wxTextCtrl* boost5thAlgoParameterField;
         wxTextCtrl* lowerLimitLabel;
         wxStaticText* seedLabel;
         wxTextCtrl* lowerLimitField;
+        wxTextCtrl* boost3rdAlgoParameterLabel;
+        wxCheckBox* boostAlgoParametersCheckbox;
+        wxTextCtrl* boost4thAlgoParameterLabel;
         wxStaticBox* boostDistOptionsBox;
-        wxTextCtrl* boost7th;
         wxTextCtrl* boost2ndAlgoParameterField;
+        wxTextCtrl* boost5thAlgoParameterLabel;
         wxTextCtrl* boost1stAlgoParameterField;
-        wxTextCtrl* boost7thAlgoField;
-        wxTextCtrl* boost3rdAlgoField;
         wxTextCtrl* boost2ndAlgoParameterLabel;
-        wxTextCtrl* boost3rdAlgoLabel;
-        wxCheckBox* CheckBox1;
+        wxTextCtrl* boost3rdAlgoParameterField;
         wxStaticBox* boostSpecificBox;
-        wxTextCtrl* boost4thAlgoLabel;
         wxChoice* algorithmChoice;
+        wxTextCtrl* boost6thAlgoParameterField;
         wxTextCtrl* bitsField;
-        wxTextCtrl* boost5thAlgoLabel;
         wxStaticText* amountLabel;
+        wxTextCtrl* boost7thAlgoParameterLabel;
         wxTextCtrl* upperLimitLabel;
+        wxTextCtrl* boost6thAlgoParameterLabel;
         wxChoice* distributionChoice;
+        wxTextCtrl* boost7thAlgoParameterField;
         wxTextCtrl* filenameField;
         wxTextCtrl* upperLimitField;
         wxStaticBox* boostAlgoOptions;
-        wxTextCtrl* boost6thAlgoField;
         wxStaticText* bitsLabel;
         wxStaticText* fileLabel;
-        wxTextCtrl* boost5thAlgoField;
         wxStaticText* algorithmLabel;
         wxStaticText* libraryLabel;
         wxButton* okButton;
@@ -121,7 +122,7 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* seedField;
         wxTextCtrl* amountField;
         wxStaticText* distributionLabel;
-        wxTextCtrl* boost4thAlgoField;
+        wxTextCtrl* boost4thAlgoParameterField;
         //*)
         public:
         ///Custom functions

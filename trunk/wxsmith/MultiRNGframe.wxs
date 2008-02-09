@@ -12,50 +12,50 @@
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL7" variable="boost1stAlgoParameterLabel" member="yes">
 			<value>1st:</value>
-			<pos>24,248</pos>
+			<pos>24,240</pos>
 			<size>40,21</size>
 			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
 			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL5" variable="boost1stAlgoParameterField" member="yes">
 			<value>Text</value>
-			<pos>64,248</pos>
+			<pos>64,240</pos>
 			<enabled>0</enabled>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL12" variable="boost4thAlgoField" member="yes">
+		<object class="wxTextCtrl" name="ID_TEXTCTRL12" variable="boost4thAlgoParameterField" member="yes">
 			<value>Text</value>
 			<pos>224,216</pos>
 			<enabled>0</enabled>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL14" variable="boost4thAlgoLabel" member="yes">
+		<object class="wxTextCtrl" name="ID_TEXTCTRL14" variable="boost4thAlgoParameterLabel" member="yes">
 			<value>4th:</value>
 			<pos>184,216</pos>
 			<size>40,21</size>
 			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
 			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL17" variable="boost7th" member="yes">
+		<object class="wxTextCtrl" name="ID_TEXTCTRL17" variable="boost7thAlgoParameterLabel" member="yes">
 			<value>7th:</value>
 			<pos>184,288</pos>
 			<size>40,21</size>
 			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
 			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL16" variable="boost3rdAlgoLabel" member="yes">
+		<object class="wxTextCtrl" name="ID_TEXTCTRL16" variable="boost3rdAlgoParameterLabel" member="yes">
 			<value>3rd:</value>
-			<pos>24,296</pos>
+			<pos>24,288</pos>
 			<size>40,21</size>
 			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
 			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL15" variable="boost6thAlgoLabel" member="yes">
+		<object class="wxTextCtrl" name="ID_TEXTCTRL15" variable="boost6thAlgoParameterLabel" member="yes">
 			<value>6th:</value>
 			<pos>184,264</pos>
 			<size>40,16</size>
 			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
 			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL13" variable="boost5thAlgoLabel" member="yes">
+		<object class="wxTextCtrl" name="ID_TEXTCTRL13" variable="boost5thAlgoParameterLabel" member="yes">
 			<value>5th:</value>
 			<pos>184,240</pos>
 			<size>40,16</size>
@@ -71,25 +71,26 @@
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL6" variable="boost2ndAlgoParameterField" member="yes">
 			<value>Text</value>
-			<pos>64,272</pos>
+			<pos>64,264</pos>
 			<enabled>0</enabled>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL10" variable="boost3rdAlgoField" member="yes">
+		<object class="wxTextCtrl" name="ID_TEXTCTRL10" variable="boost3rdAlgoParameterField" member="yes">
 			<value>Text</value>
-			<pos>64,296</pos>
+			<pos>64,288</pos>
 			<enabled>0</enabled>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL18" variable="boost6thAlgoField" member="yes">
+		<object class="wxTextCtrl" name="ID_TEXTCTRL18" variable="boost6thAlgoParameterField" member="yes">
 			<value>Text</value>
 			<pos>224,264</pos>
 			<enabled>0</enabled>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL11" variable="boost7thAlgoField" member="yes">
+		<object class="wxTextCtrl" name="ID_TEXTCTRL11" variable="boost7thAlgoParameterField" member="yes">
 			<value>Text</value>
 			<pos>224,288</pos>
+			<enabled>0</enabled>
 			<focused>1</focused>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL9" variable="boost5thAlgoField" member="yes">
+		<object class="wxTextCtrl" name="ID_TEXTCTRL9" variable="boost5thAlgoParameterField" member="yes">
 			<value>Text</value>
 			<pos>224,240</pos>
 			<enabled>0</enabled>
@@ -108,7 +109,7 @@
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL8" variable="boost2ndAlgoParameterLabel" member="yes">
 			<value>2nd:</value>
-			<pos>24,272</pos>
+			<pos>24,264</pos>
 			<size>40,21</size>
 			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
 			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
@@ -232,9 +233,10 @@
 			<size>112,21</size>
 			<enabled>0</enabled>
 		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX1" variable="CheckBox1" member="yes">
+		<object class="wxCheckBox" name="ID_CHECKBOX1" variable="boostAlgoParametersCheckbox" member="yes">
 			<label>Enable special parameters</label>
-			<pos>24,224</pos>
+			<pos>30,220</pos>
+			<handler function="OnBoostAlgoParametersCheckboxClick" entry="EVT_CHECKBOX" />
 		</object>
 	</object>
 </wxsmith>
