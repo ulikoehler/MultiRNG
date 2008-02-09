@@ -346,27 +346,28 @@ void GenRandBoost()
                 }
             case 2: ///Additive combine
                 {
-                    //ecuyer1988 addComb(ulSeed);
-                    //algorithm = &addComb;
+                    ecuyer1988 addComb(ulSeed);
+                    ProcessBoostAlgorithm<ecuyer1988>(&addComb);
                     break;
                 }
             case 3: ///Inverse congruential
                 {
                     hellekalek1995 invCongr(ulSeed);
-                    //algorithm = &invCongr;
+                    ProcessBoostAlgorithm<hellekalek1995>(&invCongr);
                     break;
                 }
             case 4: ///Shuffle output
                 {
                     kreutzer1986 shOut(ulSeed);
+                    ProcessBoostAlgorithm<kreutzer1986>(&shOut);
                     break;
                 }
-//            case 5: ///Lagged Fibonacci
-//                {
-//                    lagged_fibonacci lagFib(ulSeed);
-//                    algorithm = &lagFib;
-//                    break;
-//                }
+            case 5: ///Lagged Fibonacci
+                {
+                    //lagged_fibonacci<unsigned int,  lagFib(ulSeed);
+                    //algorithm = &lagFib;
+                    break;
+                }
             default: break;
         }
 }

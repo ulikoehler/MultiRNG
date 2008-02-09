@@ -46,9 +46,24 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(MultiRNGFrame)
-const long MultiRNGFrame::ID_LIMITSBOX = wxNewId();
-const long MultiRNGFrame::ID_STATICBOX1 = wxNewId();
+const long MultiRNGFrame::ID_BOOSTALGOOPTSBOX = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL7 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL5 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL12 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL14 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL17 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL16 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL15 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL13 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL2 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL6 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL10 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL18 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL11 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL9 = wxNewId();
+const long MultiRNGFrame::ID_BOOSTDISTOPTSBOX = wxNewId();
+const long MultiRNGFrame::ID_LIMITSBOX = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL8 = wxNewId();
 const long MultiRNGFrame::ID_BOOSTSPECBOX = wxNewId();
 const long MultiRNGFrame::ID_UPLIMITFIELD = wxNewId();
 const long MultiRNGFrame::ID_LIBLABEL = wxNewId();
@@ -68,6 +83,7 @@ const long MultiRNGFrame::ID_DISTCHOICE = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL3 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT1 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL4 = wxNewId();
+const long MultiRNGFrame::ID_CHECKBOX1 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(MultiRNGFrame,wxFrame)
@@ -78,14 +94,44 @@ END_EVENT_TABLE()
 MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(MultiRNGFrame)
-    Create(parent, id, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
-    SetClientSize(wxSize(373,351));
-    limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,80), 0, _T("ID_LIMITSBOX"));
-    limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
-    boostDistOptionsBox = new wxStaticBox(this, ID_STATICBOX1, _("Boost-Specific Distribution Options"), wxPoint(16,200), wxSize(336,112), 0, _T("ID_STATICBOX1"));
-    boostDistOptionsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
+    Create(parent, wxID_ANY, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+    SetClientSize(wxSize(373,477));
+    boostAlgoOptions = new wxStaticBox(this, ID_BOOSTALGOOPTSBOX, _("Boost-Specific Algorithm Options"), wxPoint(16,200), wxSize(336,120), 0, _T("ID_BOOSTALGOOPTSBOX"));
+    boostAlgoOptions->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
+    boost1stAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL7, _("1st:"), wxPoint(24,248), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL7"));
+    boost1stAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
+    boost1stAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL5, _("Text"), wxPoint(64,248), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL5"));
+    boost1stAlgoParameterField->Disable();
+    boost4thAlgoField = new wxTextCtrl(this, ID_TEXTCTRL12, _("Text"), wxPoint(224,216), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL12"));
+    boost4thAlgoField->Disable();
+    boost4thAlgoLabel = new wxTextCtrl(this, ID_TEXTCTRL14, _("4th:"), wxPoint(184,216), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL14"));
+    boost4thAlgoLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
+    boost7th = new wxTextCtrl(this, ID_TEXTCTRL17, _("7th:"), wxPoint(184,288), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL17"));
+    boost7th->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
+    boost3rdAlgoLabel = new wxTextCtrl(this, ID_TEXTCTRL16, _("3rd:"), wxPoint(24,296), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL16"));
+    boost3rdAlgoLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
+    boost6thAlgoLabel = new wxTextCtrl(this, ID_TEXTCTRL15, _("6th:"), wxPoint(184,264), wxSize(40,16), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL15"));
+    boost6thAlgoLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
+    boost5thAlgoLabel = new wxTextCtrl(this, ID_TEXTCTRL13, _("5th:"), wxPoint(184,240), wxSize(40,16), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL13"));
+    boost5thAlgoLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     lowerLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL2, _("Lower:"), wxPoint(24,128), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     lowerLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
+    boost2ndAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL6, _("Text"), wxPoint(64,272), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
+    boost2ndAlgoParameterField->Disable();
+    boost3rdAlgoField = new wxTextCtrl(this, ID_TEXTCTRL10, _("Text"), wxPoint(64,296), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL10"));
+    boost3rdAlgoField->Disable();
+    boost6thAlgoField = new wxTextCtrl(this, ID_TEXTCTRL18, _("Text"), wxPoint(224,264), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL18"));
+    boost6thAlgoField->Disable();
+    boost7thAlgoField = new wxTextCtrl(this, ID_TEXTCTRL11, _("Text"), wxPoint(224,288), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL11"));
+    boost7thAlgoField->SetFocus();
+    boost5thAlgoField = new wxTextCtrl(this, ID_TEXTCTRL9, _("Text"), wxPoint(224,240), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL9"));
+    boost5thAlgoField->Disable();
+    boostDistOptionsBox = new wxStaticBox(this, ID_BOOSTDISTOPTSBOX, _("Boost-Specific Distribution Options"), wxPoint(16,328), wxSize(336,112), 0, _T("ID_BOOSTDISTOPTSBOX"));
+    boostDistOptionsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
+    limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,80), 0, _T("ID_LIMITSBOX"));
+    limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
+    boost2ndAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL8, _("2nd:"), wxPoint(24,272), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL8"));
+    boost2ndAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Advanced options"), wxPoint(160,104), wxSize(192,80), 0, _T("ID_BOOSTSPECBOX"));
     boostSpecificBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     lowerLimitField = new wxTextCtrl(this, ID_UPLIMITFIELD, _("500"), wxPoint(64,128), wxSize(72,21), 0, wxDefaultValidator, _T("ID_UPLIMITFIELD"));
@@ -101,7 +147,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     amountField = new wxTextCtrl(this, ID_AMOUNTFIELD, _("100"), wxPoint(56,48), wxDefaultSize, 0, wxDefaultValidator, _T("ID_AMOUNTFIELD"));
     fileLabel = new wxStaticText(this, ID_FILELABEL, _("File:"), wxPoint(184,48), wxDefaultSize, 0, _T("ID_FILELABEL"));
     filenameField = new wxTextCtrl(this, ID_FILEFIELD, _("random.txt"), wxPoint(216,48), wxSize(152,21), 0, wxDefaultValidator, _T("ID_FILEFIELD"));
-    okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(112,320), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
+    okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(120,448), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
     seedLabel = new wxStaticText(this, ID_SEEDLABEL, _("Seed:"), wxPoint(8,80), wxDefaultSize, 0, _T("ID_SEEDLABEL"));
     seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(56,80), wxSize(312,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
     upperLimitField = new wxTextCtrl(this, ID_TEXTCTRL1, _("1000"), wxPoint(64,152), wxSize(72,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
@@ -126,6 +172,9 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     bitsLabel->SetToolTip(_("Bits to use in GMP Linear Congruential algorithm"));
     bitsField = new wxTextCtrl(this, ID_TEXTCTRL4, _("64"), wxPoint(232,144), wxSize(112,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
     bitsField->SetMaxLength(20);
+    bitsField->Disable();
+    CheckBox1 = new wxCheckBox(this, ID_CHECKBOX1, _("Enable special parameters"), wxPoint(24,224), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
+    CheckBox1->SetValue(false);
 
     Connect(ID_LIBCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnLibraryChoiceSelect);
     Connect(ID_OKBUTTON,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&MultiRNGFrame::OnOkButtonClick);
