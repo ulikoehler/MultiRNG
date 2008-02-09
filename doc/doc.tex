@@ -2,6 +2,7 @@
 \usepackage[ngerman]{babel}
 
 \begin{document}
+\tableofcontents
 \section{Introduction}
 MultiRNG (Multi Random Number Generator is a multiplatform-application which lets you generate reproducable random numbers using several libraries, algorithms and distributions.\newline
 It supports mutithreading, so, when you click OK, a new thread is created which runs the specific generation function. The thread runs is background and writes the results to the specified file.\newline
@@ -14,10 +15,23 @@ Additionally, some libaries are required:
 \item[wxWidgets]MultiRNG uses this libary for the multiplatform GUI interface. MultiRNG binaries are compiled against wxWidgets 2.8.7. Get it from http://wxwidgets.org. If you are using Windows, there are procompiled binaries at http://wxpack.sourceforge.net. I recommend that you link MultiRNG against a dynamic version of wxWidgets (precompiled binaries do so).
 \item[GMP]MultiRNG is using GMP to provide support for Mersenne Twister and Linear congruential algorithm with arbitrary precision input. GMP is the only libary supported by MultiRNG that supports arbitrary precision numbers. You don't need gmpxx (GMP C++ interface) to compile MultiRNG. I recommend to link here dynamically also, but precompiled Win32 binaries are linked statically. Linking GMP statically forces you to offer your application under GPL. Because 
 \item[MersenneTwister.h]This is just a header file which offers an interface to a MT19937 Pseudo-random number generator. You can get it from http://www-personal.umich.edu/~wagnerr/MersenneTwister.h.
-\item[Boost C++ Libraries]Boost is a collection of some C++ Libraries from which some will probably be included in the next C++ standard. MultiRNG uses Boost libraries to provide multithreading and for providing some useful template functions, for example lexical cast which shrinks the code very much, but the most important reaon why boost is used in MultiRNG is Boost::Random. That library provides advanced support for many algorithms and distribution. You can customize all algorithms and distributions by checking '"Enable customized algorithm"' in GUI. The you will be asked for a number of parameters depending on the choosen algorithm. Although most algorithms have a special configuration without parameters (this configuration is specified by boost). Anyhow you have to specify some parameters when no special configurations are defined by boost. Now this is the case only at lagged fibonacci generator. Get it boost from http://boost.org. You have to compile boost becuase of 
+\item[Boost C++ Libraries]Boost is a collection of a couple of C++ Libraries from which some will probably be included in the next C++ standard. MultiRNG uses Boost libraries to provide multithreading and for providing some useful template functions, for example lexical cast which shrinks the code very much, but the most important reaon why boost is used in MultiRNG is Boost::Random. That library provides advanced support for many algorithms and distribution. You can customize all algorithms and distributions by checking '"Enable customized algorithm"' in GUI. The you will be asked for a number of parameters depending on the choosen algorithm. Although most algorithms have a special configuration without parameters (this configuration is specified by boost). Anyhow you have to specify some parameters when no special configurations are defined by boost. Now this is the case only at lagged fibonacci generator. Get it boost from http://boost.org. You have to compile boost becuase of 
 \end{description}
-When you meet all these requirements, you have to choose a compiler. Building MultiRNG has only been tested with MinGW-GCC 4 until now. Most compilers should be able to build the program, but I highly recommend to use the Gnu Compiler (or Intel Compiler, if you have) because it optimizes far better than most other compilers. 
-\section{Libraries}
-This section containts a short description of the libaries which MultiRNG uses.
-\subsection{Boost::Random}
+When you meet all these requirements, you have to choose a compiler. Building MultiRNG has only been tested with MinGW-GCC 4 until now. Most compilers should be able to build the program, but I highly recommend to use the Gnu Compiler (or Intel Compiler, if you have) because it optimizes far better than most other compilers. If you are using Microsoft(r) Windows(r) and want to optimize for size, it may be advantageous to use Microsoft Compiler instead of MinGW because so you can link the C standard library dynamically (Beware of dynamically linking to much when optimizing for speed). Microsft Compiler does not optimize as well as GNU Compiler even under Windows. I do not recommend to use Cygwin simply because it is not intended to be very fast and required an extra DLL which may be very inefficient. If you are futhermore interested in optimizing, see http://agner.org.\newline
+When you have finished compiler setup, start Code::Blocks and open MultiRNG.cbp. Select build target Release Windows of you are using Microsoft Windows or Release Linux if you are using any other POSIX-Compatible system (for some others slight code changes may be required). Then click build. This may take a time even on very fast computer, because we have to precompile a header and each object file separately. If building is finished, click run. If the project requires the DLL wxmsw28u\_gcc.dll, get it from your wxPack directory or from http://multirng.googlecode.com/files/wxmsw28u\_gcc.dll. Under linux, you have to install wxWidgets or if you distribution does not have a such package wxGTK/wxX11 (at your choice). If don't find such a package you can compile wxWidgets by yourself. I don't recommend to do so because it takes several hours.
+\section{MersenneTwister.h}
+This section contains some information about options when selecting MersenneTwister.h as Library.\newline
+As the name already shows, this library contains only the MersenneTwister Algorithm, but several ranges wherein the generated number (we call it n) can be. MersenneTwister.h is very fast and using less memory than the other 
+\subsection{Algorithms}
+\subsubsection{Mersenne Twister 19937}
+This algorithm is a special configuration of MersenneTwister. Mersenne Twister is very fast and MersenneTwister.h has less functions to call than any other library and is highly optimized, especially if you compile MultiRNG with SSE2+. The library is delivered as header file so the compiler can easier use optimization over the functions. MersenneTwister itself is supposed to be one of the fastest (if not the fastest) algorithm
+\subsection{Ranges}
+\section{GMP}
+\section{Boost::Random}
+\section{Technical details}
+\subsection{Algorithms}
+
+\subsection{Distributions}
+
+\subsection{Code}
 \end{document}
