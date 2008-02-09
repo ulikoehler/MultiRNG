@@ -54,6 +54,8 @@
 					<Add option="-mthreads" />
 					<Add option="-ffunction-sections" />
 					<Add option="-fomit-frame-pointer" />
+					<Add option="-ftree-vectorize" />
+					<Add option="-msse2" />
 					<Add option="-D__GNUWIN32__" />
 					<Add option="-D__WXMSW__" />
 					<Add option="-DRELEASE" />
@@ -67,6 +69,7 @@
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-fwhole-program" />
 					<Add library="libwxmsw28u.a" />
 					<Add library="gmp" />
 					<Add library="boost_thread-mgw34-mt-1_34_1" />

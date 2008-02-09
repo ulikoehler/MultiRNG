@@ -354,8 +354,8 @@ void GenRandBoost()
                 }
             case 2: ///Additive combine
                 {
-                    ecuyer1988 addComb(ulSeed);
-                    ProcessBoostAlgorithm<ecuyer1988>(&addComb);
+                    //ecuyer1988 addComb(lexical_cast<unsigned int>(ulSeed));
+                    //ProcessBoostAlgorithm<ecuyer1988>(&addComb);
                     break;
                 }
             case 3: ///Inverse congruential
@@ -372,8 +372,8 @@ void GenRandBoost()
                 }
             case 5: ///Lagged Fibonacci
                 {
-                    lagged_fibonacci<unsigned int,  lagFib(ulSeed);
-                    algorithm = &lagFib;
+                    //lagged_fibonacci<unsigned int,  lagFib(ulSeed);
+                    //algorithm = &lagFib;
                     break;
                 }
             default: break;
