@@ -293,15 +293,10 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
             {
                 lowerLimitField->Enable(true);
                 upperLimitField->Enable(true);
-                switch(algorithmChoice->GetCurrentSelection())
+                ///Force parameter selection for Lagged fibonacci Generator
+                if(algorithmChoice->GetCurrentSelection()==7)
                     {
-                        //case 1: break; ///MT9937
-                        case 2: break; ///Linear Congruential
-                        case 3: break;
-                        case 4: break;
-                        case 5: break;
-                        case 6: break;
-                        default: break;
+
                     }
             }
         case 1: ///MersenneTwister.h
@@ -376,6 +371,7 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
     distributionSelectionParam = distributionChoice->GetCurrentSelection();
     algorithmSelectionParam = algorithmChoice->GetCurrentSelection();
     filenameParam = lexical_cast<string>(filenameField->GetValue().mb_str());
+    customAlgorithm = boostAlgoParametersCheckbox->IsChecked();
 
     ///Init algorithm parameters
     boostAlgoParam1 = lexical_cast<long>(boost1stAlgoParameterField->GetValue().mb_str());
@@ -408,12 +404,9 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
 
 }
 
-
-
-
 void MultiRNGFrame::OnBoostAlgoParametersCheckboxClick(wxCommandEvent& event)
 {
-    if(boostAlgoParametersCheckbox->GetSelected())
+    if(boostAlgoParametersCheckbox->IsChecked())
         {
             boost1stAlgoParameterField->Enable(true);
             boost2ndAlgoParameterField->Enable(true);
@@ -425,9 +418,13 @@ void MultiRNGFrame::OnBoostAlgoParametersCheckboxClick(wxCommandEvent& event)
         }
     else
         {
-            boost1stAlgoParameterField->Enable(false);
-            boost2ndAlgoParameterField->Enable(false);
-            boost3rdAlgoParameterField->Enable(false);
+            ///Deactive only if selected Generator is not lagged fibonacci.
+            if(algorithmChoice->GetCurrentSelection()!=7)
+                {
+                    boost1stAlgoParameterField->Enable(false);
+                    boost2ndAlgoParameterField->Enable(false);
+                    boost3rdAlgoParameterField->Enable(false);
+                }
             boost4thAlgoParameterField->Enable(false);
             boost5thAlgoParameterField->Enable(false);
             boost6thAlgoParameterField->Enable(false);

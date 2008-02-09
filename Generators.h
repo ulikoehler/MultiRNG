@@ -24,6 +24,7 @@ static long boostAlgoParam7;
 static int distributionSelectionParam;
 static int algorithmSelectionParam;
 static ulong bitsParam;
+bool customAlgorithm;
 
 void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
 {
