@@ -2,11 +2,17 @@
 <wxsmith>
 	<object class="wxFrame" name="MultiRNGFrame">
 		<title>MultiRNG</title>
-		<size>373,222</size>
+		<size>373,351</size>
 		<object class="wxStaticBox" name="ID_LIMITSBOX" variable="limitsBox" member="yes">
 			<label>Limits</label>
 			<pos>16,104</pos>
 			<size>128,80</size>
+			<fg>wxSYS_COLOUR_MENUTEXT</fg>
+		</object>
+		<object class="wxStaticBox" name="ID_STATICBOX1" variable="boostDistOptionsBox" member="yes">
+			<label>Boost-Specific Distribution Options</label>
+			<pos>16,200</pos>
+			<size>336,112</size>
 			<fg>wxSYS_COLOUR_MENUTEXT</fg>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="lowerLimitLabel" member="yes">
@@ -72,7 +78,7 @@
 		</object>
 		<object class="wxButton" name="ID_OKBUTTON" variable="okButton" member="yes">
 			<label>OK</label>
-			<pos>112,192</pos>
+			<pos>112,320</pos>
 			<size>136,23</size>
 			<handler function="OnOkButtonClick" entry="EVT_BUTTON" />
 		</object>

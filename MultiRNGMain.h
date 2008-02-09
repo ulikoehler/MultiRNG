@@ -43,6 +43,7 @@ class MultiRNGFrame: public wxFrame
 
         //(*Identifiers(MultiRNGFrame)
         static const long ID_LIMITSBOX;
+        static const long ID_STATICBOX1;
         static const long ID_TEXTCTRL2;
         static const long ID_BOOSTSPECBOX;
         static const long ID_UPLIMITFIELD;
@@ -71,6 +72,7 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* lowerLimitLabel;
         wxStaticText* seedLabel;
         wxTextCtrl* lowerLimitField;
+        wxStaticBox* boostDistOptionsBox;
         wxStaticBox* boostSpecificBox;
         wxChoice* algorithmChoice;
         wxTextCtrl* bitsField;
