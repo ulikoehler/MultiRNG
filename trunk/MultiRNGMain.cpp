@@ -96,13 +96,13 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     //(*Initialize(MultiRNGFrame)
     Create(parent, wxID_ANY, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     SetClientSize(wxSize(373,477));
-    boostAlgoOptions = new wxStaticBox(this, ID_BOOSTALGOOPTSBOX, _("Boost-Specific Algorithm Options"), wxPoint(16,200), wxSize(336,120), 0, _T("ID_BOOSTALGOOPTSBOX"));
+    boostAlgoOptions = new wxStaticBox(this, ID_BOOSTALGOOPTSBOX, _("Boost-Specific Algorithm Options"), wxPoint(16,200), wxSize(344,120), 0, _T("ID_BOOSTALGOOPTSBOX"));
     boostAlgoOptions->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     boost1stAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL7, _("1st:"), wxPoint(24,240), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL7"));
     boost1stAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost1stAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL5, _("Text"), wxPoint(64,240), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL5"));
+    boost1stAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL5, _("1"), wxPoint(64,240), wxSize(120,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL5"));
     boost1stAlgoParameterField->Disable();
-    boost4thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL12, _("Text"), wxPoint(224,216), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL12"));
+    boost4thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL12, _("4"), wxPoint(224,216), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL12"));
     boost4thAlgoParameterField->Disable();
     boost4thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL14, _("4th:"), wxPoint(184,216), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL14"));
     boost4thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
@@ -116,16 +116,16 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     boost5thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     lowerLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL2, _("Lower:"), wxPoint(24,128), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     lowerLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost2ndAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL6, _("Text"), wxPoint(64,264), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
+    boost2ndAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL6, _("2"), wxPoint(64,264), wxSize(120,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
     boost2ndAlgoParameterField->Disable();
-    boost3rdAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL10, _("Text"), wxPoint(64,288), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL10"));
+    boost3rdAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL10, _("3"), wxPoint(64,288), wxSize(120,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL10"));
     boost3rdAlgoParameterField->Disable();
-    boost6thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL18, _("Text"), wxPoint(224,264), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL18"));
+    boost6thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL18, _("6"), wxPoint(224,264), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL18"));
     boost6thAlgoParameterField->Disable();
-    boost7thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL11, _("Text"), wxPoint(224,288), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL11"));
+    boost7thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL11, _("7"), wxPoint(224,288), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL11"));
     boost7thAlgoParameterField->Disable();
     boost7thAlgoParameterField->SetFocus();
-    boost5thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL9, _("Text"), wxPoint(224,240), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL9"));
+    boost5thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL9, _("5"), wxPoint(224,240), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL9"));
     boost5thAlgoParameterField->Disable();
     boostDistOptionsBox = new wxStaticBox(this, ID_BOOSTDISTOPTSBOX, _("Boost-Specific Distribution Options"), wxPoint(16,328), wxSize(336,112), 0, _T("ID_BOOSTDISTOPTSBOX"));
     boostDistOptionsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
@@ -133,7 +133,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     boost2ndAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL8, _("2nd:"), wxPoint(24,264), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL8"));
     boost2ndAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Advanced options"), wxPoint(160,104), wxSize(192,80), 0, _T("ID_BOOSTSPECBOX"));
+    boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Advanced options"), wxPoint(160,104), wxSize(208,80), 0, _T("ID_BOOSTSPECBOX"));
     boostSpecificBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     lowerLimitField = new wxTextCtrl(this, ID_UPLIMITFIELD, _("500"), wxPoint(64,128), wxSize(72,21), 0, wxDefaultValidator, _T("ID_UPLIMITFIELD"));
     libraryLabel = new wxStaticText(this, ID_LIBLABEL, _("Library:"), wxPoint(8,16), wxDefaultSize, 0, _T("ID_LIBLABEL"));
@@ -154,7 +154,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     upperLimitField = new wxTextCtrl(this, ID_TEXTCTRL1, _("1000"), wxPoint(64,152), wxSize(72,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     upperLimitField->Disable();
     distributionLabel = new wxStaticText(this, ID_DISTLABEL, _("Distribution:"), wxPoint(168,128), wxDefaultSize, 0, _T("ID_DISTLABEL"));
-    distributionChoice = new wxChoice(this, ID_DISTCHOICE, wxPoint(232,120), wxSize(112,21), 0, 0, 0, wxDefaultValidator, _T("ID_DISTCHOICE"));
+    distributionChoice = new wxChoice(this, ID_DISTCHOICE, wxPoint(232,120), wxSize(128,21), 0, 0, 0, wxDefaultValidator, _T("ID_DISTCHOICE"));
     distributionChoice->Append(_("Uniform Small Integer"));
     distributionChoice->SetSelection( distributionChoice->Append(_("Uniform Integer")) );
     distributionChoice->Append(_("Uniform 01"));
@@ -171,7 +171,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     upperLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     bitsLabel = new wxStaticText(this, ID_STATICTEXT1, _("Bits:"), wxPoint(200,152), wxSize(24,13), 0, _T("ID_STATICTEXT1"));
     bitsLabel->SetToolTip(_("Bits to use in GMP Linear Congruential algorithm"));
-    bitsField = new wxTextCtrl(this, ID_TEXTCTRL4, _("64"), wxPoint(232,144), wxSize(112,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
+    bitsField = new wxTextCtrl(this, ID_TEXTCTRL4, _("64"), wxPoint(232,144), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
     bitsField->SetMaxLength(20);
     bitsField->Disable();
     boostAlgoParametersCheckbox = new wxCheckBox(this, ID_CHECKBOX1, _("Enable special parameters"), wxPoint(30,220), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
@@ -285,15 +285,24 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
     ///Disable all fields
     lowerLimitField->Enable(false);
     upperLimitField->Enable(false);
-    lowerLimitLabel->Enable(false);
-    upperLimitLabel->Enable(false);
     bitsField->Enable(false);
 
     switch(libraryChoice->GetCurrentSelection())
     {
         case 0: ///Boost/random
             {
-
+                lowerLimitField->Enable(true);
+                upperLimitField->Enable(true);
+                switch(algorithmChoice->GetCurrentSelection())
+                    {
+                        //case 1: break; ///MT9937
+                        case 2: break; ///Linear Congruential
+                        case 3: break;
+                        case 4: break;
+                        case 5: break;
+                        case 6: break;
+                        default: break;
+                    }
             }
         case 1: ///MersenneTwister.h
             {
@@ -359,7 +368,7 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
 
 void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
 {
-    ///Init s                                                            tatic variables
+    ///Init static variables
     amountParam = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
     seedParam = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
     ulParam = lexical_cast<string>(upperLimitField->GetValue().mb_str());
@@ -367,6 +376,16 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
     distributionSelectionParam = distributionChoice->GetCurrentSelection();
     algorithmSelectionParam = algorithmChoice->GetCurrentSelection();
     filenameParam = lexical_cast<string>(filenameField->GetValue().mb_str());
+
+    ///Init algorithm parameters
+    boostAlgoParam1 = lexical_cast<long>(boost1stAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam2 = lexical_cast<long>(boost2ndAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam3 = lexical_cast<long>(boost3rdAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam4 = lexical_cast<long>(boost4thAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam5 = lexical_cast<long>(boost5thAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam6 = lexical_cast<long>(boost6thAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam7 = lexical_cast<long>(boost7thAlgoParameterField->GetValue().mb_str());
+
     switch(libraryChoice->GetCurrentSelection())
     {
         case 0: ///Boost/random

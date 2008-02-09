@@ -14,6 +14,13 @@ static ulong seedParam;
 static string filenameParam;
 static string ulParam;
 static string llParam;
+static long boostAlgoParam1;
+static long boostAlgoParam2;
+static long boostAlgoParam3;
+static long boostAlgoParam4;
+static long boostAlgoParam5;
+static long boostAlgoParam6;
+static long boostAlgoParam7;
 static int distributionSelectionParam;
 static int algorithmSelectionParam;
 static ulong bitsParam;
@@ -364,8 +371,8 @@ void GenRandBoost()
                 }
             case 5: ///Lagged Fibonacci
                 {
-                    //lagged_fibonacci<unsigned int,  lagFib(ulSeed);
-                    //algorithm = &lagFib;
+                    lagged_fibonacci<unsigned int,  lagFib(ulSeed);
+                    algorithm = &lagFib;
                     break;
                 }
             default: break;

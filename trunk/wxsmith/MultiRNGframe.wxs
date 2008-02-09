@@ -7,7 +7,7 @@
 		<object class="wxStaticBox" name="ID_BOOSTALGOOPTSBOX" variable="boostAlgoOptions" member="yes">
 			<label>Boost-Specific Algorithm Options</label>
 			<pos>16,200</pos>
-			<size>336,120</size>
+			<size>344,120</size>
 			<fg>wxSYS_COLOUR_MENUTEXT</fg>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL7" variable="boost1stAlgoParameterLabel" member="yes">
@@ -18,13 +18,15 @@
 			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL5" variable="boost1stAlgoParameterField" member="yes">
-			<value>Text</value>
+			<value>1</value>
 			<pos>64,240</pos>
+			<size>120,21</size>
 			<enabled>0</enabled>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL12" variable="boost4thAlgoParameterField" member="yes">
-			<value>Text</value>
+			<value>4</value>
 			<pos>224,216</pos>
+			<size>128,21</size>
 			<enabled>0</enabled>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL14" variable="boost4thAlgoParameterLabel" member="yes">
@@ -70,29 +72,34 @@
 			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL6" variable="boost2ndAlgoParameterField" member="yes">
-			<value>Text</value>
+			<value>2</value>
 			<pos>64,264</pos>
+			<size>120,21</size>
 			<enabled>0</enabled>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL10" variable="boost3rdAlgoParameterField" member="yes">
-			<value>Text</value>
+			<value>3</value>
 			<pos>64,288</pos>
+			<size>120,21</size>
 			<enabled>0</enabled>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL18" variable="boost6thAlgoParameterField" member="yes">
-			<value>Text</value>
+			<value>6</value>
 			<pos>224,264</pos>
+			<size>128,21</size>
 			<enabled>0</enabled>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL11" variable="boost7thAlgoParameterField" member="yes">
-			<value>Text</value>
+			<value>7</value>
 			<pos>224,288</pos>
+			<size>128,21</size>
 			<enabled>0</enabled>
 			<focused>1</focused>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL9" variable="boost5thAlgoParameterField" member="yes">
-			<value>Text</value>
+			<value>5</value>
 			<pos>224,240</pos>
+			<size>128,21</size>
 			<enabled>0</enabled>
 		</object>
 		<object class="wxStaticBox" name="ID_BOOSTDISTOPTSBOX" variable="boostDistOptionsBox" member="yes">
@@ -117,7 +124,7 @@
 		<object class="wxStaticBox" name="ID_BOOSTSPECBOX" variable="boostSpecificBox" member="yes">
 			<label>Advanced options</label>
 			<pos>160,104</pos>
-			<size>192,80</size>
+			<size>208,80</size>
 			<fg>wxSYS_COLOUR_MENUTEXT</fg>
 		</object>
 		<object class="wxTextCtrl" name="ID_UPLIMITFIELD" variable="lowerLimitField" member="yes">
@@ -210,7 +217,7 @@
 			</content>
 			<selection>1</selection>
 			<pos>232,120</pos>
-			<size>112,21</size>
+			<size>128,21</size>
 			<handler function="OnDistributionChoiceSelect" entry="EVT_CHOICE" />
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="upperLimitLabel" member="yes">
@@ -230,7 +237,7 @@
 			<value>64</value>
 			<maxlength>20</maxlength>
 			<pos>232,144</pos>
-			<size>112,21</size>
+			<size>128,21</size>
 			<enabled>0</enabled>
 		</object>
 		<object class="wxCheckBox" name="ID_CHECKBOX1" variable="boostAlgoParametersCheckbox" member="yes">
