@@ -3,15 +3,20 @@
 
 \begin{document}
 \section{Introduction}
-MultiRNG is a multiplatform-application which lets you generate reproducable random numbers using several libraries, algorithms and distributions.\newline
+MultiRNG (Multi Random Number Generator is a multiplatform-application which lets you generate reproducable random numbers using several libraries, algorithms and distributions.\newline
+It supports mutithreading, so, when you click OK, a new thread is created which runs the specific generation function. The thread runs is background and writes the results to the specified file.\newline
 MultiRNG is in a very early state, so many selections in the GUI does not work correctly.
 \subsection{Compiling and installing MultiRNG}
-MultiRNG is using the free IDE Code::Blocks. You can get it from http://codeblocks.org.
+MultiRNG is using the free IDE Code::Blocks. You can get it from http://codeblocks.org. To Compile MultiRNG you have to use a nightly build and not 1.0RC2. I also recommend to use nightly uilds for productive development because they are very stable and include much more functions than the release.\newline
 Additionally, some libaries are required:
+
 \begin{description}
 \item[wxWidgets]MultiRNG uses this libary for the multiplatform GUI interface. MultiRNG binaries are compiled against wxWidgets 2.8.7. Get it from http://wxwidgets.org. If you are using Windows, there are procompiled binaries at http://wxpack.sourceforge.net. I recommend that you link MultiRNG against a dynamic version of wxWidgets (precompiled binaries do so).
-\item[GMP]MultiRNG is using GMP to provide support for Mersenne Twister and Linear congruential algorithm with arbitrary precision input. GMP is the only libary supported by MultiRNG that supports arbitrary precision numbers. You don't need gmpxx (GMP C++ interface) to compile MultiRNG. I recommend to link here dynamically also, but precompiled Win32 binaries are linked statically. 
+\item[GMP]MultiRNG is using GMP to provide support for Mersenne Twister and Linear congruential algorithm with arbitrary precision input. GMP is the only libary supported by MultiRNG that supports arbitrary precision numbers. You don't need gmpxx (GMP C++ interface) to compile MultiRNG. I recommend to link here dynamically also, but precompiled Win32 binaries are linked statically. Linking GMP statically forces you to offer your application under GPL. Because 
+\item[MersenneTwister.h]This is just a header file which offers an interface to a MT19937 Pseudo-random number generator. You can get it from http://www-personal.umich.edu/~wagnerr/MersenneTwister.h.
+\item[Boost C++ Libraries]Boost is a collection of some C++ Libraries from which some will probably be included in the next C++ standard. MultiRNG uses Boost libraries to provide multithreading and for providing some useful template functions, for example lexical cast which shrinks the code very much, but the most important reaon why boost is used in MultiRNG is Boost::Random. That library provides advanced support for many algorithms and distribution. You can customize all algorithms and distributions by checking '"Enable customized algorithm"' in GUI. The you will be asked for a number of parameters depending on the choosen algorithm. Although most algorithms have a special configuration without parameters (this configuration is specified by boost). Anyhow you have to specify some parameters when no special configurations are defined by boost. Now this is the case only at lagged fibonacci generator. Get it boost from http://boost.org. You have to compile boost becuase of 
 \end{description}
+When you meet all these requirements, you have to choose a compiler. Building MultiRNG has only been tested with MinGW-GCC 4 until now. Most compilers should be able to build the program, but I highly recommend to use the Gnu Compiler (or Intel Compiler, if you have) because it optimizes far better than most other compilers. 
 \section{Libraries}
 This section containts a short description of the libaries which MultiRNG uses.
 \subsection{Boost::Random}
