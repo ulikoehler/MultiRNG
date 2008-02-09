@@ -47,11 +47,14 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 
 //(*IdInit(MultiRNGFrame)
 const long MultiRNGFrame::ID_BOOSTALGOOPTSBOX = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL17 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL11 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL7 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL5 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL12 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL14 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL17 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL22 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL21 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL16 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL15 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL13 = wxNewId();
@@ -59,7 +62,8 @@ const long MultiRNGFrame::ID_TEXTCTRL2 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL6 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL10 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL18 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL11 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL20 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL19 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL9 = wxNewId();
 const long MultiRNGFrame::ID_BOOSTDISTOPTSBOX = wxNewId();
 const long MultiRNGFrame::ID_LIMITSBOX = wxNewId();
@@ -95,24 +99,31 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(MultiRNGFrame)
     Create(parent, wxID_ANY, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
-    SetClientSize(wxSize(373,477));
-    boostAlgoOptions = new wxStaticBox(this, ID_BOOSTALGOOPTSBOX, _("Boost-Specific Algorithm Options"), wxPoint(16,200), wxSize(344,120), 0, _T("ID_BOOSTALGOOPTSBOX"));
+    SetClientSize(wxSize(373,545));
+    boostAlgoOptions = new wxStaticBox(this, ID_BOOSTALGOOPTSBOX, _("Boost-Specific Algorithm Options"), wxPoint(16,200), wxSize(344,144), 0, _T("ID_BOOSTALGOOPTSBOX"));
     boostAlgoOptions->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
+    boost7thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL17, _("7th:"), wxPoint(184,264), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL17"));
+    boost7thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
+    boost7thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL11, _("7"), wxPoint(224,264), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL11"));
+    boost7thAlgoParameterField->Disable();
+    boost7thAlgoParameterField->SetFocus();
     boost1stAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL7, _("1st:"), wxPoint(24,240), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL7"));
     boost1stAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     boost1stAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL5, _("1"), wxPoint(64,240), wxSize(120,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL5"));
     boost1stAlgoParameterField->Disable();
-    boost4thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL12, _("4"), wxPoint(224,216), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL12"));
+    boost4thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL12, _("4"), wxPoint(64,312), wxSize(120,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL12"));
     boost4thAlgoParameterField->Disable();
-    boost4thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL14, _("4th:"), wxPoint(184,216), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL14"));
+    boost4thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL14, _("4th:"), wxPoint(24,312), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL14"));
     boost4thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost7thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL17, _("7th:"), wxPoint(184,288), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL17"));
-    boost7thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
+    TextCtrl4 = new wxTextCtrl(this, ID_TEXTCTRL22, _("8th:"), wxPoint(184,288), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL22"));
+    TextCtrl4->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
+    TextCtrl3 = new wxTextCtrl(this, ID_TEXTCTRL21, _("9th:"), wxPoint(184,312), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL21"));
+    TextCtrl3->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     boost3rdAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL16, _("3rd:"), wxPoint(24,288), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL16"));
     boost3rdAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost6thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL15, _("6th:"), wxPoint(184,264), wxSize(40,16), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL15"));
+    boost6thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL15, _("6th:"), wxPoint(184,240), wxSize(40,16), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL15"));
     boost6thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost5thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL13, _("5th:"), wxPoint(184,240), wxSize(40,16), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL13"));
+    boost5thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL13, _("5th:"), wxPoint(184,216), wxSize(40,16), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL13"));
     boost5thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     lowerLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL2, _("Lower:"), wxPoint(24,128), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     lowerLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
@@ -120,14 +131,17 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     boost2ndAlgoParameterField->Disable();
     boost3rdAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL10, _("3"), wxPoint(64,288), wxSize(120,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL10"));
     boost3rdAlgoParameterField->Disable();
-    boost6thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL18, _("6"), wxPoint(224,264), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL18"));
+    boost6thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL18, _("6"), wxPoint(224,240), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL18"));
     boost6thAlgoParameterField->Disable();
-    boost7thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL11, _("7"), wxPoint(224,288), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL11"));
-    boost7thAlgoParameterField->Disable();
-    boost7thAlgoParameterField->SetFocus();
-    boost5thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL9, _("5"), wxPoint(224,240), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL9"));
+    boost8thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL20, _("8"), wxPoint(224,288), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL20"));
+    boost8thAlgoParameterField->Disable();
+    boost8thAlgoParameterField->SetFocus();
+    boost9thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL19, _("9"), wxPoint(224,312), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL19"));
+    boost9thAlgoParameterField->Disable();
+    boost9thAlgoParameterField->SetFocus();
+    boost5thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL9, _("5"), wxPoint(224,216), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL9"));
     boost5thAlgoParameterField->Disable();
-    boostDistOptionsBox = new wxStaticBox(this, ID_BOOSTDISTOPTSBOX, _("Boost-Specific Distribution Options"), wxPoint(16,328), wxSize(336,112), 0, _T("ID_BOOSTDISTOPTSBOX"));
+    boostDistOptionsBox = new wxStaticBox(this, ID_BOOSTDISTOPTSBOX, _("Boost-Specific Distribution Options"), wxPoint(8,384), wxSize(336,112), 0, _T("ID_BOOSTDISTOPTSBOX"));
     boostDistOptionsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,80), 0, _T("ID_LIMITSBOX"));
     limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
@@ -148,7 +162,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     amountField = new wxTextCtrl(this, ID_AMOUNTFIELD, _("100"), wxPoint(56,48), wxDefaultSize, 0, wxDefaultValidator, _T("ID_AMOUNTFIELD"));
     fileLabel = new wxStaticText(this, ID_FILELABEL, _("File:"), wxPoint(184,48), wxDefaultSize, 0, _T("ID_FILELABEL"));
     filenameField = new wxTextCtrl(this, ID_FILEFIELD, _("random.txt"), wxPoint(216,48), wxSize(152,21), 0, wxDefaultValidator, _T("ID_FILEFIELD"));
-    okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(120,448), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
+    okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(120,512), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
     seedLabel = new wxStaticText(this, ID_SEEDLABEL, _("Seed:"), wxPoint(8,80), wxDefaultSize, 0, _T("ID_SEEDLABEL"));
     seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(56,80), wxSize(312,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
     upperLimitField = new wxTextCtrl(this, ID_TEXTCTRL1, _("1000"), wxPoint(64,152), wxSize(72,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
@@ -174,7 +188,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     bitsField = new wxTextCtrl(this, ID_TEXTCTRL4, _("64"), wxPoint(232,144), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
     bitsField->SetMaxLength(20);
     bitsField->Disable();
-    boostAlgoParametersCheckbox = new wxCheckBox(this, ID_CHECKBOX1, _("Enable special parameters"), wxPoint(30,220), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
+    boostAlgoParametersCheckbox = new wxCheckBox(this, ID_CHECKBOX1, _("Enable customized algorithm"), wxPoint(30,220), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
     boostAlgoParametersCheckbox->SetValue(false);
 
     Connect(ID_LIBCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnLibraryChoiceSelect);
