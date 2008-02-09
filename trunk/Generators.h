@@ -241,8 +241,8 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                 }
             case 4: ///Triangle
                 {
-                    triangle_distribution<int> smallInt(llInt, ulInt);
-                    variate_generator<Algorithm&, triangle_distribution<int> > generator(*algorithm, smallInt);
+                    triangle_distribution<double> triangle(llInt, ulInt, 0); ///DUMMY TODO
+                    variate_generator<Algorithm&, triangle_distribution<double> > generator(*algorithm, triangle);
                     for(unsigned long i = 0;i < amount;i++)
                         {
                             f << generator() << endl;

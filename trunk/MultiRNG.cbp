@@ -120,6 +120,13 @@
 					<Add library="boost_thread-mgw34-mt-1_34_1" />
 				</Linker>
 			</Target>
+			<Target title="Documentation">
+				<Option type="4" />
+				<Option compiler="gcc" />
+				<ExtraCommands>
+					<Add before="latex doc/doc.tex" />
+				</ExtraCommands>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-pipe" />
@@ -133,11 +140,36 @@
 		<ResourceCompiler>
 			<Add directory="C:\wxPack-2.8\include" />
 		</ResourceCompiler>
-		<Unit filename="Generators.h" />
-		<Unit filename="MultiRNGApp.cpp" />
-		<Unit filename="MultiRNGApp.h" />
-		<Unit filename="MultiRNGMain.cpp" />
-		<Unit filename="MultiRNGMain.h" />
+		<Unit filename="Generators.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Debug Linux" />
+			<Option target="Release Linux" />
+		</Unit>
+		<Unit filename="MultiRNGApp.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Debug Linux" />
+			<Option target="Release Linux" />
+		</Unit>
+		<Unit filename="MultiRNGApp.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Debug Linux" />
+			<Option target="Release Linux" />
+		</Unit>
+		<Unit filename="MultiRNGMain.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Debug Linux" />
+			<Option target="Release Linux" />
+		</Unit>
+		<Unit filename="MultiRNGMain.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Debug Linux" />
+			<Option target="Release Linux" />
+		</Unit>
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
 			<Option weight="100" />
@@ -147,8 +179,17 @@
 		<Unit filename="wx_pch.h">
 			<Option compile="1" />
 			<Option weight="0" />
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Debug Linux" />
+			<Option target="Release Linux" />
 		</Unit>
-		<Unit filename="wxsmith\MultiRNGframe.wxs" />
+		<Unit filename="wxsmith\MultiRNGframe.wxs">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Debug Linux" />
+			<Option target="Release Linux" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -47,6 +47,7 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 
 //(*IdInit(MultiRNGFrame)
 const long MultiRNGFrame::ID_LIMITSBOX = wxNewId();
+const long MultiRNGFrame::ID_STATICBOX1 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL2 = wxNewId();
 const long MultiRNGFrame::ID_BOOSTSPECBOX = wxNewId();
 const long MultiRNGFrame::ID_UPLIMITFIELD = wxNewId();
@@ -78,9 +79,11 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(MultiRNGFrame)
     Create(parent, id, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
-    SetClientSize(wxSize(373,222));
+    SetClientSize(wxSize(373,351));
     limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,80), 0, _T("ID_LIMITSBOX"));
     limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
+    boostDistOptionsBox = new wxStaticBox(this, ID_STATICBOX1, _("Boost-Specific Distribution Options"), wxPoint(16,200), wxSize(336,112), 0, _T("ID_STATICBOX1"));
+    boostDistOptionsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     lowerLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL2, _("Lower:"), wxPoint(24,128), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     lowerLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Advanced options"), wxPoint(160,104), wxSize(192,80), 0, _T("ID_BOOSTSPECBOX"));
@@ -98,7 +101,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     amountField = new wxTextCtrl(this, ID_AMOUNTFIELD, _("100"), wxPoint(56,48), wxDefaultSize, 0, wxDefaultValidator, _T("ID_AMOUNTFIELD"));
     fileLabel = new wxStaticText(this, ID_FILELABEL, _("File:"), wxPoint(184,48), wxDefaultSize, 0, _T("ID_FILELABEL"));
     filenameField = new wxTextCtrl(this, ID_FILEFIELD, _("random.txt"), wxPoint(216,48), wxSize(152,21), 0, wxDefaultValidator, _T("ID_FILEFIELD"));
-    okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(112,192), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
+    okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(112,320), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
     seedLabel = new wxStaticText(this, ID_SEEDLABEL, _("Seed:"), wxPoint(8,80), wxDefaultSize, 0, _T("ID_SEEDLABEL"));
     seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(56,80), wxSize(312,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
     upperLimitField = new wxTextCtrl(this, ID_TEXTCTRL1, _("1000"), wxPoint(64,152), wxSize(72,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
@@ -178,6 +181,11 @@ void MultiRNGFrame::OnLibraryChoiceSelect(wxCommandEvent& event)
                 distributionChoice->Append(wxT("Lognormal"));
                 distributionChoice->Append(wxT("Uniform on Sphere"));
                 distributionChoice->SetSelection(0);
+                ///Enable and disable fields
+                upperLimitField->Enable(true);
+                upperLimitLabel->Enable(true);
+                lowerLimitField->Enable(true);
+                lowerLimitLabel->Enable(true);
                 break;
             }
         case 1: ///MersenneTwister.h
@@ -234,10 +242,7 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
     {
         case 0: ///Boost/random
             {
-                upperLimitField->Enable(true);
-                upperLimitLabel->Enable(true);
-                lowerLimitField->Enable(true);
-                lowerLimitLabel->Enable(true);
+
             }
         case 1: ///MersenneTwister.h
             {
