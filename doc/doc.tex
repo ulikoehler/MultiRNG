@@ -1,0 +1,18 @@
+\documentclass{scrartcl}
+\usepackage[ngerman]{babel}
+
+\begin{document}
+\section{Introduction}
+MultiRNG is a multiplatform-application which lets you generate reproducable random numbers using several libraries, algorithms and distributions.\newline
+MultiRNG is in a very early state, so many selections in the GUI does not work correctly.
+\subsection{Compiling and installing MultiRNG}
+MultiRNG is using the free IDE Code::Blocks. You can get it from http://codeblocks.org.
+Additionally, some libaries are required:
+\begin{description}
+\item[wxWidgets]MultiRNG uses this libary for the multiplatform GUI interface. MultiRNG binaries are compiled against wxWidgets 2.8.7. Get it from http://wxwidgets.org. If you are using Windows, there are procompiled binaries at http://wxpack.sourceforge.net. I recommend that you link MultiRNG against a dynamic version of wxWidgets (precompiled binaries do so).
+\item[GMP]MultiRNG is using GMP to provide support for Mersenne Twister and Linear congruential algorithm with arbitrary precision input. GMP is the only libary supported by MultiRNG that supports arbitrary precision numbers. You don't need gmpxx (GMP C++ interface) to compile MultiRNG. I recommend to link here dynamically also, but precompiled Win32 binaries are linked statically. 
+\end{description}
+\section{Libraries}
+This section containts a short description of the libaries which MultiRNG uses.
+\subsection{Boost::Random}
+\end{document}

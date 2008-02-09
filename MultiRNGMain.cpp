@@ -294,10 +294,20 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
                 lowerLimitField->Enable(true);
                 upperLimitField->Enable(true);
                 ///Force parameter selection for Lagged fibonacci Generator
-                if(algorithmChoice->GetCurrentSelection()==7)
-                    {
-
-                    }
+                switch(algorithmChoice->GetCurrentSelection())
+                {
+                    case 7:
+                        {
+                         boost1stAlgoParamField->Enable(true);
+                         boost2ndAlgoParamField->Enable(true);
+                         boost3rdAlgoParamField->Enable(true);
+                         boost4thAlgoParamField->Enable(true);
+                         boost1stAlgoParamLabel->SetText(wxT("w:"));
+                         boost2ndAlgoParamLabel->SetText(wxT("p:"));
+                         boost3rdAlgoParamLabel->SetText(wxT("q:"));
+                         boost4thAlgoParamField->SetText(wxT("val:"));
+                        }
+                }
             }
         case 1: ///MersenneTwister.h
             {
@@ -374,13 +384,13 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
     customAlgorithm = boostAlgoParametersCheckbox->IsChecked();
 
     ///Init algorithm parameters
-    boostAlgoParam1 = lexical_cast<long>(boost1stAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam2 = lexical_cast<long>(boost2ndAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam3 = lexical_cast<long>(boost3rdAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam4 = lexical_cast<long>(boost4thAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam5 = lexical_cast<long>(boost5thAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam6 = lexical_cast<long>(boost6thAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam7 = lexical_cast<long>(boost7thAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam1 = lexical_cast<int>(boost1stAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam2 = lexical_cast<int>(boost2ndAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam3 = lexical_cast<int>(boost3rdAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam4 = lexical_cast<int>(boost4thAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam5 = lexical_cast<int>(boost5thAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam6 = lexical_cast<int>(boost6thAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam7 = lexical_cast<int>(boost7thAlgoParameterField->GetValue().mb_str());
 
     switch(libraryChoice->GetCurrentSelection())
     {
@@ -424,6 +434,7 @@ void MultiRNGFrame::OnBoostAlgoParametersCheckboxClick(wxCommandEvent& event)
                     boost1stAlgoParameterField->Enable(false);
                     boost2ndAlgoParameterField->Enable(false);
                     boost3rdAlgoParameterField->Enable(false);
+                    boost4thAlgoParameterField->Enable(false);
                 }
             boost4thAlgoParameterField->Enable(false);
             boost5thAlgoParameterField->Enable(false);
