@@ -30,8 +30,11 @@ inline void benchmarkMTH()
     time[6] = ReadTSC();
     mtr.randDblExc(99.99);
     time[7] = ReadTSC();
+    mtr.randInt();
     time[8] = ReadTSC();
+    mtr.randInt(100000);
     time[9] = ReadTSC();
+    mtr.rand53();
     time[10] = ReadTSC();
 
     ///Display results
@@ -42,7 +45,7 @@ inline void benchmarkMTH()
     cout << "mtr.randExc(99.99) time:" << time[5]-time[4] << endl;
     cout << "mtr.randDblExc() time:" << time[6]-time[5] << endl;
     cout << "mtr.randDblExc(99.99) time:" << time[7]-time[6] << endl;
-    cout << "mtr.rand() time:" << time[8]-time[7] << endl;
-    cout << "mtr.rand() time:" << time[9]-time[8] << endl;
-    cout << "mtr.rand() time:" << time[10]-time[9] << endl;
+    cout << "mtr.randInt() time:" << time[8]-time[7] << endl;
+    cout << "mtr.rand(100000) time:" << time[9]-time[8] << endl;
+    cout << "mtr.rand53() time:" << time[10]-time[9] << endl;
 }
