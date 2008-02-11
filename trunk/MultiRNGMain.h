@@ -44,6 +44,10 @@ class MultiRNGFrame: public wxFrame
         //*)
 
         //(*Identifiers(MultiRNGFrame)
+        static const long ID_BOOSTSPECBOX;
+        static const long ID_LIMITSBOX;
+        static const long ID_TEXTCTRL2;
+        static const long ID_TEXTCTRL23;
         static const long ID_BOOSTALGOOPTSBOX;
         static const long ID_TEXTCTRL17;
         static const long ID_TEXTCTRL11;
@@ -56,7 +60,6 @@ class MultiRNGFrame: public wxFrame
         static const long ID_TEXTCTRL16;
         static const long ID_TEXTCTRL15;
         static const long ID_TEXTCTRL13;
-        static const long ID_TEXTCTRL2;
         static const long ID_TEXTCTRL6;
         static const long ID_TEXTCTRL10;
         static const long ID_TEXTCTRL18;
@@ -64,9 +67,7 @@ class MultiRNGFrame: public wxFrame
         static const long ID_TEXTCTRL19;
         static const long ID_TEXTCTRL9;
         static const long ID_BOOSTDISTOPTSBOX;
-        static const long ID_LIMITSBOX;
         static const long ID_TEXTCTRL8;
-        static const long ID_BOOSTSPECBOX;
         static const long ID_UPLIMITFIELD;
         static const long ID_LIBLABEL;
         static const long ID_ALGOLABEL;
@@ -80,7 +81,6 @@ class MultiRNGFrame: public wxFrame
         static const long ID_SEEDLABEL;
         static const long ID_SEEDFIELD;
         static const long ID_TEXTCTRL1;
-        static const long ID_DISTLABEL;
         static const long ID_DISTCHOICE;
         static const long ID_TEXTCTRL3;
         static const long ID_STATICTEXT1;
@@ -103,6 +103,7 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* boost2ndAlgoParameterField;
         wxTextCtrl* boost5thAlgoParameterLabel;
         wxTextCtrl* boost1stAlgoParameterField;
+        wxTextCtrl* distributionLabel;
         wxTextCtrl* boost2ndAlgoParameterLabel;
         wxTextCtrl* boost3rdAlgoParameterField;
         wxTextCtrl* boost8thAlgoParameterField;
@@ -129,7 +130,6 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* seedField;
         wxTextCtrl* amountField;
         wxTextCtrl* TextCtrl3;
-        wxStaticText* distributionLabel;
         wxTextCtrl* boost4thAlgoParameterField;
         //*)
         public:

@@ -372,7 +372,7 @@ void GenRandBoost()
                 }
             case 5: ///Lagged Fibonacci
                 {
-                    lagged_fibonacci<int, int, int, int, boostIntParam3>lagFib(ulSeed);
+                    //lagged_fibonacci<int, int, int, int, boostIntParam3>lagFib(ulSeed);
                     break;
                 }
             default: break;
