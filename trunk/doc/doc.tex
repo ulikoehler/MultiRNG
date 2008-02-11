@@ -26,24 +26,22 @@ This section contains some information about options when selecting MersenneTwis
 As the name already shows, this library contains only the MersenneTwister Algorithm, but several ranges wherein the generated number (we call it n) can be. MersenneTwister.h is very fast and using less memory than the other 
 \subsection{Algorithms}
 \subsubsection{Mersenne Twister 19937}
-This algorithm is a special configuration of MersenneTwister. Mersenne Twister is very fast and MersenneTwister.h has less functions to call than any other library and is highly optimized, especially if you compile MultiRNG with SSE2+. The library is delivered as header file so the compiler can easier use optimization over the functions. MersenneTwister itself is supposed to be one of the fastest (if not the fastest) algorithm, so with this library you may get the most results per timeunit. Benchmars show that it takes approximately 1250-2500 clockcycles (depending on the chosen function on a Pentium 4 Prescott Processor with a fully optimized build.
+This algorithm is a special configuration of MersenneTwister. Mersenne Twister is very fast and MersenneTwister.h has less functions to call than any other library and is highly optimized, especially if you compile MultiRNG with SSE2+. The library is delivered as header file so the compiler can easier use optimization over the functions. MersenneTwister itself is supposed to be one of the fastest (if not the fastest) algorithm, so with this library you may get the most results per timeunit. Benchmars show that it takes approximately 1250-2500 clockcycles (depending on the chosen function on a Pentium 4 Prescott Processor with a fully optimized build. This is pretty good, because Agner Fog's highly optimized asmlib takes 1000 clockcycles to generate a MersenneTwister random number. (And it isn't thread-safe beacuse there is nothing you can create a different instance for each thread from).
 \subsection{Ranges}
 MersenneTwister.h offers a couple of different ranges where the generated number can be in:
 \begin{itemize}
-	\item Uniform Small Integer
-	\item Uniform Integer
-	\item Uniform 01
-	\item Uniform Real
-	\item Triangle
-Bernoulli
-Cauchy
-Exponential
-Geometric
-Normal
-Lognormal
-Uniform on Sphere
-
+	\item "32-Bit Real in [0,1]"
+	\item "32-Bit Real in [0,n]"
+	\item "32-Bit Real in [0,1)"
+	\item "32-Bit Real in [0,n)"
+	\item "32-Bit Real in (0,1)"
+	\item "32-Bit Real in (0,n)"
+	\item "Integer in [0,2^32-1]"
+	\item "Integer in [0,n] for n < 2^32"
+	\item "53-bit real number in [0,1)"
+	\item "Nonuniform"
 \end{itemize}
+
 \section{GMP}
 \section{Boost::Random}
 \section{Technical details}
