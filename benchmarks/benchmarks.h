@@ -11,34 +11,35 @@
 
 using namespace std;
 
-inline void benchmarkMTH()
+void benchmarkMTH()
 {
     ///Declare variables
     __int64 time[11];
     MTRand mtr(100);
     srand(100); ///Seed C rand
+    double res[NUMTESTS];
 
     ///Run benchmark
     time[0] = ReadTSC();
-    for(int i = 0;i < NUMTESTS;i++) rand();
+    for(int i = 0;i < NUMTESTS;i++) {rand();}
     time[1] = ReadTSC();
-    for(int i = 0;i < NUMTESTS;i++) mtr.rand();
+    for(int i = 0;i < NUMTESTS;i++) {res[i] = mtr.rand();}
     time[2] = ReadTSC();
-    for(int i = 0;i < NUMTESTS;i++) mtr.rand(99.99);
+    for(int i = 0;i < NUMTESTS;i++) {mtr.rand(99.99);}
     time[3] = ReadTSC();
-    for(int i = 0;i < NUMTESTS;i++) mtr.randExc();
+    for(int i = 0;i < NUMTESTS;i++) {mtr.randExc();}
     time[4] = ReadTSC();
-    for(int i = 0;i < NUMTESTS;i++) mtr.randExc(99.99);
+    for(int i = 0;i < NUMTESTS;i++) {mtr.randExc(99.99);}
     time[5] = ReadTSC();
-    for(int i = 0;i < NUMTESTS;i++) mtr.randDblExc();
+    for(int i = 0;i < NUMTESTS;i++) {mtr.randDblExc();}
     time[6] = ReadTSC();
-    for(int i = 0;i < NUMTESTS;i++) mtr.randDblExc(99.99);
+    for(int i = 0;i < NUMTESTS;i++) {mtr.randDblExc(99.99);}
     time[7] = ReadTSC();
-    for(int i = 0;i < NUMTESTS;i++) mtr.randInt();
+    for(int i = 0;i < NUMTESTS;i++) {mtr.randInt();}
     time[8] = ReadTSC();
-    for(int i = 0;i < NUMTESTS;i++) mtr.randInt(100000);
+    for(int i = 0;i < NUMTESTS;i++) {mtr.randInt(100000);}
     time[9] = ReadTSC();
-    for(int i = 0;i < NUMTESTS;i++) mtr.rand53();
+    for(int i = 0;i < NUMTESTS;i++) {mtr.rand53();}
     time[10] = ReadTSC();
 
     ///Display results
@@ -54,7 +55,7 @@ inline void benchmarkMTH()
     cout << "mtr.rand53() time:" << (time[10]-time[9])/NUMTESTS << endl;
 }
 
-inline void benchmarkAsmlibMT()
+void benchmarkAsmlibMT()
 {
     MersenneRandomInit(100); ///Seed with 100
 
@@ -79,7 +80,7 @@ inline void benchmarkAsmlibMT()
     cout << "MersenneBRandom() time:" << (time[4]-time[3])/NUMTESTS << endl;
 }
 
-inline void benchmarkAsmlibMother()
+void benchmarkAsmlibMother()
 {
     MotherRandomInit(100); ///Seed with 100
 
