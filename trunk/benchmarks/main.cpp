@@ -10,5 +10,6 @@ int main()
     benchmarkAsmlibMT();
     cout << "\nRunning Asmlib Mother benchmarks:" << endl;
     benchmarkAsmlibMother();
+    system("pause");
     return 0;
 }
