@@ -46,6 +46,10 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(MultiRNGFrame)
+const long MultiRNGFrame::ID_BOOSTSPECBOX = wxNewId();
+const long MultiRNGFrame::ID_LIMITSBOX = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL2 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL23 = wxNewId();
 const long MultiRNGFrame::ID_BOOSTALGOOPTSBOX = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL17 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL11 = wxNewId();
@@ -58,7 +62,6 @@ const long MultiRNGFrame::ID_TEXTCTRL21 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL16 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL15 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL13 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL2 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL6 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL10 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL18 = wxNewId();
@@ -66,9 +69,7 @@ const long MultiRNGFrame::ID_TEXTCTRL20 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL19 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL9 = wxNewId();
 const long MultiRNGFrame::ID_BOOSTDISTOPTSBOX = wxNewId();
-const long MultiRNGFrame::ID_LIMITSBOX = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL8 = wxNewId();
-const long MultiRNGFrame::ID_BOOSTSPECBOX = wxNewId();
 const long MultiRNGFrame::ID_UPLIMITFIELD = wxNewId();
 const long MultiRNGFrame::ID_LIBLABEL = wxNewId();
 const long MultiRNGFrame::ID_ALGOLABEL = wxNewId();
@@ -82,7 +83,6 @@ const long MultiRNGFrame::ID_OKBUTTON = wxNewId();
 const long MultiRNGFrame::ID_SEEDLABEL = wxNewId();
 const long MultiRNGFrame::ID_SEEDFIELD = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL1 = wxNewId();
-const long MultiRNGFrame::ID_DISTLABEL = wxNewId();
 const long MultiRNGFrame::ID_DISTCHOICE = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL3 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT1 = wxNewId();
@@ -100,6 +100,14 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     //(*Initialize(MultiRNGFrame)
     Create(parent, wxID_ANY, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     SetClientSize(wxSize(373,545));
+    boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Advanced options"), wxPoint(160,104), wxSize(208,80), 0, _T("ID_BOOSTSPECBOX"));
+    boostSpecificBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
+    limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,80), 0, _T("ID_LIMITSBOX"));
+    limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
+    lowerLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL2, _("Lower:"), wxPoint(24,128), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
+    lowerLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
+    distributionLabel = new wxTextCtrl(this, ID_TEXTCTRL23, _("Range:"), wxPoint(168,128), wxSize(56,21), wxTE_READONLY|wxTE_RIGHT|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL23"));
+    distributionLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     boostAlgoOptions = new wxStaticBox(this, ID_BOOSTALGOOPTSBOX, _("Boost-Specific Algorithm Options"), wxPoint(16,200), wxSize(344,144), 0, _T("ID_BOOSTALGOOPTSBOX"));
     boostAlgoOptions->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     boost7thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL17, _("7th:"), wxPoint(184,264), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL17"));
@@ -125,8 +133,6 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     boost6thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     boost5thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL13, _("5th:"), wxPoint(184,216), wxSize(40,16), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL13"));
     boost5thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    lowerLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL2, _("Lower:"), wxPoint(24,128), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
-    lowerLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     boost2ndAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL6, _("2"), wxPoint(64,264), wxSize(120,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
     boost2ndAlgoParameterField->Disable();
     boost3rdAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL10, _("3"), wxPoint(64,288), wxSize(120,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL10"));
@@ -143,12 +149,8 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     boost5thAlgoParameterField->Disable();
     boostDistOptionsBox = new wxStaticBox(this, ID_BOOSTDISTOPTSBOX, _("Boost-Specific Distribution Options"), wxPoint(8,384), wxSize(336,112), 0, _T("ID_BOOSTDISTOPTSBOX"));
     boostDistOptionsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
-    limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,80), 0, _T("ID_LIMITSBOX"));
-    limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     boost2ndAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL8, _("2nd:"), wxPoint(24,264), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL8"));
     boost2ndAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Advanced options"), wxPoint(160,104), wxSize(208,80), 0, _T("ID_BOOSTSPECBOX"));
-    boostSpecificBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     lowerLimitField = new wxTextCtrl(this, ID_UPLIMITFIELD, _("500"), wxPoint(64,128), wxSize(72,21), 0, wxDefaultValidator, _T("ID_UPLIMITFIELD"));
     libraryLabel = new wxStaticText(this, ID_LIBLABEL, _("Library:"), wxPoint(8,16), wxDefaultSize, 0, _T("ID_LIBLABEL"));
     algorithmLabel = new wxStaticText(this, ID_ALGOLABEL, _("Algorithm:"), wxPoint(184,16), wxDefaultSize, 0, _T("ID_ALGOLABEL"));
@@ -167,7 +169,6 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(56,80), wxSize(312,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
     upperLimitField = new wxTextCtrl(this, ID_TEXTCTRL1, _("1000"), wxPoint(64,152), wxSize(72,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     upperLimitField->Disable();
-    distributionLabel = new wxStaticText(this, ID_DISTLABEL, _("Distribution:"), wxPoint(168,128), wxDefaultSize, 0, _T("ID_DISTLABEL"));
     distributionChoice = new wxChoice(this, ID_DISTCHOICE, wxPoint(232,120), wxSize(128,21), 0, 0, 0, wxDefaultValidator, _T("ID_DISTCHOICE"));
     distributionChoice->Append(_("Uniform Small Integer"));
     distributionChoice->SetSelection( distributionChoice->Append(_("Uniform Integer")) );
@@ -221,6 +222,8 @@ void MultiRNGFrame::OnLibraryChoiceSelect(wxCommandEvent& event)
     {
         case 0: ///boost/random
             {
+                ///Set distribution/range text
+                distributionLabel->SetValue(wxT("Distribution:"));
                 ///Set Algorithm choices
                 algorithmChoice->Clear();
                 algorithmChoice->Append(_("MT 19937"));
@@ -255,6 +258,8 @@ void MultiRNGFrame::OnLibraryChoiceSelect(wxCommandEvent& event)
             }
         case 1: ///MersenneTwister.h
             {
+                ///Set distribution/range text
+                distributionLabel->SetValue(wxT("Range:"));
                 ///Set Algorithm choices
                 algorithmChoice->Clear();
                 algorithmChoice->Append(_("MT 19937"));
@@ -280,6 +285,8 @@ void MultiRNGFrame::OnLibraryChoiceSelect(wxCommandEvent& event)
             }
         case 2: ///GMP
             {
+                ///Set distribution/range text
+                distributionLabel->SetValue(wxT("Distribution:"));
                 ///Set Algorithm options
                 algorithmChoice->Clear();
                 algorithmChoice->Append(_("MT 19937"));
@@ -312,14 +319,14 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
                 {
                     case 7:
                         {
-                         boost1stAlgoParamField->Enable(true);
-                         boost2ndAlgoParamField->Enable(true);
-                         boost3rdAlgoParamField->Enable(true);
-                         boost4thAlgoParamField->Enable(true);
-                         boost1stAlgoParamLabel->SetText(wxT("w:"));
-                         boost2ndAlgoParamLabel->SetText(wxT("p:"));
-                         boost3rdAlgoParamLabel->SetText(wxT("q:"));
-                         boost4thAlgoParamField->SetText(wxT("val:"));
+                         boost1stAlgoParameterField->Enable(true);
+                         boost2ndAlgoParameterField->Enable(true);
+                         boost3rdAlgoParameterField->Enable(true);
+                         boost4thAlgoParameterField->Enable(true);
+                         boost1stAlgoParameterLabel->SetValue(wxT("w:"));
+                         boost2ndAlgoParameterLabel->SetValue(wxT("p:"));
+                         boost3rdAlgoParameterLabel->SetValue(wxT("q:"));
+                         boost4thAlgoParameterField->SetValue(wxT("val:"));
                         }
                 }
             }
