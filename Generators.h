@@ -10,7 +10,7 @@ typedef unsigned long ulong;
 
 ///Static variables,
 static ulong amountParam;
-static ulong seedParam;
+static string seedParam;
 static string filenameParam;
 static string ulParam;
 static string llParam;
@@ -139,9 +139,9 @@ void GenRandGMP()
 {
     ///Cache parameters
     ulong amount = amountParam;
-    ulong ulSeed = seedParam;
+    string seed = seedParam;
     string filename = filenameParam;
-    double ulDouble = lexical_cast<double>(ulParam);
+    string ulString = ulParam;
     int algorithmSelection = algorithmSelectionParam;
     ulong bits = bitsParam;
 
@@ -155,9 +155,9 @@ void GenRandGMP()
     mpz_init(integer);
     mpz_init(seed);
     mpz_init(n);
-    ///Get some required variables from GUI
-    mpz_set_str(seed, lexical_cast<string>(ulSeed).c_str(), 10);
-    mpz_set_str(n, lexical_cast<string>(ulDouble).c_str(), 10);
+    ///Set values of the pz_t variables
+    mpz_set_str(seed, seed.c_str(), 10);
+    mpz_set_str(n, ulString.c_str(), 10);
 
     ///Open fstream
     fstream f(filename.c_str(), fstream::out);

@@ -394,7 +394,7 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
 {
     ///Init static variables
     amountParam = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
-    seedParam = lexical_cast<unsigned long>(seedField->GetValue().mb_str());
+    seedParam = lexical_cast<string>(seedField->GetValue().mb_str());
     ulParam = lexical_cast<string>(upperLimitField->GetValue().mb_str());
     llParam = lexical_cast<string>(lowerLimitField->GetValue().mb_str());
     distributionSelectionParam = distributionChoice->GetCurrentSelection();

@@ -1,6 +1,5 @@
 \documentclass{scrartcl}
-\usepackage[ngerman]{babel}
-\usepackage{url,amsmath}
+\usepackage{url}
 
 \begin{document}
 \tableofcontents
@@ -22,8 +21,7 @@ Additionally, some libaries are required:
 When you meet all these requirements, you have to choose a compiler. Building MultiRNG has only been tested with MinGW-GCC 4 until now. Most compilers should be able to build the program, but I highly recommend to use the Gnu Compiler (or Intel Compiler, if you have) because it optimizes far better than most other compilers. If you are using Microsoft(r) Windows(r) and want to optimize for size, it may be advantageous to use Microsoft Compiler instead of MinGW because so you can link the C standard library dynamically (Beware of dynamically linking to much when optimizing for speed). Microsft Compiler does not optimize as well as GNU Compiler even under Windows. I do not recommend to use Cygwin simply because it is not intended to be very fast and required an extra DLL which may be very inefficient. If you are futhermore interested in optimizing, see \url{http://agner.org}.\newline
 When you have finished compiler setup, start Code::Blocks and open MultiRNG.cbp. Select build target Release Windows of you are using Microsoft Windows or Release Linux if you are using any other POSIX-Compatible system (for some others slight code changes may be required). Then click build. This may take a time even on very fast computer, because we have to precompile a header and each object file separately. If building is finished, click run. If the project requires the DLL wxmsw28u\_gcc.dll, get it from your wxPack directory or from http://multirng.googlecode.com/files/wxmsw28u\_gcc.dll. Under linux, you have to install wxWidgets or if you distribution does not have a such package wxGTK/wxX11 (at your choice). If don't find such a package you can compile wxWidgets by yourself. I don't recommend to do so because it takes several hours.
 \section{MersenneTwister.h}
-This section contains some information about options when selecting MersenneTwister.h as Library.\newline
-As the name already shows, this library contains only the MersenneTwister Algorithm, but several ranges wherein the generated number (we call it n) can be. MersenneTwister.h is very fast and using less memory than the other 
+As already mentioned, MersenneTwister.h is a BSD-Licensed header file which provides the very fast Mersenne Twsiter algorithm in the MT19937 configuration. This is the commonly most used configuration and only Boost::random allows to change these parameters. As the name already shows, this library contains only the MersenneTwister Algorithm, but several ranges wherein the generated number (we call it n) can be. MersenneTwister.h is very fast and using less memory than the other 
 \subsection{Algorithms}
 \subsubsection{Mersenne Twister 19937}
 This algorithm is a special configuration of MersenneTwister. Mersenne Twister is very fast and MersenneTwister.h has less functions to call than any other library and is highly optimized, especially if you compile MultiRNG with SSE2+. The library is delivered as header file so the compiler can easier use optimization over the functions. MersenneTwister itself is supposed to be one of the fastest (if not the fastest) algorithm, so with this library you may get the most results per timeunit. Benchmars show that it takes approximately 1250-2500 clockcycles (depending on the chosen function on a Pentium 4 Prescott Processor with a fully optimized build. This is pretty good, because Agner Fog's highly optimized asmlib takes 1000 clockcycles to generate a MersenneTwister random number. (And it isn't thread-safe beacuse there is nothing you can create a different instance for each thread from).
@@ -41,13 +39,23 @@ MersenneTwister.h offers a couple of different ranges where the generated number
 	\item 53-bit real number in [0,1)
 	\item Nonuniform
 \end{itemize}
-
+Most of these options are self-explaining. Nonuniform wants two parameters, mean and variance. This is the only thing what you may call distribution customization when using MersenneTwister.h. These Parameters are set in the limits box.
 \section{GMP}
+GMP ist the GNU multiple precision arithmetic library. I contains support for MersenneTwister and linear congruential algorithm. When you want to generate numbers with larger parameters than the number bounds, you have to use GMP. Parameter size is only limited Note that GMP is much, much slower than all other libraries used in MultiRNG. This is because ist has to software-emulate all operations on great numbers. Even GMP has assembler code optimizations such emulations are very slow. If you don't need arbitrary precision parameters, I highly recommend to use another library.
+\subsection{Algorithms}
+\subsubsection{Mersenne Twister 19937}
+When you choose to use this algorithm, there will be no parameters for initalizing the algorithm, just for number bounds. In the configuration tha MultiRNG uses, it can generate only uniform random numbers. It's recommended to use this algorithm and not Linear Congruential.
+\subsubsection{Linear Congruential}
+This algorithm can be used in two configurations in GMP. In the first one, this is the one MultiRNG uses, GMP selects the parameters from a table, so that only some bits are used. The bits parameter is delivered by a text field in the advanced options box. It must not be greater that 128, otherwise MultiRNG will crash, because GMP doens't support larger bit-parameters in version 4.2.2.\newline
+The second configuration lets you choose own parameters for the m2exp parameter (see chapter
 \section{Boost::Random}
 \section{Technical details}
 \subsection{Algorithms}
-
+\subsubsection{Mersenne Twister}
+\subsubsection{Linear Congruential}
 \subsection{Distributions}
-
-\subsection{Code}
+\subsection{Code and Optimization}
+\subsubsection{MersenneTwister.h}
+\subsubsection{GMP}
+\subsubsection{Boost::random}
 \end{document}
