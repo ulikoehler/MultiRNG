@@ -28,7 +28,22 @@ As the name already shows, this library contains only the MersenneTwister Algori
 \subsubsection{Mersenne Twister 19937}
 This algorithm is a special configuration of MersenneTwister. Mersenne Twister is very fast and MersenneTwister.h has less functions to call than any other library and is highly optimized, especially if you compile MultiRNG with SSE2+. The library is delivered as header file so the compiler can easier use optimization over the functions. MersenneTwister itself is supposed to be one of the fastest (if not the fastest) algorithm, so with this library you may get the most results per timeunit. Benchmars show that it takes approximately 1250-2500 clockcycles (depending on the chosen function on a Pentium 4 Prescott Processor with a fully optimized build.
 \subsection{Ranges}
-MersenneTwister.h offers a couple of different ranges where the generated number can be in.
+MersenneTwister.h offers a couple of different ranges where the generated number can be in:
+\begin{itemize}
+	\item Uniform Small Integer
+	\item Uniform Integer
+	\item Uniform 01
+	\item Uniform Real
+	\item Triangle
+Bernoulli
+Cauchy
+Exponential
+Geometric
+Normal
+Lognormal
+Uniform on Sphere
+
+\end{itemize}
 \section{GMP}
 \section{Boost::Random}
 \section{Technical details}

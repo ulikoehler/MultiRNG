@@ -233,20 +233,18 @@
 		</object>
 		<object class="wxChoice" name="ID_DISTCHOICE" variable="distributionChoice" member="yes">
 			<content>
-				<item>Uniform Small Integer</item>
-				<item>Uniform Integer</item>
-				<item>Uniform 01</item>
-				<item>Uniform Real</item>
-				<item>Triangle</item>
-				<item>Bernoulli</item>
-				<item>Cauchy</item>
-				<item>Exponential</item>
-				<item>Geometric</item>
-				<item>Normal</item>
-				<item>Lognormal</item>
-				<item>Uniform on Sphere</item>
+				<item>32-Bit Real in [0,1]</item>
+				<item>32-Bit Real in [0,n]</item>
+				<item>32-Bit Real in [0,1)</item>
+				<item>32-Bit Real in [0,n)</item>
+				<item>32-Bit Real in (0,1)</item>
+				<item>32-Bit Real in (0,n)</item>
+				<item>Integer in [0,2^32-1]</item>
+				<item>Integer in [0,n] for n &lt; 2^32</item>
+				<item>53-bit real number in [0,1)</item>
+				<item>Nonuniform</item>
 			</content>
-			<selection>1</selection>
+			<selection>0</selection>
 			<pos>232,120</pos>
 			<size>128,21</size>
 			<handler function="OnDistributionChoiceSelect" entry="EVT_CHOICE" />
