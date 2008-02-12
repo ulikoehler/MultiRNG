@@ -415,17 +415,31 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
     {
         case 0: ///Boost/random
             {
-                boost::thread boostThread(&GenRandBoost);
+                ///Create a new thread if Multithreading is enabled or call function directly else
+                #ifndef NOMTHREADING
+                    boost::thread boostThread(&GenRandBoost);
+                #else
+                    GenRandBoost();
+                #endif
                 break;
             }
         case 1: ///MersenneTwister.h
             {
-                boost::thread mthTread(&GenRandMTH);
+
+                #ifndef NOMTHREADING
+                    boost::thread mthThread(&GenRandMTH);
+                #else
+                    GenRandMTH();
+                #endif
                 break;
             }
         case 2: ///GMP
             {
-                boost::thread mthTread(&GenRandGMP);
+                #ifndef NOMTHREADING
+                    boost::thread gmpThread(&GenRandGMP);
+                #else
+                    GenRandGMP();
+                #endif
                 break;
             }
         default: break;
