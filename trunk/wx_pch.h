@@ -32,7 +32,10 @@
 #include <MersenneTwister.h>
 //Boost headers
 #include <boost/random.hpp>
-#include <boost/thread.hpp>
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
+///Include boost thread if multithreading is not disabled
+#ifndef NOMTHREADING
+    #include <boost/thread.hpp>
+#endif
 #endif // WX_PCH_H_INCLUDED

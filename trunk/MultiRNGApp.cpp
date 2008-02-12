@@ -9,7 +9,6 @@
 
 #include "wx_pch.h"
 #include "MultiRNGApp.h"
-#include <boost/thread.hpp>
 
 //(*AppHeaders
 #include "MultiRNGMain.h"
