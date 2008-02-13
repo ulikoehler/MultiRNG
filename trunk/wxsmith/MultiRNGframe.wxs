@@ -151,8 +151,8 @@
 		</object>
 		<object class="wxStaticBox" name="ID_BOOSTDISTOPTSBOX" variable="boostDistOptionsBox" member="yes">
 			<label>Boost-Specific Distribution Options</label>
-			<pos>8,384</pos>
-			<size>336,112</size>
+			<pos>16,352</pos>
+			<size>344,152</size>
 			<fg>wxSYS_COLOUR_MENUTEXT</fg>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL8" variable="boost2ndAlgoParameterLabel" member="yes">

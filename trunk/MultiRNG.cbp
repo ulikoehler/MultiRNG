@@ -127,7 +127,8 @@
 				<Option type="4" />
 				<Option compiler="gcc" />
 				<ExtraCommands>
-					<Add before="latex doc/doc.tex" />
+					<Add before="r -q -f doc/distributions/normal.r" />
+					<Add before="pdflatex -quiet doc/doc.tex Documentation.pdf" />
 				</ExtraCommands>
 			</Target>
 		</Build>

@@ -72,12 +72,14 @@ Fibonacci is another generator from the congruential generator family. It uses t
 This is a modification of the fibonacci generator.  Instead of adding $y_{i-1}$ and $y_{i-2}$ it adds $y_{i-A}$ and $y_{i-B}$. In fact the 'standard' Fibonacci Generator is a special case of this one (with the parameters A=1 and B=2)\newline
 The full formula is:
 \begin{equation}y_i = (y_{i-A} + y_{i-B})\:mod\:m\end{equation}
+This generalisation makes the generator to produces more entropy.
 with $A < B < i$.
 
 \subsection{Mixing Algorithms}
 \subsubsection{Shuffle Output}
 \subsubsection{Additive Combine}
 \subsection{Distributions}
+\subsubsection{Normal Distribution}
 \subsection{Code and Optimization}
 \subsubsection{MersenneTwister.h}
 \subsubsection{GMP}
