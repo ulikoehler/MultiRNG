@@ -1,5 +1,6 @@
 \documentclass{scrartcl}
 \usepackage{url}
+\usepackage{graphics}
 
 \begin{document}
 \tableofcontents
@@ -14,13 +15,22 @@ Additionally, some libaries are required:
 \begin{description}
 \item[wxWidgets]MultiRNG uses this libary for the multiplatform GUI interface. MultiRNG binaries are compiled against wxWidgets 2.8.7. Get it from \url{http://wxwidgets.org}. If you are using Windows, there are procompiled binaries at \url{http://wxpack.sourceforge.net}. I recommend that you link MultiRNG against a dynamic version of wxWidgets (precompiled binaries do so).
 \item[GMP]MultiRNG is using GMP to provide support for Mersenne Twister and Linear congruential algorithm with arbitrary precision input. GMP is the only libary supported by MultiRNG that supports arbitrary precision numbers. You don't need gmpxx (GMP C++ interface) to compile MultiRNG. I recommend to link here dynamically also, but precompiled Win32 binaries are linked statically. Linking GMP statically forces you to offer your application under GPL. You can get GMP sources from \url{http://gmplib.org}. GMP is licensed under GNU LGPL. Get it from \url{http://www.gnu.org/licenses/lgpl.html}.
+
 \item[MersenneTwister.h]This is just a header file which offers an interface to a MT19937 Pseudorandom number generator. You can get it from\newline \url{http://www-personal.umich.edu/~wagnerr/MersenneTwister.h}.\newline For MersenneTwister.h License, see appendix A.
+
 \item[Boost C++ Libraries]Boost is a collection of a couple of C++ Libraries from which some will probably be included in the next C++ standard. MultiRNG uses Boost libraries to provide multithreading and for providing some useful template functions, for example lexical cast which shrinks the code very much, but the most important reaon why boost is used in MultiRNG is Boost::Random. That library provides advanced support for many algorithms and distribution. You can customize all algorithms and distributions by checking '"Enable customized algorithm"' in GUI. The you will be asked for a number of parameters depending on the choosen algorithm. Although most algorithms have a special configuration without parameters (this configuration is specified by boost). Anyhow you have to specify some parameters when no special configurations are defined by boost. Now this is the case only at lagged fibonacci generator. Get it boost from \url{http://boost.org}. You have to compile boost because MultiRNG uses multithreading and you have to link a library. note that boost::thread is only a wrapper of the pthread (Portable/POSIX thread) library. For boost license, see appendix B.
 \end{description}
+
 When you meet all these requirements, you have to choose a compiler. Building MultiRNG has only been tested with MinGW-GCC 4 until now. Most compilers should be able to build the program, but I highly recommend to use the Gnu Compiler (or Intel Compiler, if you have) because it optimizes far better than most other compilers. If you are using Microsoft(r) Windows(r) and want to optimize for size, it may be advantageous to use Microsoft Compiler instead of MinGW because so you can link the C standard library dynamically (Beware of dynamically linking to much when optimizing for speed). Microsft Compiler does not optimize as well as GNU Compiler even under Windows. I do not recommend to use Cygwin simply because it is not intended to be very fast and required an extra DLL which may be very inefficient. If you are futhermore interested in optimizing, see \url{http://agner.org}.\newline
+
 When you have finished compiler setup, start Code::Blocks and open MultiRNG.cbp. Select build target Release Windows of you are using Microsoft Windows or Release Linux if you are using any other POSIX-Compatible system (for some others slight code changes may be required). Then click build. This may take a time even on very fast computer, because we have to precompile a header and each object file separately. If building is finished, click run. If the project requires the DLL wxmsw28u\_gcc.dll, get it from your wxPack directory or from http://multirng.googlecode.com/files/wxmsw28u\_gcc.dll. Under linux, you have to install wxWidgets or if you distribution does not have a such package wxGTK/wxX11 (at your choice). If don't find such a package you can compile wxWidgets by yourself. I don't recommend to do so because it takes several hours.
+
+\subsection{Building documentation}
+If you want to build the latest documentation, you have to get a working \LaTeX\ system. For now there are no required packages. Additionally you have to get GNU R (\url{http://r-project.org}). Because we are exporting to SVG you will need the package RSvgDevice too. When you've fullfilled all dependencies, just compile target Documentation from Code::Blocks
+
 \subsection{Running the program}
 Now just run bin/Release/MultiRNG.exe. If you did everything right, a window will appear. Now you are able to select a library, algorithm, distribution and several parameters. When you are finished, click OK. The program will now start a new thread and you can continue with selecting new parameters. You can click OK as often as you want as MultiRNG doens't care about started threads. Note that you have to select another file in each thread because two threads can't write to one file at a time. 
+
 \section{MersenneTwister.h}
 As already mentioned, MersenneTwister.h is a BSD-Licensed header file which provides the very fast Mersenne Twsiter algorithm in the MT19937 configuration. This is the commonly most used configuration and only Boost::random allows to change these parameters. As the name already shows, this library contains only the MersenneTwister Algorithm, but several ranges wherein the generated number (we call it n) can be. MersenneTwister.h is very fast and using less memory than the other 
 \subsection{Algorithms}
@@ -80,6 +90,7 @@ with $A < B < i$.
 \subsubsection{Additive Combine}
 \subsection{Distributions}
 \subsubsection{Normal Distribution}
+\includegraphics{distributions/normal.ps}
 \subsection{Code and Optimization}
 \subsubsection{MersenneTwister.h}
 \subsubsection{GMP}
