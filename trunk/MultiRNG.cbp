@@ -6,6 +6,7 @@
 		<Option platforms="Windows;Unix;" />
 		<Option pch_mode="0" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="Documentation\;" />
 		<Build>
 			<Target title="Debug Windows">
 				<Option platforms="Windows;" />
@@ -128,7 +129,7 @@
 				<Option compiler="gcc" />
 				<ExtraCommands>
 					<Add before="r -q -f doc/distributions/normal.r" />
-					<Add before="pdflatex -quiet doc/doc.tex Documentation.pdf" />
+					<Add before="pdflatex doc/doc.tex" />
 				</ExtraCommands>
 			</Target>
 		</Build>
@@ -173,6 +174,10 @@
 			<Option target="Release Windows" />
 			<Option target="Debug Linux" />
 			<Option target="Release Linux" />
+		</Unit>
+		<Unit filename="doc\doc.tex">
+			<Option virtualFolder="Documentation\" />
+			<Option target="Documentation" />
 		</Unit>
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
