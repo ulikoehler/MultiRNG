@@ -1,6 +1,6 @@
 \documentclass{scrartcl}
 \usepackage{url}
-\usepackage{graphics}
+\usepackage{graphicx}
 
 \begin{document}
 \tableofcontents
@@ -26,13 +26,13 @@ When you meet all these requirements, you have to choose a compiler. Building Mu
 When you have finished compiler setup, start Code::Blocks and open MultiRNG.cbp. Select build target Release Windows of you are using Microsoft Windows or Release Linux if you are using any other POSIX-Compatible system (for some others slight code changes may be required). Then click build. This may take a time even on very fast computer, because we have to precompile a header and each object file separately. If building is finished, click run. If the project requires the DLL wxmsw28u\_gcc.dll, get it from your wxPack directory or from http://multirng.googlecode.com/files/wxmsw28u\_gcc.dll. Under linux, you have to install wxWidgets or if you distribution does not have a such package wxGTK/wxX11 (at your choice). If don't find such a package you can compile wxWidgets by yourself. I don't recommend to do so because it takes several hours.
 
 \subsection{Building documentation}
-If you want to build the latest documentation, you have to get a working \LaTeX\ system. For now there are no required packages. Additionally you have to get GNU R (\url{http://r-project.org}). Because we are exporting to SVG you will need the package RSvgDevice too. When you've fullfilled all dependencies, just compile target Documentation from Code::Blocks
+If you want to build the latest documentation, you have to get a working \LaTeX\ system. For now there are no required packages. Additionally you have to get GNU R (\url{http://r-project.org}). When you've fullfilled all dependencies, just compile target Documentation from Code::Blocks
 
 \subsection{Running the program}
-Now just run bin/Release/MultiRNG.exe. If you did everything right, a window will appear. Now you are able to select a library, algorithm, distribution and several parameters. When you are finished, click OK. The program will now start a new thread and you can continue with selecting new parameters. You can click OK as often as you want as MultiRNG doens't care about started threads. Note that you have to select another file in each thread because two threads can't write to one file at a time. 
+Now just run bin/Release/MultiRNG.exe. If you did everything right, a window will appear. Now you are able to select a library, algorithm, distribution and several parameters. When you are finished, click OK. The program will now start a new thread and you can continue with selecting new parameters. You can click OK as often as you want as MultiRNG doens't care about started threads. Note that you have to select another file in each thread because two threads can't write to one file at a time.
 
 \section{MersenneTwister.h}
-As already mentioned, MersenneTwister.h is a BSD-Licensed header file which provides the very fast Mersenne Twsiter algorithm in the MT19937 configuration. This is the commonly most used configuration and only Boost::random allows to change these parameters. As the name already shows, this library contains only the MersenneTwister Algorithm, but several ranges wherein the generated number (we call it n) can be. MersenneTwister.h is very fast and using less memory than the other 
+As already mentioned, MersenneTwister.h is a BSD-Licensed header file which provides the very fast Mersenne Twsiter algorithm in the MT19937 configuration. This is the commonly most used configuration and only Boost::random allows to change these parameters. As the name already shows, this library contains only the MersenneTwister Algorithm, but several ranges wherein the generated number (we call it n) can be. MersenneTwister.h is very fast and using less memory than the other
 \subsection{Algorithms}
 \subsubsection{Mersenne Twister 19937}
 This algorithm is a special configuration of MersenneTwister. Mersenne Twister is very fast and MersenneTwister.h has less functions to call than any other library and is highly optimized, especially if you compile MultiRNG with SSE2+. The library is delivered as header file so the compiler can easier use optimization over the functions. MersenneTwister itself is supposed to be one of the fastest (if not the fastest) algorithm, so with this library you may get the most results per timeunit. Benchmars show that it takes approximately 1250-2500 clockcycles (depending on the chosen function on a Pentium 4 Prescott Processor with a fully optimized build. This is pretty good, because Agner Fog's highly optimized asmlib takes 1000 clockcycles to generate a MersenneTwister random number. (And it isn't thread-safe beacuse there is nothing you can create a different instance for each thread from).
@@ -90,7 +90,7 @@ with $A < B < i$.
 \subsubsection{Additive Combine}
 \subsection{Distributions}
 \subsubsection{Normal Distribution}
-\includegraphics{distributions/normal.ps}
+\includegraphics[width=15cm]{doc/distributions/normal.png}
 \subsection{Code and Optimization}
 \subsubsection{MersenneTwister.h}
 \subsubsection{GMP}
