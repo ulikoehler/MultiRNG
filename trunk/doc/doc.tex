@@ -90,7 +90,12 @@ with $A < B < i$.
 \subsubsection{Additive Combine}
 \subsection{Distributions}
 \subsubsection{Normal Distribution}
-\includegraphics[width=15cm]{doc/distributions/normal.png}
+Normal distribution (also called Gauss distribution) is just a distribution where the values are accumulated in the middle.
+The density function is as follows:\newline
+\includegraphics[width=10cm]{doc/distributions/normal.png}\newline
+The Probability Density Function is:
+\begin{equation} f(x) = \frac {1}{\sigma\sqrt{2\pi}}\exp\left(-\frac {1}{2} \left(\frac{x-\mu}{\sigma}\right)^2\right) \end{equation}
+where $\mu$ is the location (location of the highest value in the density function) and $\sigma$ is the standard deviation.
 \subsection{Code and Optimization}
 \subsubsection{MersenneTwister.h}
 \subsubsection{GMP}
