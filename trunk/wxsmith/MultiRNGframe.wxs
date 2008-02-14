@@ -7,13 +7,13 @@
 		<object class="wxStaticBox" name="ID_BOOSTSPECBOX" variable="boostSpecificBox" member="yes">
 			<label>Advanced options</label>
 			<pos>160,104</pos>
-			<size>208,80</size>
+			<size>208,88</size>
 			<fg>wxSYS_COLOUR_MENUTEXT</fg>
 		</object>
 		<object class="wxStaticBox" name="ID_LIMITSBOX" variable="limitsBox" member="yes">
 			<label>Limits</label>
 			<pos>16,104</pos>
-			<size>128,80</size>
+			<size>128,88</size>
 			<fg>wxSYS_COLOUR_MENUTEXT</fg>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="lowerLimitLabel" member="yes">
@@ -76,14 +76,14 @@
 			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
 			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL22" variable="TextCtrl4" member="yes">
+		<object class="wxTextCtrl" name="ID_TEXTCTRL22" variable="boost8thParamLabel" member="yes">
 			<value>8th:</value>
 			<pos>184,288</pos>
 			<size>40,21</size>
 			<bg>wxSYS_COLOUR_APPWORKSPACE</bg>
 			<style>wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER</style>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL21" variable="TextCtrl3" member="yes">
+		<object class="wxTextCtrl" name="ID_TEXTCTRL21" variable="boost9thParamLabel" member="yes">
 			<value>9th:</value>
 			<pos>184,312</pos>
 			<size>40,21</size>

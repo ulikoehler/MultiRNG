@@ -1,4 +1,4 @@
-#setwd("doc/distributions")
+setwd("doc/distributions")
 postscript(file = "lognormal.ps", width = 10, height = 8, bg = "white", fg = "black", onefile=TRUE)
 colors=c("blue")
 x<-seq(-3,3,length=10000)
