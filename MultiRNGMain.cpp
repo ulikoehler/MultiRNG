@@ -100,9 +100,9 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     //(*Initialize(MultiRNGFrame)
     Create(parent, wxID_ANY, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     SetClientSize(wxSize(373,545));
-    boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Advanced options"), wxPoint(160,104), wxSize(208,80), 0, _T("ID_BOOSTSPECBOX"));
+    boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Advanced options"), wxPoint(160,104), wxSize(208,88), 0, _T("ID_BOOSTSPECBOX"));
     boostSpecificBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
-    limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,80), 0, _T("ID_LIMITSBOX"));
+    limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,88), 0, _T("ID_LIMITSBOX"));
     limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     lowerLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL2, _("Lower:"), wxPoint(24,128), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     lowerLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
@@ -123,10 +123,10 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     boost4thAlgoParameterField->Disable();
     boost4thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL14, _("4th:"), wxPoint(24,312), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL14"));
     boost4thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    TextCtrl4 = new wxTextCtrl(this, ID_TEXTCTRL22, _("8th:"), wxPoint(184,288), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL22"));
-    TextCtrl4->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    TextCtrl3 = new wxTextCtrl(this, ID_TEXTCTRL21, _("9th:"), wxPoint(184,312), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL21"));
-    TextCtrl3->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
+    boost8thParamLabel = new wxTextCtrl(this, ID_TEXTCTRL22, _("8th:"), wxPoint(184,288), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL22"));
+    boost8thParamLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
+    boost9thParamLabel = new wxTextCtrl(this, ID_TEXTCTRL21, _("9th:"), wxPoint(184,312), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL21"));
+    boost9thParamLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     boost3rdAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL16, _("3rd:"), wxPoint(24,288), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL16"));
     boost3rdAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     boost6thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL15, _("6th:"), wxPoint(184,240), wxSize(40,16), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL15"));

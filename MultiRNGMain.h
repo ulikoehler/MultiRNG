@@ -92,7 +92,6 @@ class MultiRNGFrame: public wxFrame
         wxStaticBox* limitsBox;
         wxChoice* libraryChoice;
         wxTextCtrl* boost5thAlgoParameterField;
-        wxTextCtrl* TextCtrl4;
         wxTextCtrl* lowerLimitLabel;
         wxStaticText* seedLabel;
         wxTextCtrl* lowerLimitField;
@@ -110,10 +109,12 @@ class MultiRNGFrame: public wxFrame
         wxStaticBox* boostSpecificBox;
         wxChoice* algorithmChoice;
         wxTextCtrl* boost6thAlgoParameterField;
+        wxTextCtrl* boost8thParamLabel;
         wxTextCtrl* bitsField;
         wxStaticText* amountLabel;
         wxTextCtrl* boost7thAlgoParameterLabel;
         wxTextCtrl* upperLimitLabel;
+        wxTextCtrl* boost9thParamLabel;
         wxTextCtrl* boost6thAlgoParameterLabel;
         wxChoice* distributionChoice;
         wxTextCtrl* boost7thAlgoParameterField;
@@ -129,7 +130,6 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* boost9thAlgoParameterField;
         wxTextCtrl* seedField;
         wxTextCtrl* amountField;
-        wxTextCtrl* TextCtrl3;
         wxTextCtrl* boost4thAlgoParameterField;
         //*)
         public:
