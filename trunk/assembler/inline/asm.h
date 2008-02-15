@@ -1,0 +1,5 @@
+int ReadTSC()
+{
+	asm(
+		"rdtsc");
+}
