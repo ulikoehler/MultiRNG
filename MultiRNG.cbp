@@ -6,7 +6,7 @@
 		<Option platforms="Windows;Unix;" />
 		<Option pch_mode="0" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="Documentation\;" />
+		<Option virtualFolders="Documentation\;Assembler\;" />
 		<Build>
 			<Target title="Debug Windows">
 				<Option platforms="Windows;" />
@@ -132,6 +132,22 @@
 					<Add before="pdflatex doc/doc.tex" />
 				</ExtraCommands>
 			</Target>
+			<Target title="Assembler Windows">
+				<Option output=".exe" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="C:\Dokumente und Einstellungen\User\Desktop\MultiRNG\trunk\\.objs" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+			</Target>
+			<Target title="Assembler Linux">
+				<Option output=".exe" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="C:\Dokumente und Einstellungen\User\Desktop\MultiRNG\trunk\\.objs" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-pipe" />
@@ -174,6 +190,21 @@
 			<Option target="Release Windows" />
 			<Option target="Debug Linux" />
 			<Option target="Release Linux" />
+		</Unit>
+		<Unit filename="Postproc.h">
+			<Option target="Debug Windows" />
+			<Option target="Release Windows" />
+			<Option target="Debug Linux" />
+			<Option target="Release Linux" />
+		</Unit>
+		<Unit filename="assembler\readtsc.asm">
+			<Option target="Assembler Windows" />
+			<Option target="Assembler Linux" />
+		</Unit>
+		<Unit filename="assembler\tests.cpp">
+			<Option virtualFolder="Assembler\" />
+			<Option target="Assembler Windows" />
+			<Option target="Assembler Linux" />
 		</Unit>
 		<Unit filename="doc\doc.tex">
 			<Option virtualFolder="Documentation\" />

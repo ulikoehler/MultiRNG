@@ -98,9 +98,13 @@ const long MultiRNGFrame::ID_STATICTEXT1 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL4 = wxNewId();
 const long MultiRNGFrame::ID_CHECKBOX1 = wxNewId();
 const long MultiRNGFrame::ID_COMBOBOX2 = wxNewId();
-const long MultiRNGFrame::ID_COMBOBOX1 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT2 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT3 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL28 = wxNewId();
+const long MultiRNGFrame::ID_STATICTEXT8 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL29 = wxNewId();
+const long MultiRNGFrame::ID_STATICTEXT9 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL30 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(MultiRNGFrame,wxFrame)
@@ -212,14 +216,16 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     bitsField->Disable();
     boostAlgoParametersCheckbox = new wxCheckBox(this, ID_CHECKBOX1, _("Enable customized algorithm"), wxPoint(30,220), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
     boostAlgoParametersCheckbox->SetValue(false);
-    ComboBox1 = new wxComboBox(this, ID_COMBOBOX2, wxEmptyString, wxPoint(416,32), wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX2"));
+    ComboBox1 = new wxComboBox(this, ID_COMBOBOX2, wxEmptyString, wxPoint(464,32), wxSize(216,21), 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX2"));
     ComboBox1->SetSelection( ComboBox1->Append(_("Nothing")) );
     ComboBox1->Append(_("Char Replace"));
-    firstPostprocChoice = new wxComboBox(this, ID_COMBOBOX1, wxEmptyString, wxPoint(568,32), wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX1"));
-    firstPostprocChoice->SetSelection( firstPostprocChoice->Append(_("Nothing")) );
-    firstPostprocChoice->Append(_("Char Replace"));
-    firstPostprocLabel = new wxStaticText(this, ID_STATICTEXT2, _("First:"), wxPoint(384,32), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
-    secondPostprocLabel = new wxStaticText(this, ID_STATICTEXT3, _("Second:"), wxPoint(520,32), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
+    postprocLabel = new wxStaticText(this, ID_STATICTEXT2, _("Postprocessing:"), wxPoint(384,32), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
+    offsetLabel = new wxStaticText(this, ID_STATICTEXT3, _("Offset:"), wxPoint(392,64), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
+    offsetField = new wxTextCtrl(this, ID_TEXTCTRL28, _("65"), wxPoint(432,64), wxSize(88,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL28"));
+    concatDigitsLabel = new wxStaticText(this, ID_STATICTEXT8, _("Concat Digits:"), wxPoint(528,64), wxDefaultSize, 0, _T("ID_STATICTEXT8"));
+    concatDigitsField = new wxTextCtrl(this, ID_TEXTCTRL29, _("2"), wxPoint(600,64), wxSize(88,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL29"));
+    modulusLabel = new wxStaticText(this, ID_STATICTEXT9, _("Modulus:"), wxPoint(384,88), wxDefaultSize, 0, _T("ID_STATICTEXT9"));
+    modulusField = new wxTextCtrl(this, ID_TEXTCTRL30, _("90"), wxPoint(432,88), wxSize(88,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL30"));
 
     Connect(ID_LIBCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnLibraryChoiceSelect);
     Connect(ID_OKBUTTON,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&MultiRNGFrame::OnOkButtonClick);

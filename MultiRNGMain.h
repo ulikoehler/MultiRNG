@@ -97,9 +97,13 @@ class MultiRNGFrame: public wxFrame
         static const long ID_TEXTCTRL4;
         static const long ID_CHECKBOX1;
         static const long ID_COMBOBOX2;
-        static const long ID_COMBOBOX1;
         static const long ID_STATICTEXT2;
         static const long ID_STATICTEXT3;
+        static const long ID_TEXTCTRL28;
+        static const long ID_STATICTEXT8;
+        static const long ID_TEXTCTRL29;
+        static const long ID_STATICTEXT9;
+        static const long ID_TEXTCTRL30;
         //*)
 
         //(*Declarations(MultiRNGFrame)
@@ -110,6 +114,7 @@ class MultiRNGFrame: public wxFrame
         wxStaticText* boost2ndDistributionLabelresourceobjectclasswxStaticTextnameID_STATICTEXT4variableboost1stDistParameterLabelmemberyeslabel1stlabelpos32384posobjectresource;
         wxTextCtrl* lowerLimitLabel;
         wxStaticText* boost4thDistParameterLabel;
+        wxStaticText* offsetLabel;
         wxStaticText* seedLabel;
         wxTextCtrl* lowerLimitField;
         wxTextCtrl* boost3rdAlgoParameterLabel;
@@ -117,11 +122,10 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* boost3rdDistParameterBox;
         wxTextCtrl* boost4thAlgoParameterLabel;
         wxStaticBox* boostDistOptionsBox;
-        wxStaticText* secondPostprocLabel;
         wxTextCtrl* boost2ndAlgoParameterField;
         wxTextCtrl* boost5thAlgoParameterLabel;
         wxTextCtrl* boost1stAlgoParameterField;
-        wxStaticText* firstPostprocLabel;
+        wxStaticText* modulusLabel;
         wxTextCtrl* distributionLabel;
         wxStaticBox* StaticBox1;
         wxTextCtrl* boost2ndAlgoParameterLabel;
@@ -135,11 +139,15 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* boost8thParamLabel;
         wxTextCtrl* boost4thDistParameterBox;
         wxTextCtrl* bitsField;
+        wxTextCtrl* modulusField;
         wxStaticText* amountLabel;
         wxTextCtrl* boost7thAlgoParameterLabel;
         wxTextCtrl* upperLimitLabel;
         wxTextCtrl* boost9thParamLabel;
         wxTextCtrl* boost2ndDistParameterBox;
+        wxTextCtrl* concatDigitsField;
+        wxStaticText* concatDigitsLabel;
+        wxTextCtrl* offsetField;
         wxTextCtrl* boost6thAlgoParameterLabel;
         wxChoice* distributionChoice;
         wxTextCtrl* boost7thAlgoParameterField;
@@ -149,7 +157,6 @@ class MultiRNGFrame: public wxFrame
         wxStaticText* bitsLabel;
         wxStaticText* fileLabel;
         wxStaticText* boost1stDistParameterLabel;
-        wxComboBox* firstPostprocChoice;
         wxStaticText* algorithmLabel;
         wxStaticText* libraryLabel;
         wxButton* okButton;
@@ -157,6 +164,7 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* boost9thAlgoParameterField;
         wxTextCtrl* seedField;
         wxTextCtrl* amountField;
+        wxStaticText* postprocLabel;
         wxTextCtrl* boost4thAlgoParameterField;
         //*)
         public:
