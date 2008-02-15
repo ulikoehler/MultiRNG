@@ -1,4 +1,4 @@
-int ReadTSC()
+inline int ReadTSC()
 {
 	asm(
 		"rdtsc");
