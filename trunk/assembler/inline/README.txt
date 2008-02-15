@@ -1,1 +1,0 @@
-This directory includes inline headers and test files for assembly code, so you do not have to get an external assembler. Until now it works only with GNU Compiler and derivates.

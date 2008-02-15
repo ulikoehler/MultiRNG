@@ -5,6 +5,12 @@ using namespace std;
 using namespace boost;
 using namespace boost::random;
 
+///Function Prototypes
+void GenRandMTH();
+void GenRandGMP();
+template<class Algorithm> void ProcessBoostAlgorithm(Algorithm* algorithm);
+void GenRandBoost();
+
 ///Typedefs
 typedef unsigned long ulong;
 
@@ -378,5 +384,6 @@ void GenRandBoost()
             default: break;
         }
 }
+
 
 #endif
