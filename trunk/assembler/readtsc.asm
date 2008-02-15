@@ -6,12 +6,6 @@ section .txt
 global _ReadTSC
 
 _ReadTSC:
-    ;sub     eax, eax               ;Set eax to 0
     rdtsc                          ;Read timestep counter
-    ;push    eax
-    ;push    edx
-    ;sub     eax, eax
-    ;pop     edx
-    ;pop     eax
     ret
 	
