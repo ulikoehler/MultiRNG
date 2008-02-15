@@ -6,7 +6,7 @@ test:
 	g++ -c tests.cpp -o tests.o
 	g++ -o test.exe tests.o readtsc.o
 	echo Running Tests...
-	test
+	./test
 clean:
 	rm *.o
 	rm *.exe
