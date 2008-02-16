@@ -104,6 +104,8 @@ class MultiRNGFrame: public wxFrame
         static const long ID_TEXTCTRL29;
         static const long ID_STATICTEXT9;
         static const long ID_TEXTCTRL30;
+        static const long ID_STATICTEXT10;
+        static const long ID_TEXTCTRL31;
         //*)
 
         //(*Declarations(MultiRNGFrame)
@@ -134,6 +136,7 @@ class MultiRNGFrame: public wxFrame
         wxStaticText* boost3rdDistParameterLabel;
         wxStaticBox* boostAlgoOptionsBox;
         wxStaticBox* boostSpecificBox;
+        wxStaticText* fillDigitLabel;
         wxChoice* algorithmChoice;
         wxTextCtrl* boost6thAlgoParameterField;
         wxTextCtrl* boost8thParamLabel;
@@ -160,6 +163,7 @@ class MultiRNGFrame: public wxFrame
         wxStaticText* algorithmLabel;
         wxStaticText* libraryLabel;
         wxButton* okButton;
+        wxTextCtrl* fillDigitField;
         wxTextCtrl* boost1stAlgoParameterLabel;
         wxTextCtrl* boost9thAlgoParameterField;
         wxTextCtrl* seedField;

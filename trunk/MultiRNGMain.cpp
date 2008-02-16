@@ -105,6 +105,8 @@ const long MultiRNGFrame::ID_STATICTEXT8 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL29 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT9 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL30 = wxNewId();
+const long MultiRNGFrame::ID_STATICTEXT10 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL31 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(MultiRNGFrame,wxFrame)
@@ -226,6 +228,9 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     concatDigitsField = new wxTextCtrl(this, ID_TEXTCTRL29, _("2"), wxPoint(600,64), wxSize(88,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL29"));
     modulusLabel = new wxStaticText(this, ID_STATICTEXT9, _("Modulus:"), wxPoint(384,88), wxDefaultSize, 0, _T("ID_STATICTEXT9"));
     modulusField = new wxTextCtrl(this, ID_TEXTCTRL30, _("90"), wxPoint(432,88), wxSize(88,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL30"));
+    fillDigitLabel = new wxStaticText(this, ID_STATICTEXT10, _("Fill Digit:"), wxPoint(528,88), wxDefaultSize, 0, _T("ID_STATICTEXT10"));
+    fillDigitField = new wxTextCtrl(this, ID_TEXTCTRL31, _("0"), wxPoint(592,88), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL31"));
+    fillDigitField->SetMaxLength(1);
 
     Connect(ID_LIBCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnLibraryChoiceSelect);
     Connect(ID_OKBUTTON,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&MultiRNGFrame::OnOkButtonClick);
