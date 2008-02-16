@@ -352,5 +352,14 @@
 			<pos>432,88</pos>
 			<size>88,21</size>
 		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT10" variable="fillDigitLabel" member="yes">
+			<label>Fill Digit:</label>
+			<pos>528,88</pos>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL31" variable="fillDigitField" member="yes">
+			<value>0</value>
+			<maxlength>1</maxlength>
+			<pos>592,88</pos>
+		</object>
 	</object>
 </wxsmith>

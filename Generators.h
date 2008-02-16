@@ -30,7 +30,8 @@ static int boostAlgoParam7;
 static int distributionSelectionParam;
 static int algorithmSelectionParam;
 static ulong bitsParam;
-bool customAlgorithm;
+static bool customAlgorithmParam;
+static bool postprocParam;
 
 void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
 {
@@ -42,6 +43,8 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
     double ulDouble = lexical_cast<double>(ulParam);
     double llDouble = lexical_cast<double>(llParam);
     int distributionSelection = distributionSelectionParam;
+    bool postproc;
+    boost::function postprocFunction;
 
     ///Initialize RNG state variable
     MTRand mtr(seed);
