@@ -16,8 +16,8 @@
 					<Add option="-s" />
 				</Linker>
 				<ExtraCommands>
-					<Add before="nasm -fcoff asmrng.asm -o asmrng.o" />
-					<Add before="alink  -c -oPE -subsys gui asmrng.o" />
+					<Add before="nasm -fwin32 -g asmrng.asm -o asmrng.obj -l asmrng.lst" />
+					<Add before="gcc asmrng.obj -o asmrng.exe" />
 				</ExtraCommands>
 			</Target>
 			<Target title="Build Linux">
@@ -35,11 +35,21 @@
 					<Add before="nasm -felf asmrng.asm" />
 				</ExtraCommands>
 			</Target>
+			<Target title="Run">
+				<Option type="4" />
+				<Option compiler="gcc" />
+				<ExtraCommands>
+					<Add before="asmrng" />
+				</ExtraCommands>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="asmrng.asm" />
+		<Unit filename="asmrng.asm">
+			<Option target="Build Windows" />
+			<Option target="Build Linux" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />
