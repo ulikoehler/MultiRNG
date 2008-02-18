@@ -5,7 +5,8 @@ segment .data USE32
     s0Prompt db "s_0:",0
     intAsString: db "%d",10,13,0
     ;Used by IO functions
-    int_format	    db  "%i", 0
+    int_format db  "%i",0
+    int_print_format db "%i",10,13,0
 
 segment .bss USE32
 
@@ -51,7 +52,8 @@ _main:
     ret
 
 _bbshub:
-    pop ecx ;Amount
+    ;pop ecx ;Amount
+    mov ecx,2500
     pop ebx;Modulus
     ;Main loop
     jmp loop_start
@@ -65,7 +67,7 @@ loop_start:
     add esp,8
     push edx ;Is used bym _printf and popped in next iteration
     push intAsString
-    call _printf
+    call print_int
     add esp,4
     ;Check if loop condition is fulfuilled
     loop loop_start ;Decrement ecx and goto loop_start if ecx != 0
@@ -91,3 +93,20 @@ read_int:
 	mov	eax, [ebp-4]
 	leave
 	ret
+
+print_int:
+	enter 0,0
+	pusha
+	pushf
+
+	push eax
+	push dword int_print_format
+	call _printf
+	pop	ecx
+	pop	ecx
+
+	popf
+	popa
+	leave
+	ret
+
