@@ -101,6 +101,7 @@ const long MultiRNGFrame::ID_COMBOBOX2 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT2 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT3 = wxNewId();
 const long MultiRNGFrame::ID_CHOICE1 = wxNewId();
+const long MultiRNGFrame::ID_BUTTON1 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(MultiRNGFrame,wxFrame)
@@ -189,7 +190,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     filenameField = new wxTextCtrl(this, ID_FILEFIELD, _("random.txt"), wxPoint(216,48), wxSize(152,21), 0, wxDefaultValidator, _T("ID_FILEFIELD"));
     okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(120,512), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
     seedLabel = new wxStaticText(this, ID_SEEDLABEL, _("Seed:"), wxPoint(8,80), wxDefaultSize, 0, _T("ID_SEEDLABEL"));
-    seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(56,80), wxSize(312,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
+    seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(56,80), wxSize(216,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
     upperLimitField = new wxTextCtrl(this, ID_TEXTCTRL1, _("1000"), wxPoint(64,152), wxSize(72,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     upperLimitField->Disable();
     distributionChoice = new wxChoice(this, ID_DISTCHOICE, wxPoint(232,120), wxSize(128,21), 0, 0, 0, wxDefaultValidator, _T("ID_DISTCHOICE"));
@@ -223,11 +224,13 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     postprocHashAlgoChoice->Append(_("SHA256"));
     postprocHashAlgoChoice->Append(_("SHA384"));
     postprocHashAlgoChoice->Append(_("SHA512"));
+    generateSeedButton = new wxButton(this, ID_BUTTON1, _("Generate"), wxPoint(280,80), wxSize(88,23), 0, wxDefaultValidator, _T("ID_BUTTON1"));
 
     Connect(ID_LIBCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnLibraryChoiceSelect);
     Connect(ID_OKBUTTON,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&MultiRNGFrame::OnOkButtonClick);
     Connect(ID_DISTCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnDistributionChoiceSelect);
     Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&MultiRNGFrame::OnBoostAlgoParametersCheckboxClick);
+    Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&MultiRNGFrame::OnGenerateSeedButtonClick);
     //*)
 }
 
@@ -512,4 +515,19 @@ void MultiRNGFrame::OnBoostAlgoParametersCheckboxClick(wxCommandEvent& event)
             boost6thAlgoParameterField->Enable(false);
             boost7thAlgoParameterField->Enable(false);
         }
+}
+
+void MultiRNGFrame::OnGenerateSeedButtonClick(wxCommandEvent& event)
+{
+    unsigned int seed;
+    ///Read from /dev/random if we are using linux or use time(0) on windows
+    #ifdef __linux__
+    fstream f("/dev/random", fstream::in);
+    seed = (unsigned int)f.getchar();
+    #else
+    MTRand mtr(time(0)); ///Create random state variable and seed with time(0)
+    seed = mtr.randInt();
+    #endif
+    string s = lexical_cast<string>(seed);
+    seedField->SetValue(wxString(s.c_str(), wxConvUTF8));
 }

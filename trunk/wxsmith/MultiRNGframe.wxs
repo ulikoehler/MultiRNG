@@ -261,7 +261,7 @@
 		<object class="wxTextCtrl" name="ID_SEEDFIELD" variable="seedField" member="yes">
 			<value>1234567890</value>
 			<pos>56,80</pos>
-			<size>312,21</size>
+			<size>216,21</size>
 		</object>
 		<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="upperLimitField" member="yes">
 			<value>1000</value>
@@ -339,6 +339,12 @@
 			</content>
 			<selection>1</selection>
 			<pos>464,56</pos>
+		</object>
+		<object class="wxButton" name="ID_BUTTON1" variable="generateSeedButton" member="yes">
+			<label>Generate</label>
+			<pos>280,80</pos>
+			<size>88,23</size>
+			<handler function="OnGenerateSeedButtonClick" entry="EVT_BUTTON" />
 		</object>
 	</object>
 </wxsmith>
