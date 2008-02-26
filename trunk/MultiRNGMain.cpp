@@ -212,9 +212,9 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     bitsField->Disable();
     boostAlgoParametersCheckbox = new wxCheckBox(this, ID_CHECKBOX1, _("Enable customized algorithm"), wxPoint(30,220), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
     boostAlgoParametersCheckbox->SetValue(false);
-    ComboBox1 = new wxComboBox(this, ID_COMBOBOX2, wxEmptyString, wxPoint(464,32), wxSize(216,21), 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX2"));
-    ComboBox1->SetSelection( ComboBox1->Append(_("Nothing")) );
-    ComboBox1->Append(_("Hash"));
+    postprocMethodChoice = new wxComboBox(this, ID_COMBOBOX2, wxEmptyString, wxPoint(464,32), wxSize(216,21), 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX2"));
+    postprocMethodChoice->SetSelection( postprocMethodChoice->Append(_("Nothing")) );
+    postprocMethodChoice->Append(_("Hash"));
     postprocLabel = new wxStaticText(this, ID_STATICTEXT2, _("Postprocessing:"), wxPoint(384,32), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     postprocHashAlgoLabel = new wxStaticText(this, ID_STATICTEXT3, _("Hash algorithm:"), wxPoint(384,56), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
     postprocHashAlgoChoice = new wxChoice(this, ID_CHOICE1, wxPoint(464,56), wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
@@ -435,6 +435,10 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
     algorithmSelectionParam = algorithmChoice->GetCurrentSelection();
     filenameParam = lexical_cast<string>(filenameField->GetValue().mb_str());
     customAlgorithmParam = boostAlgoParametersCheckbox->IsChecked();
+    postprocMethodParam = postprocMethodChoice->GetCurrentSelection();
+    postprocAlgorithmParam  = postprocHashAlgoChoice->GetCurrentSelection();
+    //Check if postprocessing should be enabled
+    if (postprocMethodParam != 0) {postprocEnabledParam = true;}
 
     ///Init algorithm parameters
     boostAlgoParam1 = lexical_cast<int>(boost1stAlgoParameterField->GetValue().mb_str());

@@ -34,7 +34,6 @@
 #include <boost/random.hpp>
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
-#include <hashlibpp.h>
 ///Include boost thread if multithreading is not disabled
 #ifndef NOMTHREADING
     #include <boost/thread.hpp>

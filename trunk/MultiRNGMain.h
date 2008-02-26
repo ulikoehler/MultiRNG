@@ -117,6 +117,7 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* boost3rdDistParameterBox;
         wxTextCtrl* boost4thAlgoParameterLabel;
         wxStaticBox* boostDistOptionsBox;
+        wxComboBox* postprocMethodChoice;
         wxTextCtrl* boost2ndAlgoParameterField;
         wxTextCtrl* boost5thAlgoParameterLabel;
         wxTextCtrl* boost1stAlgoParameterField;
@@ -143,7 +144,6 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* boost7thAlgoParameterField;
         wxTextCtrl* filenameField;
         wxTextCtrl* upperLimitField;
-        wxComboBox* ComboBox1;
         wxStaticText* bitsLabel;
         wxStaticText* fileLabel;
         wxStaticText* boost1stDistParameterLabel;
