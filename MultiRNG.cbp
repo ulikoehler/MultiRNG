@@ -134,33 +134,34 @@
 			</Target>
 			<Target title="Assembler Windows">
 				<Option output=".exe" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
-				<Option object_output="C:\Dokumente und Einstellungen\User\Desktop\MultiRNG\trunk\\.objs" />
+				<Option object_output="C:\Dokumente und Einstellungen\User\Desktop\MultiRNG\trunk\.objs" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
 			</Target>
 			<Target title="Assembler Linux">
 				<Option output=".exe" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
-				<Option object_output="C:\Dokumente und Einstellungen\User\Desktop\MultiRNG\trunk\\.objs" />
+				<Option object_output="C:\Dokumente und Einstellungen\User\Desktop\MultiRNG\trunk\.objs" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-Wall" />
 			<Add option="-pipe" />
-			<Add option="-DWXUSINGDLL" />
-			<Add option="-DwxUSE_UNICODE" />
 			<Add option='[[if (PLATFORM == PLATFORM_MSW &amp;&amp; (GetCompilerFactory().GetCompilerVersionString(_T(&quot;gcc&quot;)) &gt;= _T(&quot;4.0.0&quot;))) print(_T(&quot;-Wno-attributes&quot;));]]' />
 			<Add option="-include wx_pch.h" />
+			<Add option="-DWXUSINGDLL" />
+			<Add option="-DwxUSE_UNICODE" />
 			<Add option="-DWX_PRECOMP" />
-			<Add option="-Wall" />
 		</Compiler>
 		<ResourceCompiler>
 			<Add directory="C:\wxPack-2.8\include" />
 		</ResourceCompiler>
+		<Linker>
+			<Add library="hl++" />
+		</Linker>
 		<Unit filename="Generators.h">
 			<Option target="Debug Windows" />
 			<Option target="Release Windows" />
