@@ -9,6 +9,7 @@ segment .data USE32
     int_print_format db "%i",10,13,0
 
 segment .bss USE32
+data resw 3;Starting Value, modulus, amount
 
 segment .text USE32
 
@@ -21,13 +22,14 @@ extern _printf
 extern _scanf
 extern _strtol
 _main:
+
     ;Prompt for modulus
     push modPrompt
     call _printf
     add esp,4
     ;Read modulus
     call read_int
-    push eax
+    mov [data + 1],eax
 
     ;Prompt for starting value
     push s0Prompt
@@ -35,7 +37,7 @@ _main:
     add esp,4
     ;Read starting value
     call read_int
-    push eax
+    mov[data],eax
 
     ;Prompt for amount
     push amountPrompt
@@ -43,32 +45,33 @@ _main:
     add esp,4
     ;Read amount
     call read_int
-    push eax
+    mov [data + 2],eax
 
-    call _bbshub
+    jmp _bbshub
 
-    add esp,12
-    mov eax,0
+    mov eax,0 ;Return value
     ret
 
 _bbshub:
     ;pop ecx ;Amount
-    mov ecx,2500
-    pop ebx;Modulus
+    mov ecx,[data + 2] ;Amount
+    mov ebx,[data + 1];Modulus
     ;Main loop
     jmp loop_start
 
 loop_start:
-    pop eax ;Last starting value
+    mov eax,[data] ;Last starting value
     mov edx,eax ;copy value of edx to eax for muliplication
+    mov edx, 0
     mul edx ;Calculate the square of eax=last i (and edx=eax) and store in eax
     div ebx ;Calculate (eax=s^2)mood(ebx=modulus) and save in edx
     ;Display result
-    add esp,8
     push edx ;Is used bym _printf and popped in next iteration
     push intAsString
     call print_int
     add esp,4
+    ;Save intermediate result into memory
+    mov [data],edx
     ;Check if loop condition is fulfuilled
     loop loop_start ;Decrement ecx and goto loop_start if ecx != 0
 
