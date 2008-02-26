@@ -64,7 +64,7 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             {
                                 if(postproc)
                                 {
-                                    boost::function<string(string)> postproc = getPostprocessFunction<double>();
+                                    boost::function<string(double)> postproc = getPostprocessFunction<double>();
                                     for(;i < amount;i++)
                                         {
                                             f << postproc(lexical_cast<string>(mtr.rand())) << endl;
@@ -80,7 +80,7 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             {
                                 if(postproc)
                                 {
-                                    boost::function<string(string)> postproc = getPostprocessFunction<double>();
+                                    boost::function<string(double)> postproc = getPostprocessFunction<double>();
                                     for(;i < amount;i++)
                                         {
                                             f << postproc(lexical_cast<string>(mtr.rand(ulDouble))) << endl;
@@ -96,7 +96,7 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             {
                                 if(postproc)
                                 {
-                                    boost::function<string(string)> postproc = getPostprocessFunction<double>();
+                                    boost::function<string(double)> postproc = getPostprocessFunction<double>();
                                     for(;i < amount;i++)
                                         {
                                             f << postproc(lexical_cast<string>(mtr.randExc())) << endl;
@@ -112,7 +112,7 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             {
                                 if(postproc)
                                 {
-                                    boost::function<string(string)> postproc = getPostprocessFunction<double>();
+                                    boost::function<string(double)> postproc = getPostprocessFunction<double>();
                                     for(;i < amount;i++)
                                         {
                                             f << postproc(lexical_cast<string>(mtr.randExc(ulDouble))) << endl;
@@ -128,7 +128,7 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             {
                                 if(postproc)
                                 {
-                                    boost::function<string(string)> postproc = getPostprocessFunction<double>();
+                                    boost::function<string(double)> postproc = getPostprocessFunction<double>();
                                     for(;i < amount;i++)
                                         {
                                             f << postproc(lexical_cast<string>(mtr.randDblExc())) << endl;
@@ -145,7 +145,7 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             {
                                 if(postproc)
                                 {
-                                    boost::function<string(string)> postproc = getPostprocessFunction<double>();
+                                    boost::function<string(double)> postproc = getPostprocessFunction<double>();
                                     for(;i < amount;i++)
                                         {
                                             f << postproc(lexical_cast<string>(mtr.randDblExc(ulDouble))) << endl;
@@ -162,7 +162,7 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             {
                                 if(postproc)
                                 {
-                                    boost::function<string(string)> postproc = getPostprocessFunction<unsigned long>();
+                                    boost::function<string(unsigned long)> postproc = getPostprocessFunction<unsigned long>();
                                     for(;i < amount;i++)
                                         {
                                             f << postproc(lexical_cast<string>(mtr.randInt())) << endl;
@@ -179,7 +179,7 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             {
                                 if(postproc)
                                 {
-                                    boost::function<string(string)> postproc = getPostprocessFunction<unsigned long>();
+                                    boost::function<string(unsigned long)> postproc = getPostprocessFunction<unsigned long>();
                                     for(;i < amount;i++)
                                         {
                                             f << postproc(lexical_cast<string>(mtr.randInt(ulLong))) << endl;
@@ -196,7 +196,7 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             {
                                 if(postproc)
                                 {
-                                    boost::function<string(string)> postproc = getPostprocessFunction<double>();
+                                    boost::function<string(double)> postproc = getPostprocessFunction<double>();
                                     for(;i < amount;i++)
                                         {
                                             f << postproc(lexical_cast<string>(mtr.rand53())) << endl;
@@ -213,7 +213,7 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             {
                                 if(postproc)
                                 {
-                                    boost::function<string(string)> postproc = getPostprocessFunction<double>();
+                                    boost::function<string(double)> postproc = getPostprocessFunction<double>();
 
                                 }
                                 for(;i < amount;i++)
