@@ -1,6 +1,8 @@
 #ifndef GENERATORS_H
 #define GENERATORS_H
 #include "wx_pch.h"
+///Custom includes
+#include "Postproc.h" ///Postprocessing header
 using namespace std;
 using namespace boost;
 using namespace boost::random;
@@ -31,7 +33,7 @@ static int distributionSelectionParam;
 static int algorithmSelectionParam;
 static ulong bitsParam;
 static bool customAlgorithmParam;
-static bool postprocParam;
+static bool postprocEnabledParam;
 
 void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
 {
@@ -60,6 +62,14 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                     {
                         case 0: ///32-Bit Real in [0,1]
                             {
+                                if(postproc)
+                                {
+                                    boost::function<string(string)> postproc = getPostprocessFunction();
+                                    for(;i < amount;i++)
+                                        {
+                                            f << postproc(lexical_cast<string>(mtr.rand())) << endl;
+                                        }
+                                }
                                 for(;i < amount;i++)
                                     {
                                         f << mtr.rand() << endl;
@@ -68,6 +78,14 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             }
                         case 1: ///32-Bit Real in [0,n]
                             {
+                                if(postproc)
+                                {
+                                    boost::function<string(string)> postproc = getPostprocessFunction();
+                                    for(;i < amount;i++)
+                                        {
+                                            f << postproc(lexical_cast<string>(mtr.rand(ulDouble))) << endl;
+                                        }
+                                }
                                 for(;i < amount;i++)
                                     {
                                         f << mtr.rand(ulDouble) << endl;
@@ -76,6 +94,14 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             }
                         case 2: ///32-Bit Real in [0,1)
                             {
+                                if(postproc)
+                                {
+                                    boost::function<string(string)> postproc = getPostprocessFunction();
+                                    for(;i < amount;i++)
+                                        {
+                                            f << postproc(lexical_cast<string>(mtr.randExc())) << endl;
+                                        }
+                                }
                                 for(;i < amount;i++)
                                     {
                                         f << mtr.randExc() << endl;
@@ -84,6 +110,14 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             }
                         case 3: ///32-Bit Real in [0,n)
                             {
+                                if(postproc)
+                                {
+                                    boost::function<string(string)> postproc = getPostprocessFunction();
+                                    for(;i < amount;i++)
+                                        {
+                                            f << postproc(lexical_cast<string>(mtr.randExc(ulDouble))) << endl;
+                                        }
+                                }
                                 for(;i < amount;i++)
                                     {
                                         f << mtr.randExc(ulDouble) << endl;
@@ -92,6 +126,15 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             }
                         case 4: ///32-Bit Real in (0,1)
                             {
+                                if(postproc)
+                                {
+                                    boost::function<string(string)> postproc = getPostprocessFunction();
+                                    for(;i < amount;i++)
+                                        {
+                                            f << postproc(lexical_cast<string>(mtr.randDblExc())) << endl;
+                                        }
+
+                                }
                                 for(;i < amount;i++)
                                     {
                                         f << mtr.randDblExc() << endl;
@@ -100,6 +143,15 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             }
                         case 5: ///32-Bit Real in (0,n)
                             {
+                                if(postproc)
+                                {
+                                    boost::function<string(string)> postproc = getPostprocessFunction();
+                                    for(;i < amount;i++)
+                                        {
+                                            f << postproc(lexical_cast<string>(mtr.randDblExc(ulDouble))) << endl;
+                                        }
+
+                                }
                                 for(;i < amount;i++)
                                     {
                                         f << mtr.randDblExc(ulDouble) << endl;
@@ -108,6 +160,15 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             }
                         case 6: ///Integer in [0,2^32-1]
                             {
+                                if(postproc)
+                                {
+                                    boost::function<string(string)> postproc = getPostprocessFunction();
+                                    for(;i < amount;i++)
+                                        {
+                                            f << postproc(lexical_cast<string>(mtr.randInt())) << endl;
+                                        }
+
+                                }
                                 for(;i < amount;i++)
                                     {
                                         f << mtr.randInt() << endl;
@@ -116,6 +177,15 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             }
                         case 7: ///Integer in [0,n] for n < 2^32
                             {
+                                if(postproc)
+                                {
+                                    boost::function<string(string)> postproc = getPostprocessFunction();
+                                    for(;i < amount;i++)
+                                        {
+                                            f << postproc(lexical_cast<string>(mtr.randInt(ulLong))) << endl;
+                                        }
+
+                                }
                                 for(;i < amount;i++)
                                     {
                                         f << mtr.randInt(ulLong) << endl;
@@ -124,6 +194,15 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             }
                         case 8: ///53-bit real number in [0,1)
                             {
+                                if(postproc)
+                                {
+                                    boost::function<string(string)> postproc = getPostprocessFunction();
+                                    for(;i < amount;i++)
+                                        {
+                                            f << postproc(lexical_cast<string>(mtr.rand53())) << endl;
+                                        }
+
+                                }
                                 for(;i < amount;i++)
                                     {
                                         f << mtr.rand53() << endl;
@@ -132,6 +211,11 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
                             }
                         case 9: ///Nonuniform
                             {
+                                if(postproc)
+                                {
+                                    boost::function<string(string)> postproc = getPostprocessFunction();
+
+                                }
                                 for(;i < amount;i++)
                                     {
                                         f << mtr.randNorm(llDouble, ulDouble) << endl;

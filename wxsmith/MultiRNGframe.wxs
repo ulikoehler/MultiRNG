@@ -312,7 +312,7 @@
 			<pos>30,220</pos>
 			<handler function="OnBoostAlgoParametersCheckboxClick" entry="EVT_CHECKBOX" />
 		</object>
-		<object class="wxComboBox" name="ID_COMBOBOX2" variable="ComboBox1" member="yes">
+		<object class="wxComboBox" name="ID_COMBOBOX2" variable="postprocMethodChoice" member="yes">
 			<content>
 				<item>Nothing</item>
 				<item>Hash</item>
