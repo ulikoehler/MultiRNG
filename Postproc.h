@@ -19,7 +19,7 @@ template<class T> inline string addNumber(T inputNumber);
 template<class numType>
 inline boost::function<string(numType)> getPostprocessFunction()
 {
-    boost::function<string(string)> f;
+    boost::function<string(numType)> f;
     switch(postprocMethodParam)
     {
         case 1: //Hash
