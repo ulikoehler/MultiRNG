@@ -37,14 +37,14 @@ void GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
 {
     ///Cache parameters
     ulong amount = amountParam;
-    ulong seed = seedParam;
+    ulong seed = lexical_cast<unsigned long>(seedParam);
     string filename = filenameParam;
     ulong ulLong = lexical_cast<long>(ulParam);
     double ulDouble = lexical_cast<double>(ulParam);
     double llDouble = lexical_cast<double>(llParam);
     int distributionSelection = distributionSelectionParam;
     bool postproc;
-    boost::function postprocFunction;
+    //boost::function postprocFunction;
 
     ///Initialize RNG state variable
     MTRand mtr(seed);
@@ -159,13 +159,13 @@ void GenRandGMP()
 
     mpz_t integer;
     mpz_t n;
-    mpz_t seed;
+    mpz_t mseed;
 
     mpz_init(integer);
-    mpz_init(seed);
+    mpz_init(mseed);
     mpz_init(n);
     ///Set values of the pz_t variables
-    mpz_set_str(seed, seed.c_str(), 10);
+    mpz_set_str(mseed, seed.c_str(), 10);
     mpz_set_str(n, ulString.c_str(), 10);
 
     ///Open fstream
@@ -181,7 +181,7 @@ void GenRandGMP()
                 {gmp_randinit_lc_2exp_size(randstate, bits);break;}
             default: break;
         }
-    gmp_randseed(randstate, seed);
+    gmp_randseed(randstate, mseed);
     for(;i < amount;i++)
         {
             mpz_urandomm(integer, randstate, n);
@@ -190,7 +190,7 @@ void GenRandGMP()
     f.close();
     ///Clear all GMP variables
     mpz_clear(integer);
-    mpz_clear(seed);
+    mpz_clear(mseed);
     mpz_clear(n);
     gmp_randclear(randstate);
 }
@@ -343,7 +343,7 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
 void GenRandBoost()
 {
     ///Cache required parameters
-    ulong ulSeed = seedParam;
+    ulong ulSeed = lexical_cast<unsigned long>(seedParam);
     int algorithmSelection = algorithmSelectionParam;
 
     ///Switch distribution
