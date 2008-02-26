@@ -434,7 +434,7 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
     distributionSelectionParam = distributionChoice->GetCurrentSelection();
     algorithmSelectionParam = algorithmChoice->GetCurrentSelection();
     filenameParam = lexical_cast<string>(filenameField->GetValue().mb_str());
-    customAlgorithm = boostAlgoParametersCheckbox->IsChecked();
+    customAlgorithmParam = boostAlgoParametersCheckbox->IsChecked();
 
     ///Init algorithm parameters
     boostAlgoParam1 = lexical_cast<int>(boost1stAlgoParameterField->GetValue().mb_str());
