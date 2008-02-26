@@ -42,6 +42,7 @@ class MultiRNGFrame: public wxFrame
         void OnDistributionChoiceSelect(wxCommandEvent& event);
         void OnOkButtonClick(wxCommandEvent& event);
         void OnBoostAlgoParametersCheckboxClick(wxCommandEvent& event);
+        void OnGenerateSeedButtonClick(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(MultiRNGFrame)
@@ -100,6 +101,7 @@ class MultiRNGFrame: public wxFrame
         static const long ID_STATICTEXT2;
         static const long ID_STATICTEXT3;
         static const long ID_CHOICE1;
+        static const long ID_BUTTON1;
         //*)
 
         //(*Declarations(MultiRNGFrame)
@@ -155,6 +157,7 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* boost9thAlgoParameterField;
         wxTextCtrl* seedField;
         wxTextCtrl* amountField;
+        wxButton* generateSeedButton;
         wxStaticText* postprocHashAlgoLabel;
         wxStaticText* postprocLabel;
         wxTextCtrl* boost4thAlgoParameterField;
