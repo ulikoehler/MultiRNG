@@ -1,9 +1,9 @@
 /***************************************************************
  * Name:      wx_pch.h
  * Purpose:   Header to create Pre-Compiled Header (PCH)
- * Author:    Uli Koehler ()
+ * Author:    Uli Koehler
  * Created:   2008-01-20
- * Copyright: Uli Koehler ()
+ * Copyright: (c) Uli Koehler 2007-2008
  * License:
  **************************************************************/
 

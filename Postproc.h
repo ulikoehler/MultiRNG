@@ -10,10 +10,14 @@ using namespace boost::random;
 ///Static parameters
 static int postprocAlgorithmParam;
 static int postprocMethodParam;
+static string postprocOffsetParam;
 
+///Forward declarations
 inline string hash(string inputString);
+template<class T> inline string addNumber(T inputNumber);
 
-inline boost::function<string(string)> getPostprocessFunction()
+template<class numType>
+inline boost::function<string(numType)> getPostprocessFunction()
 {
     boost::function<string(string)> f;
     switch(postprocMethodParam)
@@ -23,11 +27,17 @@ inline boost::function<string(string)> getPostprocessFunction()
                 f = &hash;
                 break;
             }
+        case 2: //Add
+            {
+                f = &addNumber;
+                break;
+            }
         default: break;
     }
     return f;
 }
 
+///Calculate a hash value of the input string
 inline string hash(string inputString)
 {
     string resultString;
@@ -65,6 +75,15 @@ inline string hash(string inputString)
                 default: break;
             }
     return resultString;
+}
+
+///Add offset to input;
+///Template to support double etc. too;
+template<class T>
+inline string addNumber(T inputNumber)
+{
+    T offset = lexical_cast<T>(postprocOffsetParam);
+    return lexical_cast<string>(inputNumber + offset);
 }
 
 #endif
