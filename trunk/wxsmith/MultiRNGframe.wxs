@@ -315,7 +315,7 @@
 		<object class="wxComboBox" name="ID_COMBOBOX2" variable="ComboBox1" member="yes">
 			<content>
 				<item>Nothing</item>
-				<item>Char Replace</item>
+				<item>Hash</item>
 			</content>
 			<selection>0</selection>
 			<pos>464,32</pos>
@@ -325,41 +325,20 @@
 			<label>Postprocessing:</label>
 			<pos>384,32</pos>
 		</object>
-		<object class="wxStaticText" name="ID_STATICTEXT3" variable="offsetLabel" member="yes">
-			<label>Offset:</label>
-			<pos>392,64</pos>
+		<object class="wxStaticText" name="ID_STATICTEXT3" variable="postprocHashAlgoLabel" member="yes">
+			<label>Hash algorithm:</label>
+			<pos>384,56</pos>
 		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL28" variable="offsetField" member="yes">
-			<value>65</value>
-			<pos>432,64</pos>
-			<size>88,21</size>
-		</object>
-		<object class="wxStaticText" name="ID_STATICTEXT8" variable="concatDigitsLabel" member="yes">
-			<label>Concat Digits:</label>
-			<pos>528,64</pos>
-		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL29" variable="concatDigitsField" member="yes">
-			<value>2</value>
-			<pos>600,64</pos>
-			<size>88,21</size>
-		</object>
-		<object class="wxStaticText" name="ID_STATICTEXT9" variable="modulusLabel" member="yes">
-			<label>Modulus:</label>
-			<pos>384,88</pos>
-		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL30" variable="modulusField" member="yes">
-			<value>90</value>
-			<pos>432,88</pos>
-			<size>88,21</size>
-		</object>
-		<object class="wxStaticText" name="ID_STATICTEXT10" variable="fillDigitLabel" member="yes">
-			<label>Fill Digit:</label>
-			<pos>528,88</pos>
-		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL31" variable="fillDigitField" member="yes">
-			<value>0</value>
-			<maxlength>1</maxlength>
-			<pos>592,88</pos>
+		<object class="wxChoice" name="ID_CHOICE1" variable="postprocHashAlgoChoice" member="yes">
+			<content>
+				<item>MD5</item>
+				<item>SHA1</item>
+				<item>SHA256</item>
+				<item>SHA384</item>
+				<item>SHA512</item>
+			</content>
+			<selection>1</selection>
+			<pos>464,56</pos>
 		</object>
 	</object>
 </wxsmith>
