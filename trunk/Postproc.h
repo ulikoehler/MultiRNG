@@ -29,7 +29,7 @@ inline boost::function<string(numType)> getPostprocessFunction()
             }
         case 2: //Add
             {
-                f = &addNumber;
+                //f = boost::bind<numType>(addNumber, _1);
                 break;
             }
         default: break;
