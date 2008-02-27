@@ -316,6 +316,9 @@
 			<content>
 				<item>Nothing</item>
 				<item>Hash</item>
+				<item>Add</item>
+				<item>Convert to char(full)</item>
+				<item>Convert to char (per digit)</item>
 			</content>
 			<selection>0</selection>
 			<pos>464,32</pos>
@@ -345,6 +348,24 @@
 			<pos>280,80</pos>
 			<size>88,23</size>
 			<handler function="OnGenerateSeedButtonClick" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT8" variable="postprocOffsetLabel" member="yes">
+			<label>Offset:</label>
+			<pos>424,80</pos>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL28" variable="postprocOffsetField" member="yes">
+			<value>80</value>
+			<pos>464,80</pos>
+			<tooltip>Number to add to the value</tooltip>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT9" variable="postprocModLabel" member="yes">
+			<label>Modulus:</label>
+			<pos>416,104</pos>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL29" variable="postprocModField" member="yes">
+			<value>100</value>
+			<pos>464,104</pos>
+			<tooltip>Modulus when using full char conversion</tooltip>
 		</object>
 	</object>
 </wxsmith>

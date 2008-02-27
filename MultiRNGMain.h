@@ -102,6 +102,10 @@ class MultiRNGFrame: public wxFrame
         static const long ID_STATICTEXT3;
         static const long ID_CHOICE1;
         static const long ID_BUTTON1;
+        static const long ID_STATICTEXT8;
+        static const long ID_TEXTCTRL28;
+        static const long ID_STATICTEXT9;
+        static const long ID_TEXTCTRL29;
         //*)
 
         //(*Declarations(MultiRNGFrame)
@@ -113,6 +117,7 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* lowerLimitLabel;
         wxStaticText* boost4thDistParameterLabel;
         wxStaticText* seedLabel;
+        wxStaticText* postprocModLabel;
         wxTextCtrl* lowerLimitField;
         wxTextCtrl* boost3rdAlgoParameterLabel;
         wxCheckBox* boostAlgoParametersCheckbox;
@@ -128,6 +133,7 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* boost2ndAlgoParameterLabel;
         wxTextCtrl* boost3rdAlgoParameterField;
         wxTextCtrl* boost8thAlgoParameterField;
+        wxStaticText* postprocOffsetLabel;
         wxStaticText* boost3rdDistParameterLabel;
         wxStaticBox* boostAlgoOptionsBox;
         wxStaticBox* boostSpecificBox;
@@ -140,6 +146,7 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* boost7thAlgoParameterLabel;
         wxTextCtrl* upperLimitLabel;
         wxTextCtrl* boost9thParamLabel;
+        wxTextCtrl* postprocModField;
         wxTextCtrl* boost2ndDistParameterBox;
         wxTextCtrl* boost6thAlgoParameterLabel;
         wxChoice* distributionChoice;
@@ -154,6 +161,7 @@ class MultiRNGFrame: public wxFrame
         wxButton* okButton;
         wxChoice* postprocHashAlgoChoice;
         wxTextCtrl* boost1stAlgoParameterLabel;
+        wxTextCtrl* postprocOffsetField;
         wxTextCtrl* boost9thAlgoParameterField;
         wxTextCtrl* seedField;
         wxTextCtrl* amountField;

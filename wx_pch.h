@@ -30,6 +30,8 @@
 #include <boost/lexical_cast.hpp>
 #include <iostream>
 #include <MersenneTwister.h>
+//System headers
+#include <sys/stat.h>
 //Boost headers
 #include <boost/random.hpp>
 #include <boost/function.hpp>
