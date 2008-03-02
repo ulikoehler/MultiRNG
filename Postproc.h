@@ -13,33 +13,34 @@ static int postprocMethodParam;
 static string postprocOffsetParam;
 
 ///Forward declarations
-inline string hash(string inputString);
-template<class T> inline string addNumber(T inputNumber);
+template <class T1> inline string hash(T1 input);
+template <class T2> inline string addNumber(T2 inputNumber);
 
 template<class numType>
 inline boost::function<string(numType)> getPostprocessFunction()
 {
-    boost::function<string(numType)> f;
     switch(postprocMethodParam)
     {
         case 1: //Hash
             {
-                f = &hash;
+                return static_cast<string(*)(numType)>(&addNumber<numType>);
                 break;
             }
         case 2: //Add
             {
-                //f = boost::bind<numType>(addNumber, _1);
+                return static_cast<string(*)(numType)>(&hash<numType>);
                 break;
             }
-        default: break;
+        default: return NULL;
     }
-    return f;
+    return NULL;
 }
 
 ///Calculate a hash value of the input string
-inline string hash(string inputString)
+template <class T1>
+inline string hash(T1 input)
 {
+    string inputString = lexical_cast<string>(input);
     string resultString;
     switch(postprocAlgorithmParam)
             {
@@ -79,10 +80,10 @@ inline string hash(string inputString)
 
 ///Add offset to input;
 ///Template to support double etc. too;
-template<class T>
-inline string addNumber(T inputNumber)
+template<class T2>
+inline string addNumber(T2 inputNumber)
 {
-    T offset = lexical_cast<T>(postprocOffsetParam);
+    T2 offset = lexical_cast<T2>(postprocOffsetParam);
     return lexical_cast<string>(inputNumber + offset);
 }
 
