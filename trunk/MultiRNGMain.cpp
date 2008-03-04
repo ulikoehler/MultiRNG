@@ -457,13 +457,13 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
     if (postprocMethodParam != 0) {postprocEnabledParam = true;}
 
     ///Init algorithm parameters
-    boostAlgoParam1 = lexical_cast<int>(boost1stAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam2 = lexical_cast<int>(boost2ndAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam3 = lexical_cast<int>(boost3rdAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam4 = lexical_cast<int>(boost4thAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam5 = lexical_cast<int>(boost5thAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam6 = lexical_cast<int>(boost6thAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam7 = lexical_cast<int>(boost7thAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam1Param = lexical_cast<int>(boost1stAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam2Param = lexical_cast<int>(boost2ndAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam3Param = lexical_cast<int>(boost3rdAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam4Param = lexical_cast<int>(boost4thAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam5Param = lexical_cast<int>(boost5thAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam6Param = lexical_cast<int>(boost6thAlgoParameterField->GetValue().mb_str());
+    boostAlgoParam7Param = lexical_cast<int>(boost7thAlgoParameterField->GetValue().mb_str());
 
     switch(libraryChoice->GetCurrentSelection())
     {

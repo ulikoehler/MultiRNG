@@ -12,6 +12,8 @@ static int postprocAlgorithmParam;
 static int postprocMethodParam;
 static string postprocOffsetParam;
 
+///Constants
+
 ///Forward declarations
 template <class T1> inline string hash(T1 input);
 template <class T2> inline string addNumber(T2 inputNumber);
@@ -31,10 +33,21 @@ inline boost::function<string(numType)> getPostprocessFunction()
                 return static_cast<string(*)(numType)>(&hash<numType>);
                 break;
             }
+        case 3: //Convert to char(fulls)
+            {
+
+            }
+        case 4: //Convert to char(per digit)
+            {
+
+            }
         default: return NULL;
     }
     return NULL;
 }
+
+///NullFunction
+
 
 ///Calculate a hash value of the input string
 template <class T1>
