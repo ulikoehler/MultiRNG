@@ -45,7 +45,7 @@
 		<object class="wxStaticBox" name="ID_STATICBOX1" variable="StaticBox1" member="yes">
 			<label>Software Postprocessing</label>
 			<pos>376,8</pos>
-			<size>320,184</size>
+			<size>320,224</size>
 			<fg>wxSYS_COLOUR_MENUTEXT</fg>
 		</object>
 		<object class="wxStaticBox" name="ID_BOOSTALGOOPTSBOX" variable="boostAlgoOptionsBox" member="yes">
@@ -375,6 +375,16 @@
 			<value>2</value>
 			<pos>464,128</pos>
 			<tooltip>Number of digits to concatenate</tooltip>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT11" variable="StaticText1" member="yes">
+			<label>Filling string:</label>
+			<pos>392,152</pos>
+			<size>64,16</size>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL31" variable="TextCtrl1" member="yes">
+			<value>Text</value>
+			<pos>464,152</pos>
+			<tooltip>Source from which we can get characters if the string length of the random number is not dividable by the concat divisor</tooltip>
 		</object>
 	</object>
 </wxsmith>
