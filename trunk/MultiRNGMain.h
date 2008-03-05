@@ -108,6 +108,8 @@ class MultiRNGFrame: public wxFrame
         static const long ID_TEXTCTRL29;
         static const long ID_STATICTEXT10;
         static const long ID_TEXTCTRL30;
+        static const long ID_STATICTEXT11;
+        static const long ID_TEXTCTRL31;
         //*)
 
         //(*Declarations(MultiRNGFrame)
@@ -131,6 +133,7 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* boost5thAlgoParameterLabel;
         wxTextCtrl* boost1stAlgoParameterField;
         wxTextCtrl* distributionLabel;
+        wxStaticText* StaticText1;
         wxStaticBox* StaticBox1;
         wxTextCtrl* boost2ndAlgoParameterLabel;
         wxTextCtrl* boost3rdAlgoParameterField;
@@ -159,6 +162,7 @@ class MultiRNGFrame: public wxFrame
         wxTextCtrl* upperLimitField;
         wxStaticText* bitsLabel;
         wxStaticText* fileLabel;
+        wxTextCtrl* TextCtrl1;
         wxStaticText* boost1stDistParameterLabel;
         wxStaticText* algorithmLabel;
         wxStaticText* libraryLabel;

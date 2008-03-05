@@ -11,6 +11,7 @@ using namespace boost::random;
 static int postprocAlgorithm;
 static int postprocMethod;
 static ulong postprocModulus;
+static ulong postprocConcatLength;
 static string postprocOffset;
 
 ///Constants
@@ -104,8 +105,13 @@ inline string addNumber(T2 inputNumber)
 }
 
 template <class T3>
-inline string addNumberPerConcat()
+inline string addNumberPerConcat(T3 input)
 {
+    string inputString = lexical_cast<string>(inputString); ///Parameter converted into a string
+    int inputLength = inputString.length();
+    static vector<string> partVec; ///Vector of partials, static to avoid frequent reserving
+    partVec.reserve((size_t)ceil(inputLength/postprocConcatLength)); ///Speed up the operation by avoiding dynamic allocation
+    ///
 
 }
 

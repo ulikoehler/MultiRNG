@@ -108,6 +108,8 @@ const long MultiRNGFrame::ID_STATICTEXT9 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL29 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT10 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL30 = wxNewId();
+const long MultiRNGFrame::ID_STATICTEXT11 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL31 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(MultiRNGFrame,wxFrame)
@@ -130,7 +132,7 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     boost4thDistParameterLabel = new wxStaticText(this, ID_STATICTEXT7, _("4th:"), wxPoint(32,456), wxDefaultSize, 0, _T("ID_STATICTEXT7"));
     boost2ndDistributionLabelresourceobjectclasswxStaticTextnameID_STATICTEXT4variableboost1stDistParameterLabelmemberyeslabel1stlabelpos32384posobjectresource = new wxStaticText(this, ID_STATICTEXT5, _("2nd:"), wxPoint(32,408), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
     boost1stDistParameterLabel = new wxStaticText(this, ID_STATICTEXT4, _("1st:"), wxPoint(32,384), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-    StaticBox1 = new wxStaticBox(this, ID_STATICBOX1, _("Software Postprocessing"), wxPoint(376,8), wxSize(320,184), 0, _T("ID_STATICBOX1"));
+    StaticBox1 = new wxStaticBox(this, ID_STATICBOX1, _("Software Postprocessing"), wxPoint(376,8), wxSize(320,224), 0, _T("ID_STATICBOX1"));
     StaticBox1->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     boostAlgoOptionsBox = new wxStaticBox(this, ID_BOOSTALGOOPTSBOX, _("Boost-Specific Algorithm Options"), wxPoint(16,200), wxSize(344,144), 0, _T("ID_BOOSTALGOOPTSBOX"));
     boostAlgoOptionsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
@@ -243,6 +245,9 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     concatDigitsLabel = new wxStaticText(this, ID_STATICTEXT10, _("Concat:"), wxPoint(416,128), wxDefaultSize, 0, _T("ID_STATICTEXT10"));
     concatDigitsField = new wxTextCtrl(this, ID_TEXTCTRL30, _("2"), wxPoint(464,128), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL30"));
     concatDigitsField->SetToolTip(_("Number of digits to concatenate"));
+    StaticText1 = new wxStaticText(this, ID_STATICTEXT11, _("Filling string:"), wxPoint(392,152), wxSize(64,16), 0, _T("ID_STATICTEXT11"));
+    TextCtrl1 = new wxTextCtrl(this, ID_TEXTCTRL31, _("Text"), wxPoint(464,152), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL31"));
+    TextCtrl1->SetToolTip(_("Source from which we can get characters if the string length of the random number is not dividable by the concat divisor"));
 
     Connect(ID_LIBCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnLibraryChoiceSelect);
     Connect(ID_OKBUTTON,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&MultiRNGFrame::OnOkButtonClick);
