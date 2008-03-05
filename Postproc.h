@@ -8,9 +8,10 @@ using namespace boost;
 using namespace boost::random;
 
 ///Static parameters
-static int postprocAlgorithmParam;
-static int postprocMethodParam;
-static string postprocOffsetParam;
+static int postprocAlgorithm;
+static int postprocMethod;
+static ulong postprocModulus;
+static string postprocOffset;
 
 ///Constants
 
@@ -35,10 +36,12 @@ inline boost::function<string(numType)> getPostprocessFunction()
             }
         case 3: //Convert to char(fulls)
             {
-
+                return static_cast<string(*)(numType)>(&addNum<numType>);
+                break;
             }
         case 4: //Convert to char(per digit)
             {
+                return static_cast<string(*)(numType)>(&hash<numType>);
 
             }
         default: return NULL;
@@ -91,13 +94,19 @@ inline string hash(T1 input)
     return resultString;
 }
 
-///Add offset to input;
+///Add offset to input (whole number);
 ///Template to support double etc. too;
 template<class T2>
 inline string addNumber(T2 inputNumber)
 {
     T2 offset = lexical_cast<T2>(postprocOffsetParam);
-    return lexical_cast<string>(inputNumber + offset);
+    return lexical_cast<string>((inputNumber % modulus) + offset);
+}
+
+template <class T3>
+inline string addNumberPerConcat()
+{
+
 }
 
 #endif

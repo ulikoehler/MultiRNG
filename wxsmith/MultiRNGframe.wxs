@@ -317,8 +317,8 @@
 				<item>Nothing</item>
 				<item>Hash</item>
 				<item>Add</item>
-				<item>Convert to char(full)</item>
-				<item>Convert to char (per digit)</item>
+				<item>Convert to char(full number)</item>
+				<item>Convert to char (concat digits)</item>
 			</content>
 			<selection>0</selection>
 			<pos>464,32</pos>
@@ -366,6 +366,15 @@
 			<value>100</value>
 			<pos>464,104</pos>
 			<tooltip>Modulus when using full char conversion</tooltip>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT10" variable="concatDigitsLabel" member="yes">
+			<label>Concat:</label>
+			<pos>416,128</pos>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL30" variable="concatDigitsField" member="yes">
+			<value>2</value>
+			<pos>464,128</pos>
+			<tooltip>Number of digits to concatenate</tooltip>
 		</object>
 	</object>
 </wxsmith>

@@ -106,6 +106,8 @@ const long MultiRNGFrame::ID_STATICTEXT8 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL28 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT9 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL29 = wxNewId();
+const long MultiRNGFrame::ID_STATICTEXT10 = wxNewId();
+const long MultiRNGFrame::ID_TEXTCTRL30 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(MultiRNGFrame,wxFrame)
@@ -221,8 +223,8 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     postprocMethodChoice->SetSelection( postprocMethodChoice->Append(_("Nothing")) );
     postprocMethodChoice->Append(_("Hash"));
     postprocMethodChoice->Append(_("Add"));
-    postprocMethodChoice->Append(_("Convert to char(full)"));
-    postprocMethodChoice->Append(_("Convert to char (per digit)"));
+    postprocMethodChoice->Append(_("Convert to char(full number)"));
+    postprocMethodChoice->Append(_("Convert to char (concat digits)"));
     postprocLabel = new wxStaticText(this, ID_STATICTEXT2, _("Postprocessing:"), wxPoint(384,32), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     postprocHashAlgoLabel = new wxStaticText(this, ID_STATICTEXT3, _("Hash algorithm:"), wxPoint(384,56), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
     postprocHashAlgoChoice = new wxChoice(this, ID_CHOICE1, wxPoint(464,56), wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
@@ -238,6 +240,9 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     postprocModLabel = new wxStaticText(this, ID_STATICTEXT9, _("Modulus:"), wxPoint(416,104), wxDefaultSize, 0, _T("ID_STATICTEXT9"));
     postprocModField = new wxTextCtrl(this, ID_TEXTCTRL29, _("100"), wxPoint(464,104), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL29"));
     postprocModField->SetToolTip(_("Modulus when using full char conversion"));
+    concatDigitsLabel = new wxStaticText(this, ID_STATICTEXT10, _("Concat:"), wxPoint(416,128), wxDefaultSize, 0, _T("ID_STATICTEXT10"));
+    concatDigitsField = new wxTextCtrl(this, ID_TEXTCTRL30, _("2"), wxPoint(464,128), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL30"));
+    concatDigitsField->SetToolTip(_("Number of digits to concatenate"));
 
     Connect(ID_LIBCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnLibraryChoiceSelect);
     Connect(ID_OKBUTTON,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&MultiRNGFrame::OnOkButtonClick);
