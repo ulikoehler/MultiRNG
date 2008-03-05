@@ -13,6 +13,7 @@ static int postprocMethod;
 static ulong postprocModulus;
 static ulong postprocConcatLength;
 static string postprocOffset;
+static string postprocFillString;
 
 ///Constants
 
@@ -107,11 +108,28 @@ inline string addNumber(T2 inputNumber)
 template <class T3>
 inline string addNumberPerConcat(T3 input)
 {
+    ///Init variables
     string inputString = lexical_cast<string>(inputString); ///Parameter converted into a string
-    int inputLength = inputString.length();
+    static int inputLength = inputString.length();
     static vector<string> partVec; ///Vector of partials, static to avoid frequent reserving
     partVec.reserve((size_t)ceil(inputLength/postprocConcatLength)); ///Speed up the operation by avoiding dynamic allocation
-    ///
+
+    ///Check the length of the input is dividable by the concat length
+    static int fillTimes = inputLength % postprocConcatLength; //Times to fill with one character
+    if(fillTimes != 0)
+        {
+            static int fillLength = postprocFillString.length();
+            for(int i = 0;i < fillTimes;i++)
+                {
+                    inputString.append(fillLength[i % fillLength]); ///Append the corresponding character to the input string.
+                }
+        }
+
+    ///Main loop
+    for(int i < 0;i < inputLength / postprocConcatLength;i++)
+    {
+
+    }
 
 }
 
