@@ -6,7 +6,6 @@
 		<Option platforms="Windows;Unix;" />
 		<Option pch_mode="0" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="Documentation\;Assembler\;" />
 		<Build>
 			<Target title="Debug Windows">
 				<Option platforms="Windows;" />
@@ -122,28 +121,6 @@
 					<Add library="boost_thread-mgw34-mt-1_34_1" />
 				</Linker>
 			</Target>
-			<Target title="Documentation">
-				<Option type="4" />
-				<Option compiler="gcc" />
-				<ExtraCommands>
-					<Add before="r -q -f doc/distributions/normal.r" />
-					<Add before="pdflatex doc/doc.tex" />
-				</ExtraCommands>
-			</Target>
-			<Target title="Assembler Windows">
-				<Option output=".exe" prefix_auto="1" extension_auto="1" />
-				<Option object_output="C:\Dokumente und Einstellungen\User\Desktop\MultiRNG\trunk\.objs" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Option use_console_runner="0" />
-			</Target>
-			<Target title="Assembler Linux">
-				<Option output=".exe" prefix_auto="1" extension_auto="1" />
-				<Option object_output="C:\Dokumente und Einstellungen\User\Desktop\MultiRNG\trunk\.objs" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Option use_console_runner="0" />
-			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
@@ -160,54 +137,20 @@
 		<Linker>
 			<Add library="hl++" />
 		</Linker>
-		<Unit filename="Generators.h">
-			<Option target="Debug Windows" />
-			<Option target="Release Windows" />
-			<Option target="Debug Linux" />
-			<Option target="Release Linux" />
-		</Unit>
-		<Unit filename="MultiRNGApp.cpp">
-			<Option target="Debug Windows" />
-			<Option target="Release Windows" />
-			<Option target="Debug Linux" />
-			<Option target="Release Linux" />
-		</Unit>
-		<Unit filename="MultiRNGApp.h">
-			<Option target="Debug Windows" />
-			<Option target="Release Windows" />
-			<Option target="Debug Linux" />
-			<Option target="Release Linux" />
-		</Unit>
-		<Unit filename="MultiRNGMain.cpp">
-			<Option target="Debug Windows" />
-			<Option target="Release Windows" />
-			<Option target="Debug Linux" />
-			<Option target="Release Linux" />
-		</Unit>
-		<Unit filename="MultiRNGMain.h">
-			<Option target="Debug Windows" />
-			<Option target="Release Windows" />
-			<Option target="Debug Linux" />
-			<Option target="Release Linux" />
-		</Unit>
-		<Unit filename="Postproc.h">
-			<Option target="Debug Windows" />
-			<Option target="Release Windows" />
-			<Option target="Debug Linux" />
-			<Option target="Release Linux" />
-		</Unit>
+		<Unit filename="Generators.h" />
+		<Unit filename="MultiRNGApp.cpp" />
+		<Unit filename="MultiRNGApp.h" />
+		<Unit filename="MultiRNGMain.cpp" />
+		<Unit filename="MultiRNGMain.h" />
+		<Unit filename="Postproc.h" />
 		<Unit filename="assembler\readtsc.asm">
-			<Option target="Assembler Windows" />
-			<Option target="Assembler Linux" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="assembler\tests.cpp">
-			<Option virtualFolder="Assembler\" />
-			<Option target="Assembler Windows" />
-			<Option target="Assembler Linux" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="doc\doc.tex">
-			<Option virtualFolder="Documentation\" />
-			<Option target="Documentation" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
@@ -218,17 +161,8 @@
 		<Unit filename="wx_pch.h">
 			<Option compile="1" />
 			<Option weight="0" />
-			<Option target="Debug Windows" />
-			<Option target="Release Windows" />
-			<Option target="Debug Linux" />
-			<Option target="Release Linux" />
 		</Unit>
-		<Unit filename="wxsmith\MultiRNGframe.wxs">
-			<Option target="Debug Windows" />
-			<Option target="Release Windows" />
-			<Option target="Debug Linux" />
-			<Option target="Release Linux" />
-		</Unit>
+		<Unit filename="wxsmith\MultiRNGframe.wxs" />
 		<Extensions>
 			<code_completion />
 			<envvars />
