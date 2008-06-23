@@ -35,9 +35,11 @@
 		<Linker>
 			<Add option="`pkg-config gtk+-2.0 --libs`" />
 		</Linker>
+		<Unit filename="generators.h" />
 		<Unit filename="mainWindow.cpp">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="postproc.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
