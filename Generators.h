@@ -22,19 +22,11 @@ static string seedParam;
 static string filenameParam;
 static string ulParam;
 static string llParam;
-static ulong boostAlgoParam1Param;
-static ulong boostAlgoParam2Param;
-static ulong boostAlgoParam3Param;
-static ulong boostAlgoParam4Param;
-static ulong boostAlgoParam5Param;
-static ulong boostAlgoParam6Param;
-static ulong boostAlgoParam7Param;
-static ulong boostAlgoParam8Param;
-static ulong boostAlgoParam9Param;
 static int distributionSelectionParam;
 static int algorithmSelectionParam;
+static int postprocMethodParam;
+static int postprocAlgorithmParam;
 static ulong bitsParam;
-static bool customAlgorithmParam;
 static bool postprocEnabledParam;
 
 int GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
@@ -442,18 +434,8 @@ void GenRandBoost()
 {
     ///Cache required parameters
     ulong ulSeed = lexical_cast<unsigned long>(seedParam);
+    long long llSeed = lexical_cast<long long>(seedParam);
     int algorithmSelection = algorithmSelectionParam;
-    bool customAlgorithm = customAlgorithmParam;
-    //Custom algorithm parameters
-    ulong boostAlgoParam1 = boostAlgoParam1Param;
-    ulong boostAlgoParam2 = boostAlgoParam2Param;
-    ulong boostAlgoParam3 = boostAlgoParam3Param;
-    ulong boostAlgoParam4 = boostAlgoParam4Param;
-    ulong boostAlgoParam5 = boostAlgoParam5Param;
-    ulong boostAlgoParam6 = boostAlgoParam6Param;
-    ulong boostAlgoParam7 = boostAlgoParam7Param;
-    ulong boostAlgoParam8 = boostAlgoParam8Param;
-    ulong boostAlgoParam9 = boostAlgoParam9Param;
 
     ///Switch distribution
     switch(algorithmSelection)
@@ -466,17 +448,8 @@ void GenRandBoost()
                 }
             case 1: ///Linear congruential
                 {
-                    if(!customAlgorithm)
-                        {
-                            minstd_rand0 linCongr(ulSeed);
-                            ProcessBoostAlgorithm<minstd_rand0>(linCongr);
-                        }
-                    else
-                        {
-                            linear_congruential<ulong,  boostAlgoParam1, boostAlgoParam2, boostAlgoParam3, boostAlgoParam4> linCongr();
-                            ProcessBoostAlgorithm<linear_congruential>(linCongr);
-                        }
-                    break;
+                    minstd_rand minstdrand(ulSeed);
+                    ProcessBoostAlgorithm<minstd_rand>(&minstdrand);
                 }
             case 2: ///Additive combine
                 {
