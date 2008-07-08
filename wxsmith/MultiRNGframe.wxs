@@ -5,6 +5,13 @@
 		<size>708,214</size>
 		<id_arg>0</id_arg>
 		<handler function="OnClose" entry="EVT_CLOSE" />
+		<object class="wxStaticBox" name="ID_POSTPROCBOX" variable="postProcStaticBox" member="yes">
+			<label>Postprocessing</label>
+			<pos>376,96</pos>
+			<size>320,80</size>
+			<fg>wxSYS_COLOUR_MENUTEXT</fg>
+			<style>wxDOUBLE_BORDER</style>
+		</object>
 		<object class="wxCheckBox" name="ID_CHECKBOX1" variable="highEntropyCheckbox" member="yes">
 			<label>HE</label>
 			<checked>1</checked>
@@ -48,12 +55,6 @@
 		<object class="wxStaticText" name="ID_STATICTEXT4" variable="boost1stDistParameterLabel" member="yes">
 			<label>Min:</label>
 			<pos>392,40</pos>
-		</object>
-		<object class="wxStaticBox" name="ID_STATICBOX1" variable="postProcStaticBox" member="yes">
-			<label>Software Postprocessing</label>
-			<pos>376,96</pos>
-			<size>320,80</size>
-			<fg>wxSYS_COLOUR_MENUTEXT</fg>
 		</object>
 		<object class="wxStaticBox" name="ID_BOOSTSPECBOX" variable="boostSpecificBox" member="yes">
 			<label>Advanced options</label>

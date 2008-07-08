@@ -17,7 +17,7 @@ void GenRandBoost();
 typedef unsigned long ulong;
 
 ///Static variables,
-static ulong amountParam;
+static unsigned long long amountParam;
 static string seedParam;
 static string filenameParam;
 static string ulParam;
@@ -55,8 +55,7 @@ int GenRandMTH() ///Generate Pseudorandom numbers using MersenneTwister.h
     ///Open fstream
     fstream f(filename.c_str(), fstream::out | fstream::trunc); //Open for writing and truncate if exists (user is asked first)
 
-    unsigned long i = 0;
-
+    long long i = 0;
 
     ///Get random number and
     switch(distributionSelection)
@@ -301,8 +300,6 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
     ///Open fstream
     fstream f(filename.c_str(), fstream::out);
 
-    ///Initialize counter
-
     ///Switch distribution
     switch(distributionSelection)
         {
@@ -310,7 +307,7 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                 {
                     uniform_smallint<int> smallInt(llInt, ulInt);
                     variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
-                    for(unsigned long i = 0;i < amount;i++)
+                    for(unsigned long long i = 0;i < amount;i++)
                         {
                             f << generator() << endl;
                         }
@@ -326,27 +323,17 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                         }
                     break;
                 }
-            case 2: ///Uniform 01
+            case 2: ///Uniform real
                 {
-//                    uniform_01<Algorithm, int> uni01(llInt, ulInt);
-//                    variate_generator<Algorithm&, uniform_01<Algorithm, int> > generator(*algorithm, uni01);
-//                    for(unsigned long i = 0;i < amount;i++)
-//                        {
-//                            f << generator() << endl;
-//                        }
-//                    break;
-                }
-            case 3: ///Uniform real
-                {
-                    uniform_real<double> uniReal(llDouble, ulDouble);
-                    variate_generator<Algorithm&, uniform_real<double> > generator(*algorithm, uniReal);
+                    uniform_real<long double> uniReal(llDouble, ulDouble);
+                    variate_generator<Algorithm&, uniform_real<long double> > generator(*algorithm, uniReal);
                     for(unsigned long i = 0;i < amount;i++)
                         {
                             f << generator() << endl;
                         }
                     break;
                 }
-            case 4: ///Triangle
+            case 3: ///Triangle
                 {
                     triangle_distribution<double> triangle(llInt, ulInt, 0); ///DUMMY TODO
                     variate_generator<Algorithm&, triangle_distribution<double> > generator(*algorithm, triangle);
@@ -356,7 +343,7 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                         }
                     break;
                 }
-            case 5: ///Bernoulli
+            case 4: ///Bernoulli
                 {
                     uniform_smallint<int> smallInt(llInt, ulInt);
                     variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
@@ -366,7 +353,7 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                         }
                     break;
                 }
-            case 6: ///Cauchy
+            case 5: ///Cauchy
                 {
                     uniform_smallint<int> smallInt(llInt, ulInt);
                     variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
@@ -376,7 +363,7 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                         }
                     break;
                 }
-            case 7: ///Exponential
+            case 6: ///Exponential
                 {
                     uniform_smallint<int> smallInt(llInt, ulInt);
                     variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
@@ -386,7 +373,7 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                         }
                     break;
                 }
-            case 8: ///Geometric
+            case 7: ///Geometric
                 {
                     uniform_smallint<int> smallInt(llInt, ulInt);
                     variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
@@ -396,7 +383,7 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                         }
                     break;
                 }
-            case 9: ///Normal
+            case 8: ///Normal
                 {
                     uniform_smallint<int> smallInt(llInt, ulInt);
                     variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
@@ -406,7 +393,7 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                         }
                     break;
                 }
-            case 10: ///Lognormal
+            case 9: ///Lognormal
                 {
                     uniform_smallint<int> smallInt(llInt, ulInt);
                     variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
@@ -416,7 +403,7 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                         }
                     break;
                 }
-            case 11: ///Uniform on Sphere
+            case 10: ///Uniform on Sphere
                 {
                     uniform_smallint<int> smallInt(llInt, ulInt);
                     variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);

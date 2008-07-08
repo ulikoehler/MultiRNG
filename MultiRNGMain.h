@@ -49,6 +49,7 @@ class MultiRNGFrame: public wxFrame
         //*)
 
         //(*Identifiers(MultiRNGFrame)
+        static const long ID_POSTPROCBOX;
         static const long ID_CHECKBOX1;
         static const long ID_TEXTCTRL26;
         static const long ID_TEXTCTRL25;
@@ -59,7 +60,6 @@ class MultiRNGFrame: public wxFrame
         static const long ID_STATICTEXT7;
         static const long ID_STATICTEXT5;
         static const long ID_STATICTEXT4;
-        static const long ID_STATICBOX1;
         static const long ID_BOOSTSPECBOX;
         static const long ID_LIMITSBOX;
         static const long ID_TEXTCTRL2;

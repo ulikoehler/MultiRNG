@@ -46,6 +46,7 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(MultiRNGFrame)
+const long MultiRNGFrame::ID_POSTPROCBOX = wxNewId();
 const long MultiRNGFrame::ID_CHECKBOX1 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL26 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL25 = wxNewId();
@@ -56,7 +57,6 @@ const long MultiRNGFrame::ID_STATICTEXT6 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT7 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT5 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT4 = wxNewId();
-const long MultiRNGFrame::ID_STATICBOX1 = wxNewId();
 const long MultiRNGFrame::ID_BOOSTSPECBOX = wxNewId();
 const long MultiRNGFrame::ID_LIMITSBOX = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL2 = wxNewId();
@@ -95,6 +95,8 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     //(*Initialize(MultiRNGFrame)
     Create(parent, wxID_ANY, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     SetClientSize(wxSize(708,214));
+    postProcStaticBox = new wxStaticBox(this, ID_POSTPROCBOX, _("Postprocessing"), wxPoint(376,96), wxSize(320,80), wxDOUBLE_BORDER, _T("ID_POSTPROCBOX"));
+    postProcStaticBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     highEntropyCheckbox = new wxCheckBox(this, ID_CHECKBOX1, _("HE"), wxPoint(224,80), wxSize(54,24), 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
     highEntropyCheckbox->SetValue(true);
     boost3rdDistParameterBox = new wxTextCtrl(this, ID_TEXTCTRL26, _("3"), wxPoint(544,64), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL26"));
@@ -107,8 +109,6 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     boost4thDistParameterLabel = new wxStaticText(this, ID_STATICTEXT7, _("4th:"), wxPoint(512,64), wxDefaultSize, 0, _T("ID_STATICTEXT7"));
     boost2ndDistributionLabelresourceobjectclasswxStaticTextnameID_STATICTEXT4variableboost1stDistParameterLabelmemberyeslabel1stlabelpos32384posobjectresource = new wxStaticText(this, ID_STATICTEXT5, _("Max:"), wxPoint(512,40), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
     boost1stDistParameterLabel = new wxStaticText(this, ID_STATICTEXT4, _("Min:"), wxPoint(392,40), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-    postProcStaticBox = new wxStaticBox(this, ID_STATICBOX1, _("Software Postprocessing"), wxPoint(376,96), wxSize(320,80), 0, _T("ID_STATICBOX1"));
-    postProcStaticBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Advanced options"), wxPoint(160,104), wxSize(208,88), 0, _T("ID_BOOSTSPECBOX"));
     boostSpecificBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Bounds"), wxPoint(16,104), wxSize(128,88), wxSIMPLE_BORDER, _T("ID_LIMITSBOX"));
@@ -202,7 +202,7 @@ void MultiRNGFrame::OnLibraryChoiceSelect(wxCommandEvent& event)
                 distributionLabel->SetValue(wxT("Distribution:"));
                 ///Set Algorithm choices
                 algorithmChoice->Clear();
-                algorithmChoice->Append(_("Mersenne Twister 191937"));   ///1
+                algorithmChoice->Append(_("Mersenne Twister 191937"));  ///1
                 algorithmChoice->Append(_("MInstdRand (LC Variant)"));  ///2
                 algorithmChoice->Append(_("Ecuyer 1988"));              ///3
                 algorithmChoice->Append(_("Kreutzer 1986"));            ///4
@@ -223,7 +223,6 @@ void MultiRNGFrame::OnLibraryChoiceSelect(wxCommandEvent& event)
                 distributionChoice->Clear();
                 distributionChoice->Append(wxT("Uniform Small Integer"));
                 distributionChoice->Append(wxT("Uniform Integer"));
-                distributionChoice->Append(wxT("Uniform 01"));
                 distributionChoice->Append(wxT("Uniform Real"));
                 distributionChoice->Append(wxT("Triangle"));
                 distributionChoice->Append(wxT("Bernoulli"));
@@ -365,7 +364,7 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
 void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
 {
     ///Init static variables
-    amountParam = lexical_cast<unsigned long>(amountField->GetValue().mb_str());
+    amountParam = lexical_cast<unsigned long long>(amountField->GetValue().mb_str());
     seedParam = lexical_cast<string>(seedField->GetValue().mb_str());
     ulParam = lexical_cast<string>(upperLimitField->GetValue().mb_str());
     llParam = lexical_cast<string>(lowerLimitField->GetValue().mb_str());
@@ -433,4 +432,5 @@ void MultiRNGFrame::OnGenerateSeedButtonClick(wxCommandEvent& event)
 
 void MultiRNGFrame::OnClose(wxCloseEvent& event)
 {
+    exit(0);
 }
