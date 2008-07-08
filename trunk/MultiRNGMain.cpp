@@ -13,8 +13,8 @@
 
 //(*InternalHeaders(MultiRNGFrame)
 #include <wx/settings.h>
-#include <wx/intl.h>
 #include <wx/string.h>
+#include <wx/intl.h>
 //*)
 ///Custom include
 #include "Generators.h"
@@ -46,6 +46,7 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(MultiRNGFrame)
+const long MultiRNGFrame::ID_CHECKBOX1 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL26 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL25 = wxNewId();
 const long MultiRNGFrame::ID_BOOSTDISTOPTSBOX = wxNewId();
@@ -56,29 +57,10 @@ const long MultiRNGFrame::ID_STATICTEXT7 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT5 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT4 = wxNewId();
 const long MultiRNGFrame::ID_STATICBOX1 = wxNewId();
-const long MultiRNGFrame::ID_BOOSTALGOOPTSBOX = wxNewId();
 const long MultiRNGFrame::ID_BOOSTSPECBOX = wxNewId();
 const long MultiRNGFrame::ID_LIMITSBOX = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL2 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL23 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL17 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL11 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL7 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL5 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL12 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL14 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL22 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL21 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL16 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL15 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL13 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL6 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL10 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL18 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL20 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL19 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL9 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL8 = wxNewId();
 const long MultiRNGFrame::ID_UPLIMITFIELD = wxNewId();
 const long MultiRNGFrame::ID_LIBLABEL = wxNewId();
 const long MultiRNGFrame::ID_ALGOLABEL = wxNewId();
@@ -96,20 +78,11 @@ const long MultiRNGFrame::ID_DISTCHOICE = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL3 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT1 = wxNewId();
 const long MultiRNGFrame::ID_TEXTCTRL4 = wxNewId();
-const long MultiRNGFrame::ID_CHECKBOX1 = wxNewId();
 const long MultiRNGFrame::ID_COMBOBOX2 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT2 = wxNewId();
 const long MultiRNGFrame::ID_STATICTEXT3 = wxNewId();
 const long MultiRNGFrame::ID_CHOICE1 = wxNewId();
 const long MultiRNGFrame::ID_BUTTON1 = wxNewId();
-const long MultiRNGFrame::ID_STATICTEXT8 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL28 = wxNewId();
-const long MultiRNGFrame::ID_STATICTEXT9 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL29 = wxNewId();
-const long MultiRNGFrame::ID_STATICTEXT10 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL30 = wxNewId();
-const long MultiRNGFrame::ID_STATICTEXT11 = wxNewId();
-const long MultiRNGFrame::ID_TEXTCTRL31 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(MultiRNGFrame,wxFrame)
@@ -121,87 +94,48 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
 {
     //(*Initialize(MultiRNGFrame)
     Create(parent, wxID_ANY, _("MultiRNG"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
-    SetClientSize(wxSize(708,545));
-    boost3rdDistParameterBox = new wxTextCtrl(this, ID_TEXTCTRL26, _("3"), wxPoint(56,432), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL26"));
-    boost2ndDistParameterBox = new wxTextCtrl(this, ID_TEXTCTRL25, _("2"), wxPoint(56,408), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL25"));
-    boostDistOptionsBox = new wxStaticBox(this, ID_BOOSTDISTOPTSBOX, _("Boost-Specific Distribution Options"), wxPoint(16,352), wxSize(344,152), 0, _T("ID_BOOSTDISTOPTSBOX"));
+    SetClientSize(wxSize(708,214));
+    highEntropyCheckbox = new wxCheckBox(this, ID_CHECKBOX1, _("HE"), wxPoint(224,80), wxSize(54,24), 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
+    highEntropyCheckbox->SetValue(true);
+    boost3rdDistParameterBox = new wxTextCtrl(this, ID_TEXTCTRL26, _("3"), wxPoint(544,64), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL26"));
+    boost2ndDistParameterBox = new wxTextCtrl(this, ID_TEXTCTRL25, _("2"), wxPoint(544,40), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL25"));
+    boostDistOptionsBox = new wxStaticBox(this, ID_BOOSTDISTOPTSBOX, _("Boost-Specific Distribution Options"), wxPoint(384,16), wxSize(272,72), 0, _T("ID_BOOSTDISTOPTSBOX"));
     boostDistOptionsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
-    boost1stDistPArameterFieldresourceobjectclasswxFrametitleMultiRNGtitlesize708545sizeid_arg0id_argobjectclasswxStaticTextnameID_STATICTEXT6variableboost3rdDistParameterLabelmemberyeslabel3rdlabelpos32432posobjectobjectclasswxStaticBoxnameID_BOOSTDISTOPTSBOXvariableboostDistOptionsBoxmemberyeslabelBoostSpecificDistributionOptionslabelpos16352possize344152sizefgwxSYS_COLOUR_MENUTEXTfgobjectobjectclasswxStaticTextnameID_STATICTEXT7variableboost4thDistParameterLabelmemberyeslabel4thlabelpos32456posobjectobjectclasswxStaticTextnameID_STATICTEXT5variableboost2ndDistributionLabelresourceobjectclasswxStaticTextnameID_STATICTEXT4variableboost1stDistParameterLabelmemberyeslabel1stlabelpos32384posobjectresourcememberyeslabel2ndlabelpos32408posobjectobjectclasswxStaticTextnameID_STATICTEXT4variableboost1stDistParameterLabelmemberyeslabel1stlabelpos32384posobjectobjectclasswxStaticBoxnameID_STATICBOX1variableStaticBox1memberyeslabelSoftwarePostprocessinglabelpos3768possize320184sizefgwxSYS_COLOUR_MENUTEXTfgobjectobjectclasswxStaticBoxnameID_BOOSTALGOOPTSBOXvariableboostAlgoOptionsBoxmemberyeslabelBoostSpecificAlgorithmOptionslabelpos16200possize344144sizefgwxSYS_COLOUR_MENUTEXTfgobjectobjectclasswxStaticBoxnameID_BOOSTSPECBOXvariableboostSpecificBoxmemberyeslabelAdvancedoptionslabelpos160104possize20888sizefgwxSYS_COLOUR_MENUTEXTfgobjectobjectclasswxStaticBoxnameID_LIMITSBOXvariablelimitsBoxmemberyeslabelLimitslabelpos16104possize12888sizefgwxSYS_COLOUR_MENUTEXTfgobjectobjectclasswxTextCtrlnameID_TEXTCTRL2variablelowerLimitLabelmemberyesvalueLowervaluepos24128possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL23variabledistributionLabelmemberyesvalueRangevaluepos168128possize5621sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_RIGHTwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL17variableboost7thAlgoParameterLabelmemberyesvalue7thvaluepos184264possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL11variableboost7thAlgoParameterFieldmemberyesvalue7valuepos224264possize12821sizeenabled0enabledfocused1focusedobjectobjectclasswxTextCtrlnameID_TEXTCTRL7variableboost1stAlgoParameterLabelmemberyesvalue1stvaluepos24240possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL5variableboost1stAlgoParameterFieldmemberyesvalue1valuepos64240possize12021sizeenabled0enabledobjectobjectclasswxTextCtrlnameID_TEXTCTRL12variableboost4thAlgoParameterFieldmemberyesvalue4valuepos64312possize12021sizeenabled0enabledobjectobjectclasswxTextCtrlnameID_TEXTCTRL14variableboost4thAlgoParameterLabelmemberyesvalue4thvaluepos24312possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL22variableboost8thParamLabelmemberyesvalue8thvaluepos184288possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL21variableboost9thParamLabelmemberyesvalue9thvaluepos184312possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL16variableboost3rdAlgoParameterLabelmemberyesvalue3rdvaluepos24288possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL15variableboost6thAlgoParameterLabelmemberyesvalue6thvaluepos184240possize4016sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL13variableboost5thAlgoParameterLabelmemberyesvalue5thvaluepos184216possize4016sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL6variableboost2ndAlgoParameterFieldmemberyesvalue2valuepos64264possize12021sizeenabled0enabledobjectobjectclasswxTextCtrlnameID_TEXTCTRL10variableboost3rdAlgoParameterFieldmemberyesvalue3valuepos64288possize12021sizeenabled0enabledobjectobjectclasswxTextCtrlnameID_TEXTCTRL18variableboost6thAlgoParameterFieldmemberyesvalue6valuepos224240possize12821sizeenabled0enabledobjectobjectclasswxTextCtrlnameID_TEXTCTRL20variableboost8thAlgoParameterFieldmemberyesvalue8valuepos224288possize12821sizeenabled0enabledfocused1focusedobjectobjectclasswxTextCtrlnameID_TEXTCTRL19variableboost9thAlgoParameterFieldmemberyesvalue9valuepos224312possize12821sizeenabled0enabledfocused1focusedobjectobjectclasswxTextCtrlnameID_TEXTCTRL9variableboost5thAlgoParameterFieldmemberyesvalue5valuepos224216possize12821sizeenabled0enabledobjectobjectclasswxTextCtrlnameID_TEXTCTRL8variableboost2ndAlgoParameterLabelmemberyesvalue2ndvaluepos24264possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_UPLIMITFIELDvariablelowerLimitFieldmemberyesvalue500valuepos64128possize7221sizeobjectobjectclasswxStaticTextnameID_LIBLABELvariablelibraryLabelmemberyeslabelLibrarylabelpos816posobjectobjectclasswxStaticTextnameID_ALGOLABELvariablealgorithmLabelmemberyeslabelAlgorithmlabelpos18416posobjectobjectclasswxChoicenameID_LIBCHOICEvariablelibraryChoicememberyescontentitemboostrandomitemitemMersenneTwisterhitemitemGMPitemcontentselection1selectionpos5616possize12021sizehandlerfunctionOnLibraryChoiceSelectentryEVT_CHOICEobjectobjectclasswxChoicenameID_ALGOCHOICEvariablealgorithmChoicememberyescontentitemMT19937itemcontentselection0selectionpos24016posobjectobjectclasswxStaticTextnameID_AMOUNTLABELvariableamountLabelmemberyeslabelAmountlabelpos848posobjectobjectclasswxTextCtrlnameID_AMOUNTFIELDvariableamountFieldmemberyesvalue100valuepos5648posobjectobjectclasswxStaticTextnameID_FILELABELvariablefileLabelmemberyeslabelFilelabelpos18448posobjectobjectclasswxTextCtrlnameID_FILEFIELDvariablefilenameFieldmemberyesvaluerandomtxtvaluepos21648possize15221sizeobjectobjectclasswxButtonnameID_OKBUTTONvariableokButtonmemberyeslabelOKlabelpos120512possize13623sizehandlerfunctionOnOkButtonClickentryEVT_BUTTONobjectobjectclasswxStaticTextnameID_SEEDLABELvariableseedLabelmemberyeslabelSeedlabelpos880posobjectobjectclasswxTextCtrlnameID_SEEDFIELDvariableseedFieldmemberyesvalue1234567890valuepos5680possize31221sizeobjectobjectclasswxTextCtrlnameID_TEXTCTRL1variableupperLimitFieldmemberyesvalue1000valuepos64152possize7221sizeenabled0enabledobjectobjectclasswxChoicenameID_DISTCHOICEvariabledistributionChoicememberyescontentitem32BitRealin01itemitem32BitRealin0nitemitem32BitRealin01itemitem32BitRealin0nitemitem32BitRealin01itemitem32BitRealin0nitemitemIntegerin02321itemitemIntegerin0nfornlt232itemitem53bitrealnumberin01itemitemNonuniformitemcontentselection0selectionpos232120possize12821sizehandlerfunctionOnDistributionChoiceSelectentryEVT_CHOICEobjectobjectclasswxTextCtrlnameID_TEXTCTRL3variableupperLimitLabelmemberyesvalueUppervaluepos24152possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxStaticTextnameID_STATICTEXT1variablebitsLabelmemberyeslabelBitslabelpos200152possize2413sizetooltipBitstouseinGMPLinearCongruentialalgorithmtooltipobjectobjectclasswxTextCtrlnameID_TEXTCTRL4variablebitsFieldmemberyesvalue64valuemaxlength20maxlengthpos232144possize12821sizeenabled0enabledobjectobjectclasswxCheckBoxnameID_CHECKBOX1variableboostAlgoParametersCheckboxmemberyeslabelEnablecustomizedalgorithmlabelpos30220poshandlerfunctionOnBoostAlgoParametersCheckboxClickentryEVT_CHECKBOXobjectobjectclasswxComboBoxnameID_COMBOBOX2variableComboBox1memberyescontentitemNothingitemitemCharReplaceitemcontentselection0selectionpos41632posobjectobjectclasswxComboBoxnameID_COMBOBOX1variablefirstPostprocChoicememberyescontentitemNothingitemitemCharReplaceitemcontentselection0selectionpos56832posobjectobjectclasswxStaticTextnameID_STATICTEXT2variablefirstPostprocLabelmemberyeslabelFirstlabelpos38432posobjectobjectclasswxStaticTextnameID_STATICTEXT3variablesecondPostprocLabelmemberyeslabelSecondlabelpos52032posobjectobjectresource = new wxTextCtrl(this, ID_TEXTCTRL24, _("1"), wxPoint(56,384), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL24"));
-    boost4thDistParameterBox = new wxTextCtrl(this, ID_TEXTCTRL27, _("3"), wxPoint(56,456), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL27"));
-    boost3rdDistParameterLabel = new wxStaticText(this, ID_STATICTEXT6, _("3rd:"), wxPoint(32,432), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
-    boost4thDistParameterLabel = new wxStaticText(this, ID_STATICTEXT7, _("4th:"), wxPoint(32,456), wxDefaultSize, 0, _T("ID_STATICTEXT7"));
-    boost2ndDistributionLabelresourceobjectclasswxStaticTextnameID_STATICTEXT4variableboost1stDistParameterLabelmemberyeslabel1stlabelpos32384posobjectresource = new wxStaticText(this, ID_STATICTEXT5, _("2nd:"), wxPoint(32,408), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
-    boost1stDistParameterLabel = new wxStaticText(this, ID_STATICTEXT4, _("1st:"), wxPoint(32,384), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-    StaticBox1 = new wxStaticBox(this, ID_STATICBOX1, _("Software Postprocessing"), wxPoint(376,8), wxSize(320,224), 0, _T("ID_STATICBOX1"));
-    StaticBox1->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
-    boostAlgoOptionsBox = new wxStaticBox(this, ID_BOOSTALGOOPTSBOX, _("Boost-Specific Algorithm Options"), wxPoint(16,200), wxSize(344,144), 0, _T("ID_BOOSTALGOOPTSBOX"));
-    boostAlgoOptionsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
+    boost1stDistPArameterFieldresourceobjectclasswxFrametitleMultiRNGtitlesize708545sizeid_arg0id_argobjectclasswxStaticTextnameID_STATICTEXT6variableboost3rdDistParameterLabelmemberyeslabel3rdlabelpos32432posobjectobjectclasswxStaticBoxnameID_BOOSTDISTOPTSBOXvariableboostDistOptionsBoxmemberyeslabelBoostSpecificDistributionOptionslabelpos16352possize344152sizefgwxSYS_COLOUR_MENUTEXTfgobjectobjectclasswxStaticTextnameID_STATICTEXT7variableboost4thDistParameterLabelmemberyeslabel4thlabelpos32456posobjectobjectclasswxStaticTextnameID_STATICTEXT5variableboost2ndDistributionLabelresourceobjectclasswxStaticTextnameID_STATICTEXT4variableboost1stDistParameterLabelmemberyeslabel1stlabelpos32384posobjectresourcememberyeslabel2ndlabelpos32408posobjectobjectclasswxStaticTextnameID_STATICTEXT4variableboost1stDistParameterLabelmemberyeslabel1stlabelpos32384posobjectobjectclasswxStaticBoxnameID_STATICBOX1variableStaticBox1memberyeslabelSoftwarePostprocessinglabelpos3768possize320184sizefgwxSYS_COLOUR_MENUTEXTfgobjectobjectclasswxStaticBoxnameID_BOOSTALGOOPTSBOXvariableboostAlgoOptionsBoxmemberyeslabelBoostSpecificAlgorithmOptionslabelpos16200possize344144sizefgwxSYS_COLOUR_MENUTEXTfgobjectobjectclasswxStaticBoxnameID_BOOSTSPECBOXvariableboostSpecificBoxmemberyeslabelAdvancedoptionslabelpos160104possize20888sizefgwxSYS_COLOUR_MENUTEXTfgobjectobjectclasswxStaticBoxnameID_LIMITSBOXvariablelimitsBoxmemberyeslabelLimitslabelpos16104possize12888sizefgwxSYS_COLOUR_MENUTEXTfgobjectobjectclasswxTextCtrlnameID_TEXTCTRL2variablelowerLimitLabelmemberyesvalueLowervaluepos24128possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL23variabledistributionLabelmemberyesvalueRangevaluepos168128possize5621sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_RIGHTwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL17variableboost7thAlgoParameterLabelmemberyesvalue7thvaluepos184264possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL11variableboost7thAlgoParameterFieldmemberyesvalue7valuepos224264possize12821sizeenabled0enabledfocused1focusedobjectobjectclasswxTextCtrlnameID_TEXTCTRL7variableboost1stAlgoParameterLabelmemberyesvalue1stvaluepos24240possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL5variableboost1stAlgoParameterFieldmemberyesvalue1valuepos64240possize12021sizeenabled0enabledobjectobjectclasswxTextCtrlnameID_TEXTCTRL12variableboost4thAlgoParameterFieldmemberyesvalue4valuepos64312possize12021sizeenabled0enabledobjectobjectclasswxTextCtrlnameID_TEXTCTRL14variableboost4thAlgoParameterLabelmemberyesvalue4thvaluepos24312possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL22variableboost8thParamLabelmemberyesvalue8thvaluepos184288possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL21variableboost9thParamLabelmemberyesvalue9thvaluepos184312possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL16variableboost3rdAlgoParameterLabelmemberyesvalue3rdvaluepos24288possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL15variableboost6thAlgoParameterLabelmemberyesvalue6thvaluepos184240possize4016sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL13variableboost5thAlgoParameterLabelmemberyesvalue5thvaluepos184216possize4016sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_TEXTCTRL6variableboost2ndAlgoParameterFieldmemberyesvalue2valuepos64264possize12021sizeenabled0enabledobjectobjectclasswxTextCtrlnameID_TEXTCTRL10variableboost3rdAlgoParameterFieldmemberyesvalue3valuepos64288possize12021sizeenabled0enabledobjectobjectclasswxTextCtrlnameID_TEXTCTRL18variableboost6thAlgoParameterFieldmemberyesvalue6valuepos224240possize12821sizeenabled0enabledobjectobjectclasswxTextCtrlnameID_TEXTCTRL20variableboost8thAlgoParameterFieldmemberyesvalue8valuepos224288possize12821sizeenabled0enabledfocused1focusedobjectobjectclasswxTextCtrlnameID_TEXTCTRL19variableboost9thAlgoParameterFieldmemberyesvalue9valuepos224312possize12821sizeenabled0enabledfocused1focusedobjectobjectclasswxTextCtrlnameID_TEXTCTRL9variableboost5thAlgoParameterFieldmemberyesvalue5valuepos224216possize12821sizeenabled0enabledobjectobjectclasswxTextCtrlnameID_TEXTCTRL8variableboost2ndAlgoParameterLabelmemberyesvalue2ndvaluepos24264possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxTextCtrlnameID_UPLIMITFIELDvariablelowerLimitFieldmemberyesvalue500valuepos64128possize7221sizeobjectobjectclasswxStaticTextnameID_LIBLABELvariablelibraryLabelmemberyeslabelLibrarylabelpos816posobjectobjectclasswxStaticTextnameID_ALGOLABELvariablealgorithmLabelmemberyeslabelAlgorithmlabelpos18416posobjectobjectclasswxChoicenameID_LIBCHOICEvariablelibraryChoicememberyescontentitemboostrandomitemitemMersenneTwisterhitemitemGMPitemcontentselection1selectionpos5616possize12021sizehandlerfunctionOnLibraryChoiceSelectentryEVT_CHOICEobjectobjectclasswxChoicenameID_ALGOCHOICEvariablealgorithmChoicememberyescontentitemMT19937itemcontentselection0selectionpos24016posobjectobjectclasswxStaticTextnameID_AMOUNTLABELvariableamountLabelmemberyeslabelAmountlabelpos848posobjectobjectclasswxTextCtrlnameID_AMOUNTFIELDvariableamountFieldmemberyesvalue100valuepos5648posobjectobjectclasswxStaticTextnameID_FILELABELvariablefileLabelmemberyeslabelFilelabelpos18448posobjectobjectclasswxTextCtrlnameID_FILEFIELDvariablefilenameFieldmemberyesvaluerandomtxtvaluepos21648possize15221sizeobjectobjectclasswxButtonnameID_OKBUTTONvariableokButtonmemberyeslabelOKlabelpos120512possize13623sizehandlerfunctionOnOkButtonClickentryEVT_BUTTONobjectobjectclasswxStaticTextnameID_SEEDLABELvariableseedLabelmemberyeslabelSeedlabelpos880posobjectobjectclasswxTextCtrlnameID_SEEDFIELDvariableseedFieldmemberyesvalue1234567890valuepos5680possize31221sizeobjectobjectclasswxTextCtrlnameID_TEXTCTRL1variableupperLimitFieldmemberyesvalue1000valuepos64152possize7221sizeenabled0enabledobjectobjectclasswxChoicenameID_DISTCHOICEvariabledistributionChoicememberyescontentitem32BitRealin01itemitem32BitRealin0nitemitem32BitRealin01itemitem32BitRealin0nitemitem32BitRealin01itemitem32BitRealin0nitemitemIntegerin02321itemitemIntegerin0nfornlt232itemitem53bitrealnumberin01itemitemNonuniformitemcontentselection0selectionpos232120possize12821sizehandlerfunctionOnDistributionChoiceSelectentryEVT_CHOICEobjectobjectclasswxTextCtrlnameID_TEXTCTRL3variableupperLimitLabelmemberyesvalueUppervaluepos24152possize4021sizebgwxSYS_COLOUR_APPWORKSPACEbgstylewxTE_READONLYwxTE_CENTREwxNO_BORDERstyleobjectobjectclasswxStaticTextnameID_STATICTEXT1variablebitsLabelmemberyeslabelBitslabelpos200152possize2413sizetooltipBitstouseinGMPLinearCongruentialalgorithmtooltipobjectobjectclasswxTextCtrlnameID_TEXTCTRL4variablebitsFieldmemberyesvalue64valuemaxlength20maxlengthpos232144possize12821sizeenabled0enabledobjectobjectclasswxCheckBoxnameID_CHECKBOX1variableboostAlgoParametersCheckboxmemberyeslabelEnablecustomizedalgorithmlabelpos30220poshandlerfunctionOnBoostAlgoParametersCheckboxClickentryEVT_CHECKBOXobjectobjectclasswxComboBoxnameID_COMBOBOX2variableComboBox1memberyescontentitemNothingitemitemCharReplaceitemcontentselection0selectionpos41632posobjectobjectclasswxComboBoxnameID_COMBOBOX1variablefirstPostprocChoicememberyescontentitemNothingitemitemCharReplaceitemcontentselection0selectionpos56832posobjectobjectclasswxStaticTextnameID_STATICTEXT2variablefirstPostprocLabelmemberyeslabelFirstlabelpos38432posobjectobjectclasswxStaticTextnameID_STATICTEXT3variablesecondPostprocLabelmemberyeslabelSecondlabelpos52032posobjectobjectresource = new wxTextCtrl(this, ID_TEXTCTRL24, _("1"), wxPoint(424,40), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL24"));
+    boost4thDistParameterBox = new wxTextCtrl(this, ID_TEXTCTRL27, _("3"), wxPoint(424,64), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL27"));
+    boost3rdDistParameterLabel = new wxStaticText(this, ID_STATICTEXT6, _("3rd:"), wxPoint(392,64), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
+    boost4thDistParameterLabel = new wxStaticText(this, ID_STATICTEXT7, _("4th:"), wxPoint(512,64), wxDefaultSize, 0, _T("ID_STATICTEXT7"));
+    boost2ndDistributionLabelresourceobjectclasswxStaticTextnameID_STATICTEXT4variableboost1stDistParameterLabelmemberyeslabel1stlabelpos32384posobjectresource = new wxStaticText(this, ID_STATICTEXT5, _("Max:"), wxPoint(512,40), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
+    boost1stDistParameterLabel = new wxStaticText(this, ID_STATICTEXT4, _("Min:"), wxPoint(392,40), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
+    postProcStaticBox = new wxStaticBox(this, ID_STATICBOX1, _("Software Postprocessing"), wxPoint(376,96), wxSize(320,80), 0, _T("ID_STATICBOX1"));
+    postProcStaticBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     boostSpecificBox = new wxStaticBox(this, ID_BOOSTSPECBOX, _("Advanced options"), wxPoint(160,104), wxSize(208,88), 0, _T("ID_BOOSTSPECBOX"));
     boostSpecificBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
-    limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Limits"), wxPoint(16,104), wxSize(128,88), 0, _T("ID_LIMITSBOX"));
+    limitsBox = new wxStaticBox(this, ID_LIMITSBOX, _("Bounds"), wxPoint(16,104), wxSize(128,88), wxSIMPLE_BORDER, _T("ID_LIMITSBOX"));
     limitsBox->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUTEXT));
     lowerLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL2, _("Lower:"), wxPoint(24,128), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     lowerLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    distributionLabel = new wxTextCtrl(this, ID_TEXTCTRL23, _("Range:"), wxPoint(168,128), wxSize(56,21), wxTE_READONLY|wxTE_RIGHT|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL23"));
+    distributionLabel = new wxTextCtrl(this, ID_TEXTCTRL23, _("Range:"), wxPoint(136,128), wxSize(56,21), wxTE_READONLY|wxTE_RIGHT|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL23"));
     distributionLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost7thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL17, _("7th:"), wxPoint(184,264), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL17"));
-    boost7thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost7thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL11, _("7"), wxPoint(224,264), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL11"));
-    boost7thAlgoParameterField->Disable();
-    boost7thAlgoParameterField->SetFocus();
-    boost1stAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL7, _("1st:"), wxPoint(24,240), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL7"));
-    boost1stAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost1stAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL5, _("1"), wxPoint(64,240), wxSize(120,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL5"));
-    boost1stAlgoParameterField->Disable();
-    boost4thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL12, _("4"), wxPoint(64,312), wxSize(120,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL12"));
-    boost4thAlgoParameterField->Disable();
-    boost4thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL14, _("4th:"), wxPoint(24,312), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL14"));
-    boost4thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost8thParamLabel = new wxTextCtrl(this, ID_TEXTCTRL22, _("8th:"), wxPoint(184,288), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL22"));
-    boost8thParamLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost9thParamLabel = new wxTextCtrl(this, ID_TEXTCTRL21, _("9th:"), wxPoint(184,312), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL21"));
-    boost9thParamLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost3rdAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL16, _("3rd:"), wxPoint(24,288), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL16"));
-    boost3rdAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost6thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL15, _("6th:"), wxPoint(184,240), wxSize(40,16), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL15"));
-    boost6thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost5thAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL13, _("5th:"), wxPoint(184,216), wxSize(40,16), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL13"));
-    boost5thAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    boost2ndAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL6, _("2"), wxPoint(64,264), wxSize(120,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
-    boost2ndAlgoParameterField->Disable();
-    boost3rdAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL10, _("3"), wxPoint(64,288), wxSize(120,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL10"));
-    boost3rdAlgoParameterField->Disable();
-    boost6thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL18, _("6"), wxPoint(224,240), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL18"));
-    boost6thAlgoParameterField->Disable();
-    boost8thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL20, _("8"), wxPoint(224,288), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL20"));
-    boost8thAlgoParameterField->Disable();
-    boost8thAlgoParameterField->SetFocus();
-    boost9thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL19, _("9"), wxPoint(224,312), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL19"));
-    boost9thAlgoParameterField->Disable();
-    boost9thAlgoParameterField->SetFocus();
-    boost5thAlgoParameterField = new wxTextCtrl(this, ID_TEXTCTRL9, _("5"), wxPoint(224,216), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL9"));
-    boost5thAlgoParameterField->Disable();
-    boost2ndAlgoParameterLabel = new wxTextCtrl(this, ID_TEXTCTRL8, _("2nd:"), wxPoint(24,264), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL8"));
-    boost2ndAlgoParameterLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
     lowerLimitField = new wxTextCtrl(this, ID_UPLIMITFIELD, _("500"), wxPoint(64,128), wxSize(72,21), 0, wxDefaultValidator, _T("ID_UPLIMITFIELD"));
     libraryLabel = new wxStaticText(this, ID_LIBLABEL, _("Library:"), wxPoint(8,16), wxDefaultSize, 0, _T("ID_LIBLABEL"));
-    algorithmLabel = new wxStaticText(this, ID_ALGOLABEL, _("Algorithm:"), wxPoint(184,16), wxDefaultSize, 0, _T("ID_ALGOLABEL"));
-    libraryChoice = new wxChoice(this, ID_LIBCHOICE, wxPoint(56,16), wxSize(120,21), 0, 0, 0, wxDefaultValidator, _T("ID_LIBCHOICE"));
+    algorithmLabel = new wxStaticText(this, ID_ALGOLABEL, _("Algorithm:"), wxPoint(208,16), wxDefaultSize, 0, _T("ID_ALGOLABEL"));
+    libraryChoice = new wxChoice(this, ID_LIBCHOICE, wxPoint(56,16), wxSize(144,21), 0, 0, 0, wxDefaultValidator, _T("ID_LIBCHOICE"));
     libraryChoice->Append(_("boost/random"));
     libraryChoice->SetSelection( libraryChoice->Append(_("MersenneTwister.h")) );
     libraryChoice->Append(_("GMP"));
-    algorithmChoice = new wxChoice(this, ID_ALGOCHOICE, wxPoint(240,16), wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_ALGOCHOICE"));
+    algorithmChoice = new wxChoice(this, ID_ALGOCHOICE, wxPoint(272,16), wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_ALGOCHOICE"));
     algorithmChoice->SetSelection( algorithmChoice->Append(_("MT 19937")) );
     amountLabel = new wxStaticText(this, ID_AMOUNTLABEL, _("Amount:"), wxPoint(8,48), wxDefaultSize, 0, _T("ID_AMOUNTLABEL"));
     amountField = new wxTextCtrl(this, ID_AMOUNTFIELD, _("100"), wxPoint(56,48), wxDefaultSize, 0, wxDefaultValidator, _T("ID_AMOUNTFIELD"));
-    fileLabel = new wxStaticText(this, ID_FILELABEL, _("File:"), wxPoint(184,48), wxDefaultSize, 0, _T("ID_FILELABEL"));
-    filenameField = new wxTextCtrl(this, ID_FILEFIELD, _("random.txt"), wxPoint(216,48), wxSize(152,21), 0, wxDefaultValidator, _T("ID_FILEFIELD"));
-    okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(120,512), wxSize(136,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
+    fileLabel = new wxStaticText(this, ID_FILELABEL, _("File:"), wxPoint(144,48), wxDefaultSize, 0, _T("ID_FILELABEL"));
+    filenameField = new wxTextCtrl(this, ID_FILEFIELD, _("random.txt"), wxPoint(176,48), wxSize(152,21), 0, wxDefaultValidator, _T("ID_FILEFIELD"));
+    okButton = new wxButton(this, ID_OKBUTTON, _("OK"), wxPoint(8,184), wxSize(688,23), 0, wxDefaultValidator, _T("ID_OKBUTTON"));
     seedLabel = new wxStaticText(this, ID_SEEDLABEL, _("Seed:"), wxPoint(8,80), wxDefaultSize, 0, _T("ID_SEEDLABEL"));
-    seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(56,80), wxSize(216,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
+    seedField = new wxTextCtrl(this, ID_SEEDFIELD, _("1234567890"), wxPoint(56,80), wxSize(160,21), 0, wxDefaultValidator, _T("ID_SEEDFIELD"));
     upperLimitField = new wxTextCtrl(this, ID_TEXTCTRL1, _("1000"), wxPoint(64,152), wxSize(72,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     upperLimitField->Disable();
-    distributionChoice = new wxChoice(this, ID_DISTCHOICE, wxPoint(232,120), wxSize(128,21), 0, 0, 0, wxDefaultValidator, _T("ID_DISTCHOICE"));
+    distributionChoice = new wxChoice(this, ID_DISTCHOICE, wxPoint(192,128), wxSize(152,21), 0, 0, 0, wxDefaultValidator, _T("ID_DISTCHOICE"));
     distributionChoice->SetSelection( distributionChoice->Append(_("32-Bit Real in [0,1]")) );
     distributionChoice->Append(_("32-Bit Real in [0,n]"));
     distributionChoice->Append(_("32-Bit Real in [0,1)"));
@@ -214,46 +148,30 @@ MultiRNGFrame::MultiRNGFrame(wxWindow* parent,wxWindowID id)
     distributionChoice->Append(_("Nonuniform"));
     upperLimitLabel = new wxTextCtrl(this, ID_TEXTCTRL3, _("Upper:"), wxPoint(24,152), wxSize(40,21), wxTE_READONLY|wxTE_CENTRE|wxNO_BORDER, wxDefaultValidator, _T("ID_TEXTCTRL3"));
     upperLimitLabel->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_APPWORKSPACE));
-    bitsLabel = new wxStaticText(this, ID_STATICTEXT1, _("Bits:"), wxPoint(200,152), wxSize(24,13), 0, _T("ID_STATICTEXT1"));
+    bitsLabel = new wxStaticText(this, ID_STATICTEXT1, _("Bits:"), wxPoint(152,152), wxSize(24,13), 0, _T("ID_STATICTEXT1"));
     bitsLabel->SetToolTip(_("Bits to use in GMP Linear Congruential algorithm"));
-    bitsField = new wxTextCtrl(this, ID_TEXTCTRL4, _("64"), wxPoint(232,144), wxSize(128,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
+    bitsField = new wxTextCtrl(this, ID_TEXTCTRL4, _("64"), wxPoint(192,152), wxSize(152,21), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
     bitsField->SetMaxLength(20);
     bitsField->Disable();
-    boostAlgoParametersCheckbox = new wxCheckBox(this, ID_CHECKBOX1, _("Enable customized algorithm"), wxPoint(30,220), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
-    boostAlgoParametersCheckbox->SetValue(false);
-    postprocMethodChoice = new wxComboBox(this, ID_COMBOBOX2, wxEmptyString, wxPoint(464,32), wxSize(216,21), 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX2"));
+    postprocMethodChoice = new wxComboBox(this, ID_COMBOBOX2, wxEmptyString, wxPoint(472,120), wxSize(216,21), 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX2"));
     postprocMethodChoice->SetSelection( postprocMethodChoice->Append(_("Nothing")) );
     postprocMethodChoice->Append(_("Hash"));
-    postprocMethodChoice->Append(_("Add"));
-    postprocMethodChoice->Append(_("Convert to char(full number)"));
-    postprocMethodChoice->Append(_("Convert to char (concat digits)"));
-    postprocLabel = new wxStaticText(this, ID_STATICTEXT2, _("Postprocessing:"), wxPoint(384,32), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
-    postprocHashAlgoLabel = new wxStaticText(this, ID_STATICTEXT3, _("Hash algorithm:"), wxPoint(384,56), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
-    postprocHashAlgoChoice = new wxChoice(this, ID_CHOICE1, wxPoint(464,56), wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
-    postprocHashAlgoChoice->Append(_("MD5"));
-    postprocHashAlgoChoice->SetSelection( postprocHashAlgoChoice->Append(_("SHA1")) );
-    postprocHashAlgoChoice->Append(_("SHA256"));
-    postprocHashAlgoChoice->Append(_("SHA384"));
-    postprocHashAlgoChoice->Append(_("SHA512"));
-    generateSeedButton = new wxButton(this, ID_BUTTON1, _("Generate"), wxPoint(280,80), wxSize(88,23), 0, wxDefaultValidator, _T("ID_BUTTON1"));
-    postprocOffsetLabel = new wxStaticText(this, ID_STATICTEXT8, _("Offset:"), wxPoint(424,80), wxDefaultSize, 0, _T("ID_STATICTEXT8"));
-    postprocOffsetField = new wxTextCtrl(this, ID_TEXTCTRL28, _("80"), wxPoint(464,80), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL28"));
-    postprocOffsetField->SetToolTip(_("Number to add to the value"));
-    postprocModLabel = new wxStaticText(this, ID_STATICTEXT9, _("Modulus:"), wxPoint(416,104), wxDefaultSize, 0, _T("ID_STATICTEXT9"));
-    postprocModField = new wxTextCtrl(this, ID_TEXTCTRL29, _("100"), wxPoint(464,104), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL29"));
-    postprocModField->SetToolTip(_("Modulus when using full char conversion"));
-    concatDigitsLabel = new wxStaticText(this, ID_STATICTEXT10, _("Concat:"), wxPoint(416,128), wxDefaultSize, 0, _T("ID_STATICTEXT10"));
-    concatDigitsField = new wxTextCtrl(this, ID_TEXTCTRL30, _("2"), wxPoint(464,128), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL30"));
-    concatDigitsField->SetToolTip(_("Number of digits to concatenate"));
-    StaticText1 = new wxStaticText(this, ID_STATICTEXT11, _("Filling string:"), wxPoint(392,152), wxSize(64,16), 0, _T("ID_STATICTEXT11"));
-    TextCtrl1 = new wxTextCtrl(this, ID_TEXTCTRL31, _("Text"), wxPoint(464,152), wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL31"));
-    TextCtrl1->SetToolTip(_("Source from which we can get characters if the string length of the random number is not dividable by the concat divisor"));
+    postprocLabel = new wxStaticText(this, ID_STATICTEXT2, _("Postprocessing:"), wxPoint(376,120), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
+    postprocHashAlgoLabel = new wxStaticText(this, ID_STATICTEXT3, _("Hash algorithm:"), wxPoint(376,144), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
+    postprocAlgoChoice = new wxChoice(this, ID_CHOICE1, wxPoint(472,144), wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
+    postprocAlgoChoice->Append(_("MD5"));
+    postprocAlgoChoice->SetSelection( postprocAlgoChoice->Append(_("SHA1")) );
+    postprocAlgoChoice->Append(_("SHA256"));
+    postprocAlgoChoice->Append(_("SHA384"));
+    postprocAlgoChoice->Append(_("SHA512"));
+    postprocAlgoChoice->Disable();
+    generateSeedButton = new wxButton(this, ID_BUTTON1, _("Generate"), wxPoint(272,80), wxSize(88,23), 0, wxDefaultValidator, _T("ID_BUTTON1"));
 
     Connect(ID_LIBCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnLibraryChoiceSelect);
     Connect(ID_OKBUTTON,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&MultiRNGFrame::OnOkButtonClick);
     Connect(ID_DISTCHOICE,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&MultiRNGFrame::OnDistributionChoiceSelect);
-    Connect(ID_CHECKBOX1,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&MultiRNGFrame::OnBoostAlgoParametersCheckboxClick);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&MultiRNGFrame::OnGenerateSeedButtonClick);
+    Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&MultiRNGFrame::OnClose);
     //*)
 }
 
@@ -284,12 +202,21 @@ void MultiRNGFrame::OnLibraryChoiceSelect(wxCommandEvent& event)
                 distributionLabel->SetValue(wxT("Distribution:"));
                 ///Set Algorithm choices
                 algorithmChoice->Clear();
-                algorithmChoice->Append(_("MT 19937"));
-                algorithmChoice->Append(_("Linear Congruential"));
-                algorithmChoice->Append(_("Additive Combine"));
-                algorithmChoice->Append(_("Inverse Congruential"));
-                algorithmChoice->Append(_("Shuffle output"));
-                algorithmChoice->Append(_("Lagged fibonacci"));
+                algorithmChoice->Append(_("Mersenne Twister 191937"));   ///1
+                algorithmChoice->Append(_("MInstdRand (LC Variant)"));  ///2
+                algorithmChoice->Append(_("Ecuyer 1988"));              ///3
+                algorithmChoice->Append(_("Kreutzer 1986"));            ///4
+                algorithmChoice->Append(_("Hellekalek 1995"));          ///5
+                algorithmChoice->Append(_("Mersenne Twister 11213b"));  ///6
+                algorithmChoice->Append(_("Lagged Fibonacci 607"));     ///7
+                algorithmChoice->Append(_("Lagged Fibonacci 1279"));    ///8
+                algorithmChoice->Append(_("Lagged Fibonacci 2281"));    ///9
+                algorithmChoice->Append(_("Lagged Fibonacci 3217"));    ///10
+                algorithmChoice->Append(_("Lagged Fibonacci 4423"));    ///11
+                algorithmChoice->Append(_("Lagged Fibonacci 9689"));    ///12
+                algorithmChoice->Append(_("Lagged Fibonacci 19937"));   ///13
+                algorithmChoice->Append(_("Lagged Fibonacci 23209"));   ///14
+                algorithmChoice->Append(_("Lagged Fibonacci 44497"));   ///15
                 algorithmChoice->SetSelection(0);
                 ///Set Distribution choices
                 distributionChoice->Enable(true);
@@ -372,21 +299,6 @@ void MultiRNGFrame::OnDistributionChoiceSelect(wxCommandEvent& event) ///Functio
             {
                 lowerLimitField->Enable(true);
                 upperLimitField->Enable(true);
-                ///Force parameter selection for Lagged fibonacci Generator
-                switch(algorithmChoice->GetCurrentSelection())
-                {
-                    case 7:
-                        {
-                         boost1stAlgoParameterField->Enable(true);
-                         boost2ndAlgoParameterField->Enable(true);
-                         boost3rdAlgoParameterField->Enable(true);
-                         boost4thAlgoParameterField->Enable(true);
-                         boost1stAlgoParameterLabel->SetValue(wxT("w:"));
-                         boost2ndAlgoParameterLabel->SetValue(wxT("p:"));
-                         boost3rdAlgoParameterLabel->SetValue(wxT("q:"));
-                         boost4thAlgoParameterField->SetValue(wxT("val:"));
-                        }
-                }
             }
         case 1: ///MersenneTwister.h
             {
@@ -460,20 +372,10 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
     distributionSelectionParam = distributionChoice->GetCurrentSelection();
     algorithmSelectionParam = algorithmChoice->GetCurrentSelection();
     filenameParam = lexical_cast<string>(filenameField->GetValue().mb_str());
-    customAlgorithmParam = boostAlgoParametersCheckbox->IsChecked();
     postprocMethodParam = postprocMethodChoice->GetCurrentSelection();
-    postprocAlgorithmParam  = postprocHashAlgoChoice->GetCurrentSelection();
+    postprocAlgorithmParam  = postprocAlgoChoice->GetCurrentSelection();
     //Check if postprocessing should be enabled
     if (postprocMethodParam != 0) {postprocEnabledParam = true;}
-
-    ///Init algorithm parameters
-    boostAlgoParam1Param = lexical_cast<int>(boost1stAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam2Param = lexical_cast<int>(boost2ndAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam3Param = lexical_cast<int>(boost3rdAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam4Param = lexical_cast<int>(boost4thAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam5Param = lexical_cast<int>(boost5thAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam6Param = lexical_cast<int>(boost6thAlgoParameterField->GetValue().mb_str());
-    boostAlgoParam7Param = lexical_cast<int>(boost7thAlgoParameterField->GetValue().mb_str());
 
     switch(libraryChoice->GetCurrentSelection())
     {
@@ -511,46 +413,24 @@ void MultiRNGFrame::OnOkButtonClick(wxCommandEvent& event)
 
 }
 
-void MultiRNGFrame::OnBoostAlgoParametersCheckboxClick(wxCommandEvent& event)
-{
-    if(boostAlgoParametersCheckbox->IsChecked())
-        {
-            boost1stAlgoParameterField->Enable(true);
-            boost2ndAlgoParameterField->Enable(true);
-            boost3rdAlgoParameterField->Enable(true);
-            boost4thAlgoParameterField->Enable(true);
-            boost5thAlgoParameterField->Enable(true);
-            boost6thAlgoParameterField->Enable(true);
-            boost7thAlgoParameterField->Enable(true);
-        }
-    else
-        {
-            ///Deactive only if selected Generator is not lagged fibonacci.
-            if(algorithmChoice->GetCurrentSelection()!=7)
-                {
-                    boost1stAlgoParameterField->Enable(false);
-                    boost2ndAlgoParameterField->Enable(false);
-                    boost3rdAlgoParameterField->Enable(false);
-                    boost4thAlgoParameterField->Enable(false);
-                }
-            boost4thAlgoParameterField->Enable(false);
-            boost5thAlgoParameterField->Enable(false);
-            boost6thAlgoParameterField->Enable(false);
-            boost7thAlgoParameterField->Enable(false);
-        }
-}
-
 void MultiRNGFrame::OnGenerateSeedButtonClick(wxCommandEvent& event)
 {
-    unsigned int seed;
+    unsigned long seed;
     ///Read from /dev/random if we are using linux or use time(0) on windows
     #ifdef __linux__
-    fstream f("/dev/random", fstream::in);
-    seed = (unsigned int)f.getchar();
+    ifstream f;
+    ///Dependent on the state of highEntropyCheckbox open either /dev/random or /dev/urandom for read
+    highEntropyCheckbox->IsChecked() ? f.open("/dev/random", ifstream::in) : f.open("/dev/urandom", ifstream::in);
+    f.read(reinterpret_cast<char*>(&seed), sizeof(unsigned long));
+    f.close();
     #else
     MTRand mtr(time(0)); ///Create random state variable and seed with time(0)
     seed = mtr.randInt();
     #endif
     string s = lexical_cast<string>(seed);
     seedField->SetValue(wxString(s.c_str(), wxConvUTF8));
+}
+
+void MultiRNGFrame::OnClose(wxCloseEvent& event)
+{
 }
