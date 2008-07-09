@@ -16,6 +16,21 @@ void GenRandBoost();
 ///Typedefs
 typedef unsigned long ulong;
 
+///Structs / struct typedefs
+template <class datatype>
+struct rngProcessingParameters
+{
+   boost::function<void(datatype input)> postprocFunction;
+   std::bitset<4> dataState; ///1: postprocQueue waiting; 2: writeQueue waiting; 3:postprocQueue end; 4: writeQueueEnd
+   boost::mutex postprocMutex;
+   boost::mutex writeMutex;
+   boost::condition_variable postprocCond;
+   boost::condition_variable writeCond;
+   std::deque<datatype> *postprocQueue;
+   std::deque<datatype> *writeQueue;
+   string filename;
+};
+
 ///Static variables,
 static unsigned long long amountParam;
 static string seedParam;
@@ -284,6 +299,11 @@ int GenRandGMP()
     return 0;
 }
 
+template <class datatype>
+writeToFile(shared_ptr<rngProcessingParameters<datatype> > parameters)
+{
+    ofstream f(p.filename.c_str(), ofstream::out);
+}
 
 template<class Algorithm>
 void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algorithm
@@ -300,17 +320,77 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
     ///Open fstream
     fstream f(filename.c_str(), fstream::out);
 
-    ///Switch distribution
+    ///Distribution main switch. TODO: Optimize!
     switch(distributionSelection)
         {
             case 0: ///Uniform small int
                 {
+                    ///Boost Random stuff
                     uniform_smallint<int> smallInt(llInt, ulInt);
                     variate_generator<Algorithm&, uniform_smallint<int> > generator(*algorithm, smallInt);
-                    for(unsigned long long i = 0;i < amount;i++)
-                        {
-                            f << generator() << endl;
-                        }
+                    rngProcessingParameters<int> params = new rngProcessingParameters();
+                    params.postprocQueue = new deque();
+                    *params.postprocQueue.resize(100);
+                    *params.writeQueue.resize(100);
+                    switch(postprocSelection)
+                    {
+                        case 0: ///Nothing
+                            {
+                                for(unsigned long long i = 0;i < amount;i++)
+                                    {
+                                        ///Generate a random number for 10 times, push in queue and then check if a process is waiting
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+
+                                        if(*params.dataState[0])
+                                            {
+                                                boost::lock_guard<boost::mutex> lock(params.writeMutex);
+                                                *params.dataState[1] = false;
+                                                params.writeCond.notify_all();
+                                            }
+                                    }
+                                break;
+                            }
+                        case 1: ///Hash
+                            {
+                                shared_ptr<rngProcessingParameters<int> > p(params);
+                                params.postprocFunction = boost::bind(&hash, p);
+                                params.writeQueue = new deque();
+                                ///Main loop
+                                for(unsigned long long i = 0;i < amount;i++)
+                                    {
+                                        ///Generate a random number for 10 times, push in queue and then check if a process is waiting
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+                                        params.postprocQueue.push_front(generator());
+
+                                        if(*params.dataState[0])
+                                            {
+                                                boost::lock_guard<boost::mutex> lock(mut);
+                                                *params.dataState[0] = false;
+                                                params.postprocCond.notify_all();
+                                            }
+                                    }
+                                break;
+                            }
+                        default: break;
+                    }
+
                     break;
                 }
             case 1: ///Uniform integer
