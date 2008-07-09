@@ -36,6 +36,7 @@
 #include <boost/random.hpp>
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
+#include <boost/shared_ptr.hpp>
 ///Include boost thread if multithreading is not disabled
 #ifndef NOMTHREADING
     #include <boost/thread.hpp>
