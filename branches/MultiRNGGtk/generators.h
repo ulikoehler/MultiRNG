@@ -1,8 +1,6 @@
 #ifndef GENERATORS_H
 #define GENERATORS_H
-#include "wx_pch.h"
 ///Custom includes
-#include "Postproc.h" ///Postprocessing header
 using namespace std;
 using namespace boost;
 using namespace boost::random;
@@ -333,16 +331,6 @@ void ProcessBoostAlgorithm(Algorithm *algorithm) ///Process type of boost algori
                             f << generator() << endl;
                         }
                     break;
-                }
-            case 2: ///Uniform 01
-                {
-//                    uniform_01<Algorithm, int> uni01(llInt, ulInt);
-//                    variate_generator<Algorithm&, uniform_01<Algorithm, int> > generator(*algorithm, uni01);
-//                    for(unsigned long i = 0;i < amount;i++)
-//                        {
-//                            f << generator() << endl;
-//                        }
-//                    break;
                 }
             case 3: ///Uniform real
                 {
