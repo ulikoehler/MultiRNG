@@ -139,6 +139,7 @@
 		<Unit filename="MultiRNGMain.cpp" />
 		<Unit filename="MultiRNGMain.h" />
 		<Unit filename="Postproc.h" />
+		<Unit filename="Write.h" />
 		<Unit filename="assembler/readtsc.asm">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
