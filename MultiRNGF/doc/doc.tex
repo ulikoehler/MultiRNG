@@ -1,0 +1,171 @@
+\documentclass{scrartcl}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\begin{document}
+\tableofcontents
+\section{Introduction}
+MultiRNG (Multi Random Number Generator is a multiplatform-application which lets you generate reproducable random numbers using several libraries, algorithms and distributions.\newline
+It supports mutithreading, so, when you click OK, a new thread is created which runs the specific generation function. The thread runs is background and writes the results to the specified file.\newline
+MultiRNG is in a very early state, so many selections in the GUI does not work correctly.
+\subsection{Compiling and installing MultiRNG}
+MultiRNG is using the free IDE Code::Blocks. You can get it from \url{http://codeblocks.org}. To Compile MultiRNG you have to use a nightly build and not 1.0RC2. I also recommend to use nightly uilds for productive development because they are very stable and include much more functions than the release.\newline
+Additionally, some libaries are required:
+
+\begin{description}
+\item[wxWidgets]MultiRNG uses this libary for the multiplatform GUI interface. MultiRNG binaries are compiled against wxWidgets 2.8.7. Get it from \url{http://wxwidgets.org}. If you are using Windows, there are procompiled binaries at \url{http://wxpack.sourceforge.net}. I recommend that you link MultiRNG against a dynamic version of wxWidgets (precompiled binaries do so).
+\item[GMP]MultiRNG is using GMP to provide support for Mersenne Twister and Linear congruential algorithm with arbitrary precision input. GMP is the only libary supported by MultiRNG that supports arbitrary precision numbers. You don't need gmpxx (GMP C++ interface) to compile MultiRNG. I recommend to link here dynamically also, but precompiled Win32 binaries are linked statically. Linking GMP statically forces you to offer your application under GPL. You can get GMP sources from \url{http://gmplib.org}. GMP is licensed under GNU LGPL. Get it from \url{http://www.gnu.org/licenses/lgpl.html}.
+
+\item[MersenneTwister.h]This is just a header file which offers an interface to a MT19937 Pseudorandom number generator. You can get it from\newline \url{http://www-personal.umich.edu/~wagnerr/MersenneTwister.h}.\newline For MersenneTwister.h License, see appendix A.
+
+\item[Boost C++ Libraries]Boost is a collection of a couple of C++ Libraries from which some will probably be included in the next C++ standard. MultiRNG uses Boost libraries to provide multithreading and for providing some useful template functions, for example lexical cast which shrinks the code very much, but the most important reaon why boost is used in MultiRNG is Boost::Random. That library provides advanced support for many algorithms and distribution. You can customize all algorithms and distributions by checking '"Enable customized algorithm"' in GUI. The you will be asked for a number of parameters depending on the choosen algorithm. Although most algorithms have a special configuration without parameters (this configuration is specified by boost). Anyhow you have to specify some parameters when no special configurations are defined by boost. Now this is the case only at lagged fibonacci generator. Get it boost from \url{http://boost.org}. You have to compile boost because MultiRNG uses multithreading and you have to link a library. note that boost::thread is only a wrapper of the pthread (Portable/POSIX thread) library. For boost license, see appendix B.
+\end{description}
+
+When you meet all these requirements, you have to choose a compiler. Building MultiRNG has only been tested with MinGW-GCC 4 until now. Most compilers should be able to build the program, but I highly recommend to use the Gnu Compiler (or Intel Compiler, if you have) because it optimizes far better than most other compilers. If you are using Microsoft(r) Windows(r) and want to optimize for size, it may be advantageous to use Microsoft Compiler instead of MinGW because so you can link the C standard library dynamically (Beware of dynamically linking to much when optimizing for speed). Microsft Compiler does not optimize as well as GNU Compiler even under Windows. I do not recommend to use Cygwin simply because it is not intended to be very fast and required an extra DLL which may be very inefficient. If you are futhermore interested in optimizing, see \url{http://agner.org}.\newline
+
+When you have finished compiler setup, start Code::Blocks and open MultiRNG.cbp. Select build target Release Windows of you are using Microsoft Windows or Release Linux if you are using any other POSIX-Compatible system (for some others slight code changes may be required). Then click build. This may take a time even on very fast computer, because we have to precompile a header and each object file separately. If building is finished, click run. If the project requires the DLL wxmsw28u\_gcc.dll, get it from your wxPack directory or from http://multirng.googlecode.com/files/wxmsw28u\_gcc.dll. Under linux, you have to install wxWidgets or if you distribution does not have a such package wxGTK/wxX11 (at your choice). If don't find such a package you can compile wxWidgets by yourself. I don't recommend to do so because it takes several hours.
+
+\subsection{Building documentation}
+If you want to build the latest documentation, you have to get a working \LaTeX\ system. For now there are no required packages. Additionally you have to get GNU R (\url{http://r-project.org}). When you've fullfilled all dependencies, just compile target Documentation from Code::Blocks
+
+\subsection{Running the program}
+Now just run bin/Release/MultiRNG.exe. If you did everything right, a window will appear. Now you are able to select a library, algorithm, distribution and several parameters. When you are finished, click OK. The program will now start a new thread and you can continue with selecting new parameters. You can click OK as often as you want as MultiRNG doens't care about started threads. Note that you have to select another file in each thread because two threads can't write to one file at a time.
+
+\section{MersenneTwister.h}
+As already mentioned, MersenneTwister.h is a BSD-Licensed header file which provides the very fast Mersenne Twsiter algorithm in the MT19937 configuration. This is the commonly most used configuration and only Boost::random allows to change these parameters. As the name already shows, this library contains only the MersenneTwister Algorithm, but several ranges wherein the generated number (we call it n) can be. MersenneTwister.h is very fast and using less memory than the other
+\subsection{Algorithms}
+\subsubsection{Mersenne Twister 19937}
+This algorithm is a special configuration of MersenneTwister. Mersenne Twister is very fast and MersenneTwister.h has less functions to call than any other library and is highly optimized, especially if you compile MultiRNG with SSE2+. The library is delivered as header file so the compiler can easier use optimization over the functions. MersenneTwister itself is supposed to be one of the fastest (if not the fastest) algorithm, so with this library you may get the most results per timeunit. Benchmars show that it takes approximately 1250-2500 clockcycles (depending on the chosen function on a Pentium 4 Prescott Processor with a fully optimized build. This is pretty good, because Agner Fog's highly optimized asmlib takes 1000 clockcycles to generate a MersenneTwister random number. (And it isn't thread-safe beacuse there is nothing you can create a different instance for each thread from).
+\subsection{Ranges}
+MersenneTwister.h offers a couple of different ranges where the generated number can be in:
+\begin{itemize}
+	\item 32-Bit Real in [0,1]
+	\item 32-Bit Real in [0,n]
+	\item 32-Bit Real in [0,1)
+	\item 32-Bit Real in [0,n)
+	\item 32-Bit Real in (0,1)
+	\item 32-Bit Real in (0,n)
+	\item Integer in $[0,2^32-1]$
+	\item Integer in $[0,n]$ for $n<2^{32}$
+	\item 53-bit real number in [0,1)
+	\item Nonuniform
+\end{itemize}
+Most of these options are self-explaining. Nonuniform wants two parameters, mean and variance. This is the only thing what you may call distribution customization when using MersenneTwister.h. These Parameters are set in the limits box.
+\section{GMP}
+GMP ist the GNU multiple precision arithmetic library. I contains support for MersenneTwister and linear congruential algorithm. When you want to generate numbers with larger parameters than the number bounds, you have to use GMP. Parameter size is only limited Note that GMP is much, much slower than all other libraries used in MultiRNG. This is because ist has to software-emulate all operations on great numbers. Even GMP has assembler code optimizations such emulations are very slow. If you don't need arbitrary precision parameters, I highly recommend to use another library.
+\subsection{Algorithms}
+\subsubsection{Mersenne Twister 19937}
+When you choose to use this algorithm, there will be no parameters for initalizing the algorithm, just for number bounds. In the configuration tha MultiRNG uses, it can generate only uniform random numbers. It's recommended to use this algorithm and not Linear Congruential.
+\subsubsection{Linear Congruential}
+This algorithm can be used in two configurations in GMP. In the first one, this is the one MultiRNG uses, GMP selects the parameters from a table, so that only some bits are used. The bits parameter is delivered by a text field in the advanced options box. It must not be greater that 128, otherwise MultiRNG will crash, because GMP doens't support larger bit-parameters in version 4.2.2.\newline
+The second configuration lets you choose own parameters for the m2exp parameter (see chapter 5.1.2 for a detailed description), a and c. Unfortunately GMP only unsigned long parameters for c and m2exp parameters. Therefore it it highly recommended not to use Linear Congruential algorithm. It is much slower and GMP's default algorithm is also Mersenne Twister.
+\section{Boost::Random}
+Boost::random is part of the boost project, which provides a couple of libraries under a free license. As most of the boost project, it uses a template interface. It supports many algorithms and distributions, but the main advantage is that you can modify each algorithm and distribution as you want. This requires you know how the algorithm or the di works and how to choose the parameters. Therefore Boost::random is recommended for advanced users. For most algorithms (and distributions) there is a special configuration which requires no or less parameters. Note that each algorithm has its own characteristics.
+\subsection{Algorithms}
+\subsection{Distributions}
+\section{Technical details}
+\subsection{Algorithms}
+\subsubsection{Mersenne Twister}
+\paragraph{Mersenne Twister 19937}
+\subsubsection{Linear Congruential}
+Linear Congruenial is a basic, simple pseudorandom number algorithm. The formula is as follows:
+\begin{equation} y_i = (a{y}_{i-a}+b)\:mod\:m \end{equation}
+Note that Linear Congruential is not cryptographically secure.
+\subsubsection{Inverse Congruential}
+Inverse Congruential algorithm is a modification of the standard linear congruential. It takes the inverse of the last value:
+\begin{equation}y_i = (a{y}_{i-1}^{-1}+b)\:mod\:m = (a{y}_{i-1}^{m-2}+b)\:mod\:m \end{equation}
+\subsubsection{Fibonacci Generator}
+Fibonacci is another generator from the congruential generator family. It uses the following equation:
+\begin{equation} y_i = (y_{i-1}+y_{i-2})\:mod\:m \end{equation}
+\paragraph{Lagged Fibonacci}
+This is a modification of the fibonacci generator.  Instead of adding $y_{i-1}$ and $y_{i-2}$ it adds $y_{i-A}$ and $y_{i-B}$. In fact the 'standard' Fibonacci Generator is a special case of this one (with the parameters A=1 and B=2)\newline
+The full formula is:
+\begin{equation}y_i = (y_{i-A} + y_{i-B})\:mod\:m\end{equation}
+This generalisation makes the generator to produces more entropy.
+with $A < B < i$.
+
+\subsection{Mixing Algorithms}
+\subsubsection{Shuffle Output}
+\subsubsection{Additive Combine}
+\subsection{Distributions}
+\subsubsection{Normal Distribution}
+Normal distribution (also called Gauss distribution) is just a distribution where the values are accumulated in the middle.
+The density function $f:\mathbb{R}\to\mathbb{R}$ is as follows:\newline
+\includegraphics[width=10cm]{doc/distributions/normal.png}\newline
+The Probability Density Function is:
+\begin{equation} f(x) = \frac {1}{\sigma\sqrt{2\pi}}\exp\left(-\frac {1}{2} \left(\frac{x-\mu}{\sigma}\right)^2\right) \end{equation}
+where $\mu$ is the location (location of the highest value in the density function) and $\sigma$ is the standard deviation.\newline
+The entropy of the Gaussian distribution is defined as follows:
+\begin{equation}ln(\sigma\sqrt{2\pi e}) \end{equation}
+\paragraph{Generalisation}
+You can generalize the Gaussian Distribution to multiple Dimensions, you will get this function:
+\begin{equation}f_X: \mathbb{R}^n \to \mathbb{R},\,(x_1,\ldots,x_n) \mapsto \frac 1{\sqrt{(2\pi)^n}} \exp\left( -\frac 12 \sum_{i=1}^n x_i^2 \right) \end{equation}
+\subsubsection{Cauchy Distribution}
+\subsubsection{Bernoulli Distribution}
+\subsubsection{Geometric Distribution}
+\subsubsection{Triangle Distribution}
+\subsubsection{Exponential Distribution}
+\subsubsection{Uniform-On-Sphere Distribution}
+\subsection{Code and Optimization}
+\subsubsection{MersenneTwister.h}
+\subsubsection{GMP}
+\subsubsection{Boost::random}
+
+\newpage
+\begin{appendix}
+\section{MersenneTwister.h License}
+Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura\newline
+Copyright (C) 2000 - 2003, Richard J. Wagner\newline
+All rights reserved.\newline
+\newline
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:\newline
+\begin{description}
+\item[1.] Redistributions of source code must retain the above copyright\newline
+   notice, this list of conditions and the following disclaimer.
+\item[2.] Redistributions in binary form must reproduce the above copyright\newline
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+\item[3.] The name of the author may not be used to endorse or promote products
+   derived from this software without specific prior written permission.\newline\newline
+\end{description}
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+\newpage
+\section{Boost Software License}
+Boost Software License - Version 1.0 - August 17th, 2003\newline
+\newline
+Permission is hereby granted, free of charge, to any person or organization
+obtaining a copy of the software and accompanying documentation covered by
+this license (the \"Software\") to use, reproduce, display, distribute,
+execute, and transmit the Software, and to prepare derivative works of the
+Software, and to permit third-parties to whom the Software is furnished to
+do so, all subject to the following:\newline\newline
+
+The copyright notices in the Software and this entire statement, including
+the above license grant, this restriction and the following disclaimer,
+must be included in all copies of the Software, in whole or in part, and
+all derivative works of the Software, unless such copies or derivative
+works are solely in the form of machine-executable object code generated by
+a source language processor.\newline\newline
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
+SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
+FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+\end{appendix}
+\end{document}

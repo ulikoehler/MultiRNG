@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Release Linux" />
-	<File name="Generators.h" open="0" top="0" tabpos="4">
-		<Cursor position="2581" topLine="46" />
+	<ActiveTarget name="Debug Linux" />
+	<File name="Generators.h" open="1" top="1" tabpos="1">
+		<Cursor position="2638" topLine="72" />
 	</File>
 	<File name="MultiRNGApp.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="762" topLine="0" />
@@ -10,20 +10,14 @@
 	<File name="MultiRNGApp.h" open="0" top="0" tabpos="2">
 		<Cursor position="357" topLine="0" />
 	</File>
-	<File name="MultiRNGMain.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="30656" topLine="350" />
+	<File name="MultiRNGMain.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="7273" topLine="134" />
 	</File>
-	<File name="Postproc.h" open="0" top="0" tabpos="3">
-		<Cursor position="1756" topLine="61" />
-	</File>
-	<File name="Write.h" open="0" top="0" tabpos="8">
-		<Cursor position="666" topLine="0" />
+	<File name="MultiRNGMain.h" open="1" top="0" tabpos="4">
+		<Cursor position="1091" topLine="7" />
 	</File>
 	<File name="doc/doc.tex" open="0" top="0" tabpos="7">
 		<Cursor position="1193" topLine="0" />
-	</File>
-	<File name="postproc/hash.h" open="0" top="0" tabpos="4">
-		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="wx_pch.h" open="0" top="0" tabpos="5">
 		<Cursor position="0" topLine="0" />
