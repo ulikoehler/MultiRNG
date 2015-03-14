@@ -1,0 +1,1 @@
+Application that lets you create pseudorandom numbers from many different generator librarys like boost/random, MersenneTwister.h or GMP.
