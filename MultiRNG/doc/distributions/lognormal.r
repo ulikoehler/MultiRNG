@@ -1,8 +1,0 @@
-setwd("doc/distributions")
-postscript(file = "lognormal.ps", width = 10, height = 8, bg = "white", fg = "black", onefile=TRUE)
-colors=c("blue")
-x<-seq(-3,3,length=10000)
-plot(x, log(dnorm(x,0,1)) ,xlab="", ylab="" ,lwd=3, col=colors[1],type="l", cex.axis=2, col.axis="gray40")
-title("Normal Distribution",col.main="gray50",cex.main=1.5)
-legend(1.5,0.4,legend="N(0,1)",lwd=c(4,4,4,1),col=colors,cex=1.5)
-grid()
